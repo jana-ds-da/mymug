@@ -1,0 +1,117 @@
+body {
+    background: #fff0d9;
+}
+
+.receipt-page {
+   
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.receipt {
+    width: 90%;
+    max-width: 900px;
+    background: white;
+    padding: 35px 50px;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.receipt h1 {
+    font-family: Georgia, serif;
+    font-size: 44px;
+    font-weight: normal;
+    margin: 0 0 25px;
+    color: #24140c;
+}
+
+.order-info {
+    font-size: 21px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.receipt hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 25px 0;
+}
+
+.customer-info {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.customer-info p {
+    margin: 8px 0;
+}
+
+.customer-info strong {
+    font-weight: bold;
+}
+
+.order-items {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.order-items p {
+    margin: 8px 0;
+}
+
+.total {
+    text-align: right;
+    font-size: 36px;
+    color: #c45b2c;
+    margin-top: 25px;
+}
+
+.receipt-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.receipt-buttons button,
+.receipt-buttons a {
+    border: none;
+    background: #c45b2c;
+    color: white;
+    padding: 18px 35px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.receipt-buttons button:hover,
+.receipt-buttons a:hover {
+    opacity: 0.9;
+}
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .receipt-page {
+        min-height: auto;
+        display: block;
+        padding: 0;
+    }
+
+    .receipt {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+    }
+
+    .receipt-buttons {
+        display: none;
+    }
+}

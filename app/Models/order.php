@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class order extends Model
+{
+    protected $fillable = [
+          
+        'user_id',
+        'full_name',
+        'email',
+        'phone',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'country',
+        'payment',
+        'total',
+
+    ];
+
+
+
+    public function user(): BelongsTo
+    {
+
+       return $this->belongsTo(user::class);
+    }
+
+
+    public function items(): HasMany
+    {
+
+      return $this->hasMany(OrderItem::class);
+    }
+
+
+
+
+
+
+
+
+
+
+}
