@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class order extends Model
+class Order extends Model
 {
     protected $fillable = [
           
@@ -29,7 +29,7 @@ class order extends Model
     public function user(): BelongsTo
     {
 
-       return $this->belongsTo(user::class);
+       return $this->belongsTo(User::class);
     }
 
 

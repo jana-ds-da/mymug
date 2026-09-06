@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
-
+use Yajra\DataTables\Facades\DataTables;
 
 
 
@@ -103,4 +103,17 @@ class ProductController extends Controller
         ->route('dashboard')
         ->with('success', 'Product updated successfully.');
 }
+
+
+
+
+public function data()
+{
+    $products = Product::query();
+
+    return DataTables::of($products)
+      ->addIndexColumn()
+      ->make(true);
+}
+
 }

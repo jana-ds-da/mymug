@@ -29,7 +29,7 @@ class CartController extends Controller
 
           }   else {
             $cartItem = CartItem::create([
-                'user_id' =>  auth()->user()->id,
+                'user_id' =>  Auth::id(),
                 'product_id' => $request->product_id,
                 'quantity' => $request->quantity,
             ]);

@@ -11,9 +11,10 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ReceiptController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');
 
@@ -142,3 +143,14 @@ Route::get('/logout', function (Request $request) {
 Route::get('/check-auth', function () {
     return Auth::check() ? 'LOGGED IN' : 'NOT LOGGED IN';
 });
+
+
+//Route::get('/users/data', [UserController::class, 'data'])
+   // ->middleware('auth')
+    //->name('users.data');
+
+
+
+Route::get('/products/data', [ProductController::class, 'data'])
+    ->middleware('auth')
+    ->name('products.data');    

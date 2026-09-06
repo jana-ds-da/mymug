@@ -364,7 +364,7 @@
 
 
 
-<table class="table table-hover align-middle">
+<table id='productsTable' class="table table-hover align-middle">
 
     <thead>
 

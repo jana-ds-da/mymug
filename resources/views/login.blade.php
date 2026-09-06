@@ -19,7 +19,15 @@
                 <span class="brand-icon"></span>
                 <span class="brand-name">my mug</span>
             </div>
+            
 
+            @if(session('success'))
+                <div class="alert alert-success">
+                   {{ session('success') }}
+                </div>
+            @endif
+
+            
             <h1>Log in to your account</h1>
 
             <form class="login-form" method= 'POST' action='{{ route('login.store') }}'>
