@@ -38,7 +38,7 @@
 
         <div class="product-image">
 
-            <img src="{{ asset('storage/' .$product->image_path) }}" alt="{{ $product->mug_name }}" id="productImage">
+            <img src="{{ $product->image_url }}" alt="{{ $product->mug_name }}" id="productImage">
 
         </div>
 
@@ -47,9 +47,9 @@
 
         <div class="product-details">
 
-            <span class="category">
-                {{ $product->category }}
-            </span>
+           <span class="product-category">
+               {{ $product->category->name ?? 'Uncategorized' }}
+           </span>
 
             <h1 id="productName">
                 {{ $product->mug_name }}

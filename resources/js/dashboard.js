@@ -147,19 +147,11 @@ if (productsTable) {
                 searchable: false
             },
             {
-                data: "image_path",
+                data: "image",
                 name: "image_path",
                 orderable: false,
                 searchable: false,
-                render: function (data) {
-                    return `
-                        <img 
-                            src="/storage/${data}" 
-                            width="70"
-                            alt="Product"
-                        >
-                    `;
-                }
+                
             },
             {
                 data: "mug_name",

@@ -2,6 +2,7 @@
 
 namespace Database\seeders;
 use App\Models\Product;
+use App\Models\Category;
 
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -13,12 +14,17 @@ class ProductSeeder extends seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
+    {   
+
+        $hotChocolate = Category::where('slug', 'hot-chocolate')->first();
+        $espresso = Category::where('slug', 'espresso')->first();
+        $iceCoffee = Category::where('slug', 'ice-coffee')->first();
+
         Product::create([
             'mug_name' => 'Pink Ribbon Handmade Mug',
             'price' => 950,
-            'category' => 'hot chocolate',
-            'image_path' => 'products/public/storage/products/zS77AFE48LFBCzQRACOtufIBpVVzUERRi5ooYv6K.jpg',
+            'category_id' => $hotChocolate->id,
+            'image_path' => 'img/mug1.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing',
             'capacity' => '350 ml',
             'how_its_made' => 'Handmade from high-quality ceramic, hand-painted, glazed, and kiln-fired with gold accents.',
@@ -28,8 +34,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Bow Espresso Mug',
             'price' => 950,
-            'category' => 'espresso',
-            'image_path' => 'img/mug2.jpg',
+            'category_id' => $espresso->id,
+            'image_path' => 'img/mug2.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '180 ml',
             'how_its_made' => 'Hand-shaped, detailed with sculpted bows, glazed, and kiln-fired',
@@ -40,8 +46,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Classic Bow Cup & Saucer Set',
             'price' => 850,
-            'category' => 'hot chocolate',
-            'image_path' => 'img/mug3.jpg',
+            'category_id' => $hotChocolate->id,
+            'image_path' => 'img/mug3.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '250 ml',
             'how_its_made' => 'Handmade, hand-painted, glazed, and fired at high temperature.',
@@ -52,8 +58,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Vintage Floral Mug',
             'price' => 750,
-            'category' => 'espresso',
-            'image_path' => 'img/mug4.jpg',
+            'category_id' => $espresso->id,
+            'image_path' => 'img/mug4.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing',
             'capacity' => '280 ml',
             'how_its_made' => 'Wheel-thrown, hand-painted with floral designs, glazed, and kiln-fired.',
@@ -64,8 +70,8 @@ class ProductSeeder extends seeder
          Product::create([
             'mug_name' => 'Lavender Rustic Mug',
             'price' => 720,
-            'category' => 'ice coffee',
-            'image_path' => 'img/mug5.jpg',
+            'category_id' => $iceCoffee->id,
+            'image_path' => 'img/mug5.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '300 ml',
             'how_its_made' => 'Handcrafted from stoneware, hand-painted, glazed, and fired in a kiln.',
@@ -76,8 +82,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Coffee Bean Mug',
             'price' => 650,
-            'category' => 'espresso',
-            'image_path' => 'img/mug6.jpg',
+            'category_id' => $espresso->id,
+            'image_path' => 'img/mug6.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '320 ml',
             'how_its_made' => 'Handmade ceramic with individually sculpted coffee bean details and glossy glaze.',
@@ -87,8 +93,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Dream It Mug & Saucer Set',
             'price' => 850,
-            'category' => 'hot chocolate',
-            'image_path' => 'img/mug7.jpg',
+            'category_id' => $hotChocolate->id,
+            'image_path' => 'img/mug7.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '300 ml',
             'how_its_made' => 'Handmade, embossed before firing, glazed with a smooth matte finish.',
@@ -99,8 +105,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Heart Stoneware Mug',
             'price' => 970,
-            'category' => 'ice coffee',
-            'image_path' => 'img/mug8.jpg',
+            'category_id' => $iceCoffee->id,
+            'image_path' => 'img/mug8.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '400 ml',
             'how_its_made' => 'Wheel-thrown, hand-finished, glazed, and fired at high temperature.',
@@ -111,8 +117,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Blush Gradient Mug',
             'price' => 700,
-            'category' => 'ice coffee',
-            'image_path' => 'img/mug9.jpg',
+            'category_id' => $iceCoffee->id,
+            'image_path' => 'img/mug9.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '350 ml',
             'how_its_made' => 'Handmade with layered glaze techniques to create the gradient effect.',
@@ -123,8 +129,8 @@ class ProductSeeder extends seeder
         Product::create([
             'mug_name' => 'Stoneware Espresso Set',
             'price' => 600,
-            'category' => 'Espresso',
-            'image_path' => 'img/mug10.jpg',
+            'category_id' => $espresso->id,
+            'image_path' => 'img/mug10.jpeg',
             'description' => 'A charming handcrafted ceramic mug featuring delicate pink ribbon patterns, a sculpted bow, and elegant gold detailing.',
             'capacity' => '120 ml',
             'how_its_made' => 'Hand-shaped, glazed with a natural stoneware finish, and kiln-fired.',

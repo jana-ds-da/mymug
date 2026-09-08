@@ -7,7 +7,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 use Yajra\DataTables\Facades\DataTables;
-
+use App\Models\Category;
 
 
 
@@ -25,7 +25,7 @@ class ProductController extends Controller
         Product::create([
             'mug_name' => $validated['mug_name'],
             'price' => $validated['price'],
-            'category' => $validated['category'],
+            'category_id' => $validated['category_id'],
             'image_path' => $imagePath,
             'description' => $validated['description'],
             'capacity' => $validated['capacity'],
@@ -39,8 +39,9 @@ class ProductController extends Controller
     }
 
     public function show(Product $product)
-    {
-        return view('product', compact('product'));
+    {   
+        $categories = Category::all();
+        return view('product', compact('product', 'categories'));
     }
 
 
@@ -75,7 +76,7 @@ class ProductController extends Controller
 
      $product->mug_name = $validated['mug_name'];
      $product->price = $validated['price'];
-     $product->category = $validated['category'];
+     $product->category_id = $validated['category_id'];
      $product->description = $validated['description'];
      $product->capacity = $validated['capacity'];
      $product->how_its_made = $validated['how_its_made'];
@@ -109,11 +110,53 @@ class ProductController extends Controller
 
 public function data()
 {
-    $products = Product::query();
+  
+
+    $products = Product::with('category')->select('products.*');
 
     return DataTables::of($products)
-      ->addIndexColumn()
-      ->make(true);
+        ->addIndexColumn()
+        ->addColumn('category', function ($product) {
+            return $product->category->name ?? '-';
+        })
+        ->filterColumn('category', function ($query, $keyword) {
+            $query->whereHas('category', function ($q) use ($keyword) {
+                $q->where('name', 'like', "%{$keyword}%");
+            });
+        })
+        ->addColumn('image', function ($product) {
+            return '<img src="' . $product->image_url . '" width="70">';
+        })
+        ->rawColumns(['image'])
+        ->make(true);
+
+
+
 }
+
+
+
+
+
+
+
+
+public function index(Request $request)
+{
+    $categories = Category::all();
+
+    $products = Product::when($request->category && $request->category !== 'all', function ($query) use ($request) {
+        $query->whereHas('category', function ($q) use ($request) {
+            $q->where('slug', request('category'));
+        });
+    })->latest()->get();
+
+    return view('collection', compact('products', 'categories'));
+}
+
+
+
+
+
 
 }

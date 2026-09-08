@@ -8,7 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Category;
 
 
 
@@ -17,6 +17,8 @@ class DashboardController extends Controller
     public function index(Request $request){
        
       $products = Product::latest()->get();
+      $categories = Category::all();
+
 
       $editProduct = null;
        if ($request->has('edit')) {
@@ -106,7 +108,9 @@ class DashboardController extends Controller
              'chartLabels',
              'chartData',
              'recentOrders',
-             'topProducts'
+             'topProducts',
+             'categories'
+
           ));
         
 

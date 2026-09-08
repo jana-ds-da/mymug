@@ -162,36 +162,13 @@
         <div class="col-md-6 mb-3">
             <label>Category</label>
 
-            <select
-                class="form-select"
-                id="category"
-                name="category"
-                required
-            >
-
+            <select class="form-select" id="category" name="category_id" required>
                 <option value="">Select Category</option>
-
-                <option
-                    value="espresso"
-                    {{ ($editProduct->category ?? '') == 'espresso' ? 'selected' : '' }}
-                >
-                    Espresso
-                </option>
-
-                <option
-                    value="ice coffee"
-                    {{ ($editProduct->category ?? '') == 'ice coffee' ? 'selected' : '' }}
-                >
-                    Ice Coffee
-                </option>
-
-                <option
-                    value="hot chocolate"
-                    {{ ($editProduct->category ?? '') == 'hot chocolate' ? 'selected' : '' }}
-                >
-                    Hot Chocolate
-                </option>
-
+               @foreach ($categories as $cat)
+                  <option value="{{ $cat->id }}" {{ ($editProduct->category_id ?? '') == $cat->id ? 'selected' : '' }}>
+                     {{ $cat->name }}
+                  </option>
+               @endforeach
             </select>
         </div>
 
@@ -218,7 +195,7 @@
                     <p>Current Image:</p>
 
                     <img
-                        src="{{ asset('storage/' . $editProduct->image_path) }}"
+                        src="{{ asset( $editProduct->image_path) }}"
                         width="180"
                         style="border-radius:12px;"
                         alt="{{ $editProduct->mug_name }}"
@@ -398,7 +375,7 @@
                     
 
                     <img
-                        src="{{ asset('storage/' . $product->image_path) }}"
+                        src="{{ asset( 'storage/'.$product->image_path) }}"
                         width="70"
                         alt="{{ $product->mug_name }}"
                     >
@@ -416,9 +393,9 @@
                 </td>
 
 
-                <td>
-                    {{ $product->category }}
-                </td>
+              <td>
+                  {{ $product->category->name ?? '-' }}
+              </td>
 
 
                 <td>
@@ -570,7 +547,7 @@
         <div class="top-product-card">
 
             <img
-                src="{{ asset('storage/' . $item->product->image_path) }}"
+                src="{{ asset( $item->product->image_path) }}"
                 alt="{{ $item->product->mug_name }}"
                 width="80"
             >

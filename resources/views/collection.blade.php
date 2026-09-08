@@ -50,16 +50,17 @@
 
     <div class="filter-section">
 
-        <a href='{{ route('collection') }}' class='filter-btn {{ !request('category') ? 'active' : '' }}'> All </a>
+        <a href='{{ route('collection') }}' class='filter-btn {{ !request('category') ? 'active' : '' }}'>
+           All
+        </a>
 
-        @foreach ($categories as $cat)
-             <a href='{{ route('collection', ['category' => $cat]) }}'
-                class='filter-btn {{ request('category') == $cat ? 'active' : ''}}'>
-                 {{ ucfirst($cat) }}
+       @foreach ($categories as $cat)
+        <a href='{{ route('collection', ['category' => $cat->slug]) }}'
+           class='filter-btn {{ request('category') == $cat->slug ? 'active' : '' }}'>
+            {{ $cat->name }}
+        </a>
+       @endforeach
 
-             </a>
-             
-        @endforeach     
     </div>
 
 
@@ -72,7 +73,7 @@
             <div class='product-card' data-category='{{ $product->category }}'>
               <a href='{{ route('product.show', $product->id) }}'>  
                 <img class='product-img'
-                     src='{{ asset('storage/' .$product->image_path) }}'
+                     src='{{ $product->image_url }}'
                      alt='{{ $product->mug_name }}'>
 
                 <div class='product-info'>     

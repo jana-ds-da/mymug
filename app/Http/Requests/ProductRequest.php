@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
         return [
         'mug_name'     => 'required|string|max:70',
         'price'        => 'required|numeric',
-        'category'     => 'required|in:espresso,ice coffee,hot chocolate',
+        'category_id' => 'required|exists:categories,id',
 
 
          'image' => match ($this->route()->getName())  {
