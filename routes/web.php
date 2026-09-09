@@ -12,7 +12,7 @@ use App\Http\Controllers\ReceiptController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
-
+use App\DataTables\ProductsDataTable;
 
 Route::get('/', function () {
     return view('home');
@@ -151,6 +151,6 @@ Route::get('/check-auth', function () {
 
 
 
-Route::get('/products/data', [ProductController::class, 'data'])
-    ->middleware('auth')
-    ->name('products.data');    
+Route::get('/products/data', function (ProductsDataTable $dataTable) {
+    return $dataTable->getData();
+})->name('products.data');   

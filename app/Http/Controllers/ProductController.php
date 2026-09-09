@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
-use Yajra\DataTables\Facades\DataTables;
+
 use App\Models\Category;
 
 
@@ -108,31 +108,8 @@ class ProductController extends Controller
 
 
 
-public function data()
-{
-  
-
-    $products = Product::with('category')->select('products.*');
-
-    return DataTables::of($products)
-        ->addIndexColumn()
-        ->addColumn('category', function ($product) {
-            return $product->category->name ?? '-';
-        })
-        ->filterColumn('category', function ($query, $keyword) {
-            $query->whereHas('category', function ($q) use ($keyword) {
-                $q->where('name', 'like', "%{$keyword}%");
-            });
-        })
-        ->addColumn('image', function ($product) {
-            return '<img src="' . $product->image_url . '" width="70">';
-        })
-        ->rawColumns(['image'])
-        ->make(true);
 
 
-
-}
 
 
 
