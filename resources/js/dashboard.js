@@ -141,7 +141,7 @@ if (salesCanvas) {
                 tension: 0.4,
                 borderWidth: 2,
 
-                borderColor:'#A65A2E',
+                borderColor: '#A65A2E',
                 backgroundColor: "rgba(231, 123, 57, 0.15)",
 
                 fill: true
@@ -160,7 +160,7 @@ if (salesCanvas) {
         }
     });
 
-
+}
 
     
 document.addEventListener("click", function (e) {
@@ -171,7 +171,6 @@ document.addEventListener("click", function (e) {
 
     e.preventDefault();
 
-    const productId = deleteButton.dataset.id;
     const deleteUrl = deleteButton.dataset.url;
 
     if (!confirm("Are you sure you want to delete this product?")) {
@@ -184,6 +183,7 @@ document.addEventListener("click", function (e) {
             "X-CSRF-TOKEN": document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content"),
+
             "Accept": "application/json",
             "X-Requested-With": "XMLHttpRequest"
         }
@@ -195,23 +195,19 @@ document.addEventListener("click", function (e) {
         }
 
         return response.json();
-
     })
     .then(data => {
 
         alert(data.message || "Product deleted successfully.");
 
-        
         $('#productsTable').DataTable().ajax.reload(null, false);
 
     })
     .catch(error => {
 
         console.error(error);
-        alert("Something went wrong while deleting the product.");
 
+        alert("Something went wrong while deleting the product.");
     });
 
 });
-
-}

@@ -48,19 +48,19 @@ class ProductController extends Controller
 
 
    public function destroy(Product $product)
-   {
+{
 
-    if($product->image_path && storage::disk('public')->exists($product->image_path)){
-        storage::disk('public')->delete($product->image_path);
+    if($product->image_path && Storage::disk('public')->exists($product->image_path)){
+        Storage::disk('public')->delete($product->image_path);
     }
 
-       
+
     $product->delete();
 
-    return redirect()
-        ->route('dashboard')
-        ->with('success', 'Product delete successfully.');
-   }
+    return response()->json([
+        'message' => 'Product deleted successfully.'
+    ]);
+}
 
 
 
