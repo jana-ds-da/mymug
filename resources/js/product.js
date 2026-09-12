@@ -108,29 +108,55 @@ document.getElementById("addCart").addEventListener("click", () => {
 
 document.getElementById("buyNow").addEventListener("click", () => {
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (!isLoggedIn) {
 
-    const existing = cart.find(item => item.id === product.id);
+        alert("Please login or create an account to buy this product.");
 
-    if (existing) {
+        window.location.href = "/login";
 
-        existing.quantity += quantity;
-
-    } else {
-
-        cart.push({
-
-            ...product,
-
-            price: Number(product.price),
-
-            quantity: quantity
-
-        });
-
+        return;
     }
 
-    
-    window.location.href = "cart.html";
+    fetch("/cart/add", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json",
+
+            "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
+
+            "Accept": "application/json"
+        },
+
+        body: JSON.stringify({
+
+            product_id: product.id,
+            quantity: quantity,
+            buy_now: true
+
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.success) {
+
+            window.location.href = "/cart";
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+    });
 
 });

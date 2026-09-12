@@ -11,8 +11,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ReceiptController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Controllers\UserController;
-use App\DataTables\ProductsDataTable;
+use App\DataTables\ProductDataTable;
 
 Route::get('/', function () {
     return view('home');
@@ -145,12 +144,9 @@ Route::get('/check-auth', function () {
 });
 
 
-//Route::get('/users/data', [UserController::class, 'data'])
-   // ->middleware('auth')
-    //->name('users.data');
+Route::middleware('auth')->group(function () {
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-
-Route::get('/products/data', function (ProductsDataTable $dataTable) {
-    return $dataTable->getData();
-})->name('products.data');   
+});

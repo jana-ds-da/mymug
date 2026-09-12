@@ -9,13 +9,14 @@ use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
-
+use App\DataTables\ProductDataTable;
 
 
 class DashboardController extends Controller
 {  
-    public function index(Request $request){
-       
+    public function index(Request $request, ProductDataTable $dataTable){
+        
+    
       $products = Product::latest()->get();
       $categories = Category::all();
 
@@ -83,9 +84,11 @@ class DashboardController extends Controller
 
 
         $recentOrders = OrderItem::with('order', 'product')
-             ->latest()
-             ->take(10)
-             ->get();
+              ->whereHas('order')
+              ->whereHas('product')
+              ->latest()
+              ->take(10)
+              ->get();
 
 
 
@@ -98,20 +101,18 @@ class DashboardController extends Controller
            ->get();   
 
 
-      return view('dashboard', compact(
-             'products',
-             'editProduct',
-             'totalOrders',
-             'totalRevenue',
-             'productsSold',
-             'bestSeller',
-             'chartLabels',
-             'chartData',
-             'recentOrders',
-             'topProducts',
-             'categories'
-
-          ));
+       return $dataTable->render('dashboard', [
+         'editProduct'  => $editProduct,
+         'totalOrders'  => $totalOrders,
+         'totalRevenue' => $totalRevenue,
+         'productsSold' => $productsSold,
+         'bestSeller'   => $bestSeller,
+         'chartLabels'  => $chartLabels,
+         'chartData'    => $chartData,
+         'recentOrders' => $recentOrders,
+         'topProducts'  => $topProducts,
+         'categories'   => $categories,
+]);
         
 
 
@@ -124,7 +125,6 @@ class DashboardController extends Controller
 
 
     
-
 
     
 }

@@ -125,102 +125,6 @@ function showMessage(message) {
 
 
 
-
-
-
-
-const productsTable = document.getElementById("productsTable");
-
-if (productsTable) {
-
-    new DataTable(productsTable, {
-        processing: true,
-        serverSide: true,
-
-        ajax: "/products/data",
-
-        columns: [
-            {
-                data: "DT_RowIndex",
-                name: "DT_RowIndex",
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: "image",
-                name: "image_path",
-                orderable: false,
-                searchable: false,
-                
-            },
-            {
-                data: "mug_name",
-                name: "mug_name"
-            },
-            {
-                data: "price",
-                name: "price"
-            },
-            {
-                data: "category",
-                name: "category"
-            },
-            {
-                data: null,
-                name: "actions",
-                orderable: false,
-                searchable: false,
-                render: function (data) {
-                    return `
-                        <a 
-                            href="/dashboard?edit=${data.id}" 
-                            class="edit-btn"
-                        >
-                            Edit
-                        </a>
-
-                        <form 
-                            action="/products/${data.id}" 
-                            method="POST"
-                            style="display:inline;"
-                        >
-                            <input 
-                                type="hidden" 
-                                name="_token" 
-                                value="${document.querySelector('meta[name="csrf-token"]').getAttribute('content')}"
-                            >
-
-                            <input 
-                                type="hidden" 
-                                name="_method" 
-                                value="DELETE"
-                            >
-
-                            <button 
-                                type="submit"
-                                class="delete-btn"
-                                onclick="return confirm('Are you sure you want to delete this product?')"
-                            >
-                                Delete
-                            </button>
-                        </form>
-                    `;
-                }
-            }
-        ],
-
-        pageLength: 10,
-
-        order: [[0, "desc"]]
-    });
-
-}
-
-
-
-
-
-
 const salesCanvas = document.getElementById("salesChart");
 
 if (salesCanvas) {
@@ -255,5 +159,59 @@ if (salesCanvas) {
             }
         }
     });
+
+
+
+    
+document.addEventListener("click", function (e) {
+
+    const deleteButton = e.target.closest(".delete-this-product");
+
+    if (!deleteButton) return;
+
+    e.preventDefault();
+
+    const productId = deleteButton.dataset.id;
+    const deleteUrl = deleteButton.dataset.url;
+
+    if (!confirm("Are you sure you want to delete this product?")) {
+        return;
+    }
+
+    fetch(deleteUrl, {
+        method: "DELETE",
+        headers: {
+            "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Delete failed");
+        }
+
+        return response.json();
+
+    })
+    .then(data => {
+
+        alert(data.message || "Product deleted successfully.");
+
+        
+        $('#productsTable').DataTable().ajax.reload(null, false);
+
+    })
+    .catch(error => {
+
+        console.error(error);
+        alert("Something went wrong while deleting the product.");
+
+    });
+
+});
 
 }

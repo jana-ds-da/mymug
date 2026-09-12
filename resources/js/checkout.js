@@ -13,6 +13,13 @@ function renderCheckoutSummary() {
 
     cart.forEach(item => {
 
+
+         if (!item.product) {
+             console.error("Product not found for cart item:", item);
+         return;
+         
+         }
+
         const price = Number(item.product.price);
         const quantity = Number(item.quantity);
 

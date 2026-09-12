@@ -112,7 +112,7 @@ class CheckoutController extends Controller
 
   
 
-  return redirect()->route('receipt', ['order' => $order->id]);      
+ return redirect()->route('receipt', ['order' => $order->id]);
 
   
 

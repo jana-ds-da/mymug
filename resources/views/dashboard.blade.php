@@ -195,7 +195,7 @@
                     <p>Current Image:</p>
 
                     <img
-                        src="{{ asset( $editProduct->image_path) }}"
+                       src="{{ $editProduct->image_url ?? '' }}"
                         width="180"
                         style="border-radius:12px;"
                         alt="{{ $editProduct->mug_name }}"
@@ -341,29 +341,10 @@
 
 
 
-<table id='productsTable' class="table table-hover align-middle">
 
-    <thead>
-
-        <tr>
-            <th>Id</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Actions</th>
-            
-        </tr>
-
-    </thead>
+{{ $dataTable->table() }}
 
 
-    <tbody>
-
-        
-    </tbody>
-
-</table>
 
 </section>
 
@@ -395,18 +376,27 @@
 
                 </div>
 
-                <table>
+                                <table>
 
                     <thead>
+                        <tr>
+                            <th>Order #</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="ordersTable">
                     @forelse($recentOrders as $item)
                          <tr>
 
                          <td>
-                             #{{ $item->order->id }}
+                             #{{ $item->order->id ?? '-' }}
                           </td>
 
                           <td>
-                              {{ $item->product->mug_name }}
+                              {{ $item->product->mug_name ?? '-' }}
                           </td>
 
                          <td>
@@ -419,18 +409,15 @@
 
                          </tr>
 
-                    @empty     
+                    @empty
 
-                    </thead>
-
-                    <tbody id="ordersTable">
                      <tr>
                          <td colspan="4" class="text-center">
                               No Orders Found.
                          </td>
                       </tr>
-                        
-                    @endforelse  
+
+                    @endforelse
                  </tbody>
 
                 </table>
@@ -456,11 +443,9 @@
 
         <div class="top-product-card">
 
-            <img
-                src="{{ asset( $item->product->image_path) }}"
-                alt="{{ $item->product->mug_name }}"
-                width="80"
-            >
+          <img src="{{ $item->product->image_url ?? asset('img/placeholder.png') }}"
+              alt="{{ $item->product->mug_name ?? '-' }}"
+              style="width: 100px; height: 100px; object-fit: cover;">
 
             <h5>{{ $item->product->mug_name }}</h5>
 
@@ -496,6 +481,11 @@
        const chartLabels = @json($chartLabels);
        const chartData = @json($chartData);
     </script>
+
+
+  @push('scripts')
+    {{ $dataTable->scripts() }}
+  @endpush
 
 
     @vite('resources/js/dashboard.js')

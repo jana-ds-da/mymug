@@ -10,6 +10,8 @@
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "yajra/laravel-datatables-buttons": "12",
+        "yajra/laravel-datatables-html": "^12.7",
         "yajra/laravel-datatables-oracle": "12.0"
     },
     "require-dev": {
