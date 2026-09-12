@@ -61,7 +61,13 @@ class ProductDataTable extends DataTable
                 return number_format($model->price, 2) . ' EGP';
             })
             ->addColumn('category', function ($model) {
-                return $model->category->name ?? '-';
+                 return $model->category->name ?? '-';
+            })
+
+            ->filterColumn('category', function ($query, $keyword) {
+                $query->whereHas('category', function ($q) use ($keyword) {
+                   $q->where('name', 'like', "%{$keyword}%");
+                });
             })
 
             ->rawColumns(['actions', 'image_path'])
@@ -128,7 +134,7 @@ class ProductDataTable extends DataTable
             Column::make('image_path')->title('Image')->addClass('text-center')->orderable(false)->searchable(false),
             Column::make('mug_name')->title('Name')->addClass('text-center'),
             Column::make('price')->title('Price')->addClass('text-center'),
-            Column::computed('category')->title('Category')->addClass('text-center')->orderable(false)->searchable(false),
+           Column::computed('category')->title('Category')->addClass('text-center')->orderable(false)->searchable(true),
             Column::computed('actions')->title('Actions')
                 ->exportable(false)
                 ->printable(false)
