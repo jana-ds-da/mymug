@@ -16,7 +16,7 @@ class CollectionController extends Controller
    return view('collection', compact('products'));
   
 }
-
+        // filter function
    public function filter(Request $request)
    {
 

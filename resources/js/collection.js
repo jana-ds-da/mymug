@@ -2,10 +2,6 @@
 const filterButtons = document.querySelectorAll(".filter-btn");
 const mugsGrid = document.getElementById("mugsGrid");
 
-
-// Filter
-
-
 filterButtons.forEach(button => {
 
     button.addEventListener("click", () => {

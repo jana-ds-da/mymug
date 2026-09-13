@@ -1,9 +1,4 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600;700&display=swap');
-
-
-
 
 :root{
 
@@ -22,9 +17,6 @@
 
 }
 
-
-
-
 *{
 
     margin:0;
@@ -40,8 +32,6 @@ body{
     color:var(--dark);
 
 }
-
-
 
 .checkout-card{
 
@@ -63,8 +53,6 @@ body{
     box-shadow:0 15px 40px rgba(0,0,0,.08);
 
 }
-
-
 
 .checkout-logo{
 
@@ -95,8 +83,6 @@ body{
 
 }
 
-
-
 .checkout-title{
 
     font-family:'Playfair Display',serif;
@@ -109,8 +95,6 @@ body{
 
 }
 
-
-
 .checkout-content{
 
     display:grid;
@@ -120,8 +104,6 @@ body{
     gap:45px;
 
 }
-
-
 
 .checkout-left{
 
@@ -135,8 +117,6 @@ body{
 
 }
 
-
-
 .section-heading{
 
     font-size:22px;
@@ -148,8 +128,6 @@ body{
     margin-bottom:20px;
 
 }
-
-
 
 #checkout-form{
 
@@ -187,8 +165,6 @@ body{
 
 }
 
-
-
 .row-2{
 
     display:grid;
@@ -198,8 +174,6 @@ body{
     gap:18px;
 
 }
-
-
 
 .payment-options{
 
@@ -235,8 +209,6 @@ body{
 
 }
 
-
-
 .place-order-btn{
 
     margin-top:15px;
@@ -270,8 +242,6 @@ body{
     box-shadow:0 10px 25px rgba(231,123,57,.30);
 
 }
-
-
 
 .checkout-right{
     display:flex;
@@ -425,7 +395,6 @@ body{
 
 }
 
-
 .checkout-footer{
 
     margin-top:45px;
@@ -465,8 +434,6 @@ body{
     font-size:14px;
 
 }
-
-
 
 .receipt-wrapper{
 
@@ -586,8 +553,6 @@ body{
 
 }
 
-
-
 .checkout-card,
 .summary-box,
 .receipt-box{
@@ -615,8 +580,6 @@ body{
     }
 
 }
-
-
 
 @media(max-width:992px){
 
@@ -753,7 +716,6 @@ body{
 
 }
 
-
 @media print {
 
     body{
@@ -785,7 +747,6 @@ body{
     }
 
 }
-
 
 .checkout-left input::placeholder {
     color: #aaa;

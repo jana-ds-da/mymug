@@ -1,10 +1,12 @@
 <?php
 
-namespace Database\seeders;
+namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\seeder;
+use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\CategorySeeder;
 use Database\seeders\ProductSeeder;
 
 class DatabaseSeeder extends seeder
@@ -16,30 +18,10 @@ class DatabaseSeeder extends seeder
      */
     public function run(): void
 {   
-   
-
-
-
 
     $this->call([
         UserSeeder::class,
         CategorySeeder::class,
-        ProductSeeder::class,
-    ]);
-
-
-
-    
-
-    $this->call([
-         CategorySeeder::class,
-         ProductSeeder::class,
-    ]);
-
-
-    
-    
-    $this->call([
         ProductSeeder::class,
     ]);
 

@@ -31,17 +31,11 @@ class Product extends Model
       return $this->hasMany(CartItem::class);
     }
 
-
-
-     
-
     public function category()
     {
 
         return $this->belongsTo(Category::class);
     }
-    
-
 
     public function getImageUrlAttribute()
     {
@@ -49,7 +43,5 @@ class Product extends Model
             ? asset($this->image_path)
             : asset('storage/' . $this->image_path);
     }
-
-
 
 }

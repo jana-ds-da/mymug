@@ -27,12 +27,6 @@ class DashboardController extends Controller
         }
 
 
-
-        
-
-     
-
-
        $totalOrders = Order::count();
        
        $totalRevenue = Order::sum('total');
@@ -51,11 +45,7 @@ class DashboardController extends Controller
 
        $bestSellerName = $bestSeller?->product?->mug_name ?? '-';
 
-
-
-
-       
-        
+  
        $salesRaw = Order::select(
           DB::raw('DATE(created_at) as date'),
           DB::raw('SUM(total) as total')
@@ -70,8 +60,6 @@ class DashboardController extends Controller
 
         $chartLabels = [];
         $chartData = [];
-
-       
 
         for ($i = 6; $i >= 0; $i--) {
 
@@ -89,8 +77,6 @@ class DashboardController extends Controller
               ->latest()
               ->take(10)
               ->get();
-
-
 
 
         $topProducts = OrderItem::select('product_id', DB::raw('SUM(quantity) as total_qty'))
@@ -116,15 +102,5 @@ class DashboardController extends Controller
         
 
 
-    }
-
-
-
-
-
-
-
-    
-
-    
+    }   
 }

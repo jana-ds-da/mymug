@@ -1,8 +1,4 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600;700&display=swap');
-
-
 
 *{
     margin:0;
@@ -13,39 +9,25 @@
 body{
 
     font-family:'Poppins',sans-serif;
-
     background:linear-gradient(to bottom,#FCE6C7,#FFF2E2,#FBE9D1);
-
     color:#3B2A20;
-
     min-height:100vh;
 
 }
 
-
-
-
 .dashboard{
 
     width:90%;
-
     max-width:1300px;
-
     margin:45px auto;
 
 }
 
-
-
-
 .welcome-section{
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:45px;
 
 }
@@ -53,7 +35,6 @@ body{
 .welcome-section h1{
 
     font-size:38px;
-
     margin-bottom:10px;
 
 }
@@ -61,7 +42,6 @@ body{
 .welcome-section p{
 
     color:#6B5A50;
-
     font-size:16px;
 
 }
@@ -69,19 +49,12 @@ body{
 .logout-btn{
 
     padding:14px 30px;
-
     border:none;
-
     border-radius:30px;
-
     background:#8B4B25;
-
     color:white;
-
     font-size:15px;
-
     cursor:pointer;
-
     transition:.3s;
 
 }
@@ -89,20 +62,15 @@ body{
 .logout-btn:hover{
 
     background:#A65A2E;
-
     transform:translateY(-3px);
 
 }
 
-
 .stats-section{
 
     display:grid;
-
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
     gap:25px;
-
     margin-bottom:45px;
 
 }
@@ -110,13 +78,9 @@ body{
 .stat-card{
 
     background:#FAF4EB;
-
     border-radius:20px;
-
     padding:28px;
-
     box-shadow:0 10px 30px rgba(0,0,0,.08);
-
     transition:.3s;
 
 }
@@ -124,7 +88,6 @@ body{
 .stat-card:hover{
 
     transform:translateY(-8px);
-
     box-shadow:0 18px 40px rgba(0,0,0,.12);
 
 }
@@ -132,11 +95,8 @@ body{
 .stat-card h4{
 
     color:#8A7567;
-
     font-size:15px;
-
     font-weight:500;
-
     margin-bottom:15px;
 
 }
@@ -144,9 +104,7 @@ body{
 .stat-card h2{
 
     color:#8B4B25;
-
     font-size:36px;
-
     margin-bottom:10px;
 
 }
@@ -154,52 +112,34 @@ body{
 .stat-card span{
 
     color:#8B4B25;
-
     font-size:14px;
 
 }
 
-
-
 .dashboard-content{
 
     display:grid;
-
     grid-template-columns:2fr 1fr;
-
     gap:30px;
-
     margin-bottom:45px;
 
 }
-
-
-
 
 .chart-card,
 .orders-card{
 
     background:#FAF4EB;
-
     border-radius:20px;
-
     padding:30px;
-
     box-shadow:0 10px 30px rgba(0,0,0,.08);
 
 }
 
-
-
-
 .card-header{
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:25px;
 
 }
@@ -207,7 +147,6 @@ body{
 .card-header h2{
 
     font-size:24px;
-
     color:#3B2A20;
 
 }
@@ -215,31 +154,21 @@ body{
 .card-header span{
 
     color:#8B4B25;
-
     font-size:14px;
-
     font-weight:500;
 
 }
 
-
-
-
 .chart-card canvas{
 
     width:100% !important;
-
     height:320px !important;
 
 }
 
-
-
-
 .orders-card table{
 
     width:100%;
-
     border-collapse:collapse;
 
 }
@@ -247,13 +176,9 @@ body{
 .orders-card th{
 
     text-align:left;
-
     padding:15px 0;
-
     color:#B86B35;
-
     border-bottom:2px solid#FAF4EB;
-
     font-size:15px;
 
 }
@@ -266,17 +191,11 @@ body{
     padding-left: 40px;
 }
 
-
-
-
 .orders-card td{
 
     padding:40px 0;
-
     border-bottom:1px solid #FAF4EB;
-
     color:#555;
-
     font-size:14px;
 
 }
@@ -293,8 +212,6 @@ body{
 
 }
 
-
-
 @media(max-width:950px){
 
     .dashboard-content{
@@ -305,18 +222,12 @@ body{
 
 }
 
-
-
 .top-products{
 
     background:#FAF4EB;
-
     border-radius:20px;
-
     padding:30px;
-
     box-shadow:0 10px 30px rgba(0,0,0,.08);
-
     margin-bottom:40px;
 
 }
@@ -324,11 +235,8 @@ body{
 .top-products-grid{
 
     display:flex;
-
     gap:25px;
-
     flex-direction: column;
-
     margin-top:25px;
 
 }
@@ -336,21 +244,13 @@ body{
 .top-product-card{
 
     background:#FAF4EB;
-
     border-radius:18px;
-
     overflow:hidden;
-
     transition:.3s;
-
     display:flex;
-
     align-items:center;
-
     gap:20px;
-
     padding:20px;
-
     width: 100%;
 
 }
@@ -358,7 +258,6 @@ body{
 .top-product-card:hover{
 
     transform:translateY(-8px);
-
     box-shadow:0 12px 30px rgba(0,0,0,.08);
 
 }
@@ -366,11 +265,8 @@ body{
 .top-product-card img{
 
     width: 120px;
-
     height: 120px;
-
     object-fit: cover;
-
     flex-shrink: 0;
 
 }
@@ -378,13 +274,9 @@ body{
 .top-product-info{
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     margin-left:auto;
-
     text-align:right;
 
 }
@@ -392,9 +284,7 @@ body{
 .top-product-info h3{
 
     font-size:18px;
-
     color:#3B2A20;
-
     margin-bottom:10px;
 
 }
@@ -402,7 +292,6 @@ body{
 .top-product-info p{
 
     font-size:14px;
-
     margin-bottom:10px;
 
 }
@@ -410,24 +299,16 @@ body{
 .top-product-info span{
 
     color:#8B4B25;
-
     font-weight:600;
-
     font-size:18px;
 
 }
 
-
-
-
 .dashboard-footer{
 
     text-align:center;
-
     padding:25px 0;
-
     color:#8B4B25;
-
     font-size:14px;
 
 }
@@ -439,9 +320,7 @@ body{
     header{
 
         flex-direction:column;
-
         height:auto;
-
         padding:20px;
 
     }
@@ -449,11 +328,8 @@ body{
     .nav-links{
 
         margin-top:15px;
-
         flex-wrap:wrap;
-
         justify-content:center;
-
         gap:20px;
 
     }
@@ -461,9 +337,7 @@ body{
     .welcome-section{
 
         flex-direction:column;
-
         align-items:flex-start;
-
         gap:20px;
 
     }
@@ -522,13 +396,9 @@ body{
 .product-management{
 
     background:#FAF4EB;
-
     border-radius:20px;
-
     padding:30px;
-
     box-shadow:0 10px 30px rgba(0,0,0,.08);
-
     margin-bottom:45px;
 
 }
@@ -542,9 +412,7 @@ body{
 .product-form label{
 
     font-weight:600;
-
     margin-bottom:8px;
-
     color:#3B2A20;
 
 }
@@ -553,11 +421,8 @@ body{
 .product-form .form-select{
 
     border-radius:12px;
-
     border:1px solid #FAF4EB;
-
     padding:12px;
-
     box-shadow:none;
 
 }
@@ -566,7 +431,6 @@ body{
 .product-form .form-select:focus{
 
     border-color:#8B4B25;
-
     box-shadow:0 0 0 .2rem rgba(166,90,46,.15);
 
 }
@@ -580,15 +444,10 @@ body{
 .product-form .btn{
 
     background:#8B4B25;
-
     border:none;
-
     padding:12px 35px;
-
     border-radius:30px;
-
     font-weight:600;
-
     transition:.3s;
 
 }
@@ -596,21 +455,15 @@ body{
 .product-form .btn:hover{
 
     background:#8B4B25;
-
     transform:translateY(-2px);
 
 }
 
-
-
 #productsTable img{
 
     width:70px;
-
     height:70px;
-
     object-fit:cover;
-
     border-radius:12px;
 
 }
@@ -624,19 +477,12 @@ body{
 .edit-btn{
 
     background:#8B4B25;
-
     color:white;
-
     border:none;
-
     padding:8px 18px;
-
     border-radius:8px;
-
     margin-right:8px;
-
     text-decoration: none;
-
     transition:.3s;
 
 }
@@ -650,15 +496,10 @@ body{
 .delete-btn{
 
     background:#8B4B25;
-
     color:white;
-
     border:none;
-
     padding:8px 18px;
-
     border-radius:8px;
-
     transition:.3s;
 
 }
@@ -684,11 +525,9 @@ body{
 .table th{
 
     color:#8B4B25;
-
     font-weight:600;
 
 }
-
 
 #messageBox{
     background:#FAF4EB;

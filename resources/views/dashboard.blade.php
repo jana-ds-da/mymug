@@ -7,8 +7,6 @@
 
 @section('content')
 
-
-
 <head>
 
     <meta charset="UTF-8">
@@ -24,8 +22,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-
-
 
     <main class="dashboard">
 

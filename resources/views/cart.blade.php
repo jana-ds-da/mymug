@@ -23,9 +23,6 @@
     
 </head>
 
-
-    
-  
     
     <div class="cart-page">
 
@@ -81,13 +78,8 @@
     </div>
 
 </div>
-    
-    
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     @vite('resources/js/cart.js') 
-
-
-
 
 @endsection

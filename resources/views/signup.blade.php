@@ -42,8 +42,6 @@
                     <input type="password" id="password_confirmation" name="password_confirmation" required>
                 </div>
 
-                
-
                 <button type="submit" class="login-btn">Sign Up</button>
             </form>
 
@@ -55,7 +53,5 @@
         </div>
     </div>
   <script src="js/bootstrap.bundle.min.js"></script>
-
-
 
 @endsection

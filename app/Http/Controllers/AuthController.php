@@ -7,40 +7,29 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
      public function signup(SignupRequest $request)
      {  
-        
-     
-     $data = $request->validated();
-
-       
-      
+    
      $user = User::create([
 
-       'name' => $data['name'],
-       'email' => $data['email'],
-       'password' => Hash::make($data['password']),
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
      ]);
 
       return redirect()
          ->route('login')
-         ->with('success','Account created successfully.please login.');
-        
+         ->with('success','Account created successfully.please login.'); 
      }
-
-
-
-
-
-
+ 
+        // login function
      public function login(LoginRequest $request)
 {
     $credentials = $request->validated();
-
-
 
     $user = User::where('email', $credentials['email'])->first();
 
@@ -51,8 +40,6 @@ class AuthController extends Controller
             ])
             ->withInput();
     }
-
-
 
     if (!Hash::check($credentials['password'], $user->password)) {
         return back()
@@ -68,6 +55,17 @@ class AuthController extends Controller
 
     return redirect()
         ->route('home');
+}   
+   
+    // logout function
+  public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login');
 }
 
 }

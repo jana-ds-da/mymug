@@ -26,8 +26,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 .cart-page {
     display: flex;
     align-items: flex-start;
@@ -36,7 +34,6 @@ body {
     margin: 60px auto;
     padding: 0 20px;
 }
-
 
 .cart-box {
     flex: 2;
@@ -58,7 +55,6 @@ body {
 .cart-item:last-child {
     border-bottom: none;
 }
-
 
 .order-summary {
     flex: 1;
@@ -117,8 +113,6 @@ body {
     text-decoration: underline;
     font-size: 14px;
 }
-
-
 
 .item-image-wrapper {
     width: 140px;

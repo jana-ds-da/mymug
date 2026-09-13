@@ -6,9 +6,6 @@ const imageInput = document.getElementById("image");
 const imagePreview = document.getElementById("imagePreview");
 
 
-
-
-
 if (imageInput) {
 
     imageInput.addEventListener("change", function () {
@@ -40,9 +37,6 @@ if (imageInput) {
 }
 
 
-
-
-
 if (productForm) {
 
     productForm.addEventListener("submit", function (e) {
@@ -64,10 +58,7 @@ if (productForm) {
 
         const isEdit = productId !== "";
 
-        
-        
-       
-
+   
         if (
             !name ||
             !price ||
@@ -85,9 +76,6 @@ if (productForm) {
             return;
         }
 
-        
-        
-       
 
         
         if (!isEdit && !image) {
@@ -104,8 +92,6 @@ if (productForm) {
 
 }
 
-
-
 function showMessage(message) {
 
     const box = document.getElementById("messageBox");
@@ -121,9 +107,6 @@ function showMessage(message) {
     }, 3000);
 
 }
-
-
-
 
 const salesCanvas = document.getElementById("salesChart");
 

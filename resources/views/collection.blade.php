@@ -8,8 +8,6 @@
 
 @section('content')
 
-
-
 <head>
     <meta charset="utf-8">
     <title>My Mug</title>
@@ -45,9 +43,6 @@
 
     </div>
 
-
-   
-
     <div class="filter-section">
 
         <a href='{{ route('collection') }}' class='filter-btn {{ !request('category') ? 'active' : '' }}'>
@@ -62,9 +57,6 @@
        @endforeach
 
     </div>
-
-
-      
 
 
       <div class="mugs-grid" id="mugsGrid">
@@ -88,14 +80,8 @@
             </div>
         @endforeach      
       </div>
-    
-        
-
 
 <script src="js/bootstrap.bundle.min.js"></script>
 @vite('resources/js/collection.js')
-
-
-
 
 @endsection

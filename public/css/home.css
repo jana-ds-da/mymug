@@ -12,8 +12,6 @@ body{
     color:#3B2A1E;
 }
 
-
-
 .hero{
 
     background-image: url("../img/mymug1.png");
@@ -28,8 +26,6 @@ body{
     padding-left:90px;
     overflow:hidden;
 }
-
-
 
 .hero img{
     position:absolute;
