@@ -39,11 +39,12 @@
 
             </div>
 
-            <button class="logout-btn">
-
-                Logout
-
-            </button>
+            @can('view users')
+               <a href="{{ route('users.index') }}" class="users">
+                   <i class="users"></i>
+                   Users
+                </a>
+            @endcan
 
         </section>
 

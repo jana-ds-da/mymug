@@ -21,6 +21,8 @@ class AuthController extends Controller
         'password' => Hash::make($request->password),
      ]);
 
+       $user->assignRole('Customer');
+       
       return redirect()
          ->route('login')
          ->with('success','Account created successfully.please login.'); 

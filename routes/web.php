@@ -12,6 +12,7 @@ use App\Http\Controllers\ReceiptController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\DataTables\ProductDataTable;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
@@ -53,9 +54,6 @@ Route::get('/collection', [CollectionController::class, 'index'])
 
 Route::get('/product/{product}', [ProductController::class, 'show'])
     ->name('product.show');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
 
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])
     ->name('products.destroy');   
@@ -107,5 +105,31 @@ Route::get('/check-auth', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'admin'])
+    ->middleware(['auth', 'can:view dashboard'])
     ->name('dashboard');
+    
+Route::get('/users', [UserController::class, 'index'])
+    ->middleware(['auth', 'can:view users'])
+    ->name('users.index');
+
+Route::get('/users/create', [UserController::class, 'create'])
+    ->middleware(['auth', 'can:manage users'])
+    ->name('users.create');  
+    
+Route::post('/users', [UserController::class, 'store'])
+    ->middleware(['auth', 'can:manage users'])
+    ->name('users.store');  
+    
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+    ->middleware(['auth', 'can:manage users'])
+    ->name('users.edit'); 
+    
+Route::delete('/users/{user}', [UserController::class, 'destroy'])
+    ->middleware(['auth', 'can:manage users'])
+    ->name('users.destroy');
+    
+Route::put('/users/{user}', [UserController::class, 'update'])
+    ->middleware(['auth', 'can:manage users'])
+    ->name('users.update');   
+    
+    
