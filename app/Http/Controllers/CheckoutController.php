@@ -25,22 +25,18 @@ class CheckoutController extends Controller
          ->where('user_id', Auth::id())
          ->get();
 
-
       if($cartItems->isEmpty()) {
 
          return redirect()->route('cart')
              ->with('error', 'your cart is empty.');
-         
       } 
       
         return view('checkout', compact('cartItems'));
    }
 
-
+           // store function
     public function store(CheckoutRequest $request) 
     {
-
-      $data = $request->validated();
 
       $cartItems = CartItem::with('product')
            ->where('user_id', Auth::id())
@@ -52,20 +48,19 @@ class CheckoutController extends Controller
 
         }  
 
-
-         $order = DB::transaction(function () use ($data, $cartItems) {
+         $order = DB::transaction(function () use ($request, $cartItems) {
 
              $order = Order::create([
                 'user_id' => Auth::id(),
-                'full_name' => $data['full_name'],
-                'email' => $data['email'],
-                'phone' => $data['phone'],
-                'address' => $data['address'],
-                'city' => $data['city'],
-                'state' => $data['state'] ?? null,
-                'zip' => $data['zip'] ?? null,
-                'country' => $data['country'],
-                'payment' => $data['payment'],
+                'full_name' => $request->full_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'city' =>  $request->city,
+                'state' => $request->state ?? null,
+                'zip' =>  $request->zip ?? null,
+                'country' => $request->country,
+                'payment' => $request->payment,
                  'total' => 0,
              ]);
 

@@ -27,14 +27,11 @@ class ProductRequest extends FormRequest
         'price'        => 'required|numeric',
         'category_id' => 'required|exists:categories,id',
 
-
          'image' => match ($this->route()->getName())  {
              'products.store' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
              'products.update' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
               
          },
-                
-
 
         'description'  => 'required|string',
         'capacity'     => 'required|string|max:255',

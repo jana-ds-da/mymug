@@ -8,8 +8,6 @@
 
 @section('content')
 
-
-
 <head>
 
     <meta charset="UTF-8">
@@ -23,14 +21,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
-   
 
 </head>
-
-
-
-
-    
 
     <section class="product-container">
 
@@ -41,9 +33,6 @@
             <img src="{{ $product->image_url }}" alt="{{ $product->mug_name }}" id="productImage">
 
         </div>
-
-
-       
 
         <div class="product-details">
 
@@ -59,16 +48,12 @@
                 {{ $product->price }} EGP
             </h2>
 
-
-            
+           
 
             <p class="description" id="productDescription">
                 {{ $product->description }}
             </p>
 
-
-
-            
 
             <div class="info-box">
 
@@ -102,9 +87,6 @@
 
             </div>
 
-
-            
-
             <div class="quantity-section">
 
                 <h3>Quantity</h3>
@@ -120,10 +102,6 @@
                 </div>
 
             </div>
-
-
-
-            
 
             <div class="product-buttons">
                 
@@ -145,10 +123,6 @@
                 
                </form>
             </div>
-
-
-
-           
 
             <div class="extra-info">
 
@@ -187,10 +161,7 @@
         </div>
 
     </section>
-
-
-
-    
+ 
 
     <div class="back-section">
 

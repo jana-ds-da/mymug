@@ -14,7 +14,6 @@ header,
     z-index: 1000;
 }
 
-
 .nav-logo {
     
     font-family: 'Cormorant Garamond', serif;
@@ -22,7 +21,6 @@ header,
     font-weight: 600;
     color: #2c1a11;
 }
-
 
 .nav-links {
     list-style: none;
@@ -44,4 +42,20 @@ header,
 .nav-links a:hover,
 .nav-links a.active {
     color: #B85C2F;
+}
+
+.nav-logout {
+    background-color: #B85C2F;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font: inherit;
+    color: #3B2A1E;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.nav-logout:hover {
+    background-color: #B85C2F;
+    color: white;
 }

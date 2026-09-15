@@ -1,15 +1,9 @@
 
 document.getElementById("productName").textContent = product.mug_name;
 document.getElementById("productPrice").textContent = `${product.price} EGP`;
-
-
-
 document.getElementById("productCapacity").textContent = product.capacity;
 document.getElementById("productMicrowave").textContent = product.microwave;
 document.getElementById("producthowItsMade").textContent = product.how_its_made;
-
-
-
 
 let quantity = 1;
 
@@ -32,11 +26,6 @@ document.getElementById("minus").addEventListener("click", () => {
     }
 
 });
-
-
-
-
-
 
 
 document.getElementById("addCart").addEventListener("click", () => {
@@ -94,16 +83,6 @@ document.getElementById("addCart").addEventListener("click", () => {
 
 
     });
-
-
-
-
-
-
-
-
-
-
 
 
 document.getElementById("buyNow").addEventListener("click", () => {

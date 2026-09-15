@@ -1,12 +1,4 @@
-/* ========================= */
-/* Google Fonts */
-/* ========================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600;700&display=swap');
-
-/* ========================= */
-/* General */
-/* ========================= */
 
 *{
     margin:0;
@@ -19,17 +11,6 @@ body{
     background:linear-gradient(to bottom,#FCE6C7,#FFF2E2,#FBE9D1);
     color:#2C1A11;
 }
-
-
-
-
-
-
-
-
-/* ========================= */
-/* Product Section */
-/* ========================= */
 
 .product-container{
     width:90%;
@@ -104,11 +85,6 @@ body{
     line-height:1.8;
 }
 
-
-/* ========================= */
-/* Quantity */
-/* ========================= */
-
 .quantity-section{
     margin-top:15px;
 }
@@ -145,11 +121,6 @@ body{
     font-size:22px;
     font-weight:600;
 }
-
-
-/* ========================= */
-/* Buttons */
-/* ========================= */
 
 .product-buttons{
     display:flex;
@@ -191,11 +162,6 @@ body{
     background:#8d4a22;
 }
 
-
-/* ========================= */
-/* Extra Info */
-/* ========================= */
-
 .extra-info{
     margin-top:40px;
     display:grid;
@@ -220,11 +186,6 @@ body{
     line-height:1.7;
 }
 
-
-/* ========================= */
-/* Back To Collection */
-/* ========================= */
-
 .back-section{
     display:flex;
     justify-content:center;
@@ -246,11 +207,6 @@ body{
     background:#8D4A22;
     transform:translateY(-3px);
 }
-
-
-/* ========================= */
-/* Responsive Design */
-/* ========================= */
 
 @media(max-width:992px){
     .product-container{

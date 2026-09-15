@@ -3,8 +3,6 @@ document.body.style.overflow = 'visible';
 document.documentElement.style.height = 'auto';
 document.body.style.height = 'auto';
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const printBtn = document.getElementById('print-btn');
 

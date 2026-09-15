@@ -15,9 +15,6 @@ class NewOrderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-   
-
     /**
      * Create a new message instance.
      */
@@ -55,6 +52,5 @@ class NewOrderMail extends Mailable
     {
         return [];
     }
-
 
 }

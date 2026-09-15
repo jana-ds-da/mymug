@@ -24,8 +24,6 @@
     
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-
 
   
 </head>
@@ -53,7 +51,7 @@
 
     </div>
 
-    <!-- ===== Description ===== -->
+    
 <p class="description">
     Handmade mugs crafted with love and care. 
     <br>
@@ -62,7 +60,7 @@
     rituals and simple moments.
 </p>
 
-    <!-- ===== Buttons ===== -->
+   
     <div class="hero-actions">
 
         <a href="{{ route('collection') }}" style="background-color:#B85C2F; color:white; text-decoration:none; padding:10px 20px; display:inline-block; border-radius:5px;">
@@ -76,9 +74,6 @@
 
 <script src="js/bootstrap.bundle.min.js"></script>
 
-
-
- 
 </body>
 
 </html>

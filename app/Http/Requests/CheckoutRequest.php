@@ -24,27 +24,16 @@ class CheckoutRequest extends FormRequest
     {
         return [
         'full_name' => 'required|string|max:255',
-
         'email' => 'required|email|max:255',
-
         'phone' => 'required|digits:11',
-
         'address' => 'required|string|max:500',
-
         'city' => 'required|string|max:100',
-
         'state' => 'nullable|string|max:100',
-
         'zip' => 'nullable|string|max:20',
-
         'country' => 'required|string|max:100',
-
         'payment' => 'required|in:Credit Card,PayPal,Apple Pay',
-
         'card_number' => 'required_if:payment,Credit Card|digits:16',
-
         'expiry' => 'required_if:payment,Credit Card|date_format:m/y',
-
         'cvv' => 'required_if:payment,Credit Card|digits:3',
         ];
     }

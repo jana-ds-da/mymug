@@ -8,9 +8,6 @@
 
 @section('content')
 
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +19,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
 </head>
-
-
-
-
-
-    
-   
 
     <div class="page-bg"></div>
 
@@ -129,17 +119,11 @@
 
     </div>
 
-
-  
-
-
     <script>
         const cart = @json($cartItems);
     </script>
     
-    
     <script src="js/bootstrap.bundle.min.js"></script>
     @vite('resources/js/checkout.js')
-
 
 @endsection

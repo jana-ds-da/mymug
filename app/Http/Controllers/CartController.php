@@ -16,12 +16,9 @@ class CartController extends Controller
            'quantity' => 'required|integer|min:1',
        ]);
 
-
         $cartItem = CartItem::where('user_id', Auth::id())
                ->where('product_id', $request->product_id)
                ->first();
-
-
 
         if ($cartItem)
           { $cartItem->increment('quantity', $request->quantity);

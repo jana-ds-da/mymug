@@ -4,11 +4,24 @@
 
    <ul class="nav-links">
     <li><a href="{{ route('home') }}">Home</a></li>
+    @if(auth()->check() && auth()->user()->role === 'admin')
     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+    @endif
     <li><a href="{{ route('collection') }}">Collection</a></li>
     <li><a href="{{ route('about') }}">About</a></li>
     <li><a href="{{ route('cart') }}">Cart</a></li>
-    <li><a href="{{ route('login') }}">Log In</a></li>
+    @if(auth()->check())
+    <li>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="nav-logout">Log Out</button>
+        </form>
+    </li>
+ @else
+    <li>
+        <a href="{{ route('login') }}">Log In</a>
+    </li>
+ @endif
    </ul>
 
 </header>
