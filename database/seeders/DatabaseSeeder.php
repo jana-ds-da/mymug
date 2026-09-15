@@ -1,13 +1,12 @@
 <?php
 
-namespace Database\seeders;
+namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\seeder;
-use Database\seeders\ProductSeeder;
 
-class DatabaseSeeder extends seeder
+class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
@@ -15,37 +14,16 @@ class DatabaseSeeder extends seeder
      * Seed the application's database.
      */
     public function run(): void
-{   
-   
+    {
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
+        ]);
 
-
-
-
-    $this->call([
-        UserSeeder::class,
-        CategorySeeder::class,
-        ProductSeeder::class,
-    ]);
-
-
-
-    
-
-    $this->call([
-         CategorySeeder::class,
-         ProductSeeder::class,
-    ]);
-
-
-    
-    
-    $this->call([
-        ProductSeeder::class,
-    ]);
-
-    User::factory()->create([
-        'name' => 'Test User',
-        'email' => 'test@example.com',
-    ]);
-}
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+    }
 }

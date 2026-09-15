@@ -10,64 +10,62 @@ use App\Http\Requests\SignupRequest;
 
 class AuthController extends Controller
 {
-     public function signup(SignupRequest $request)
-     {  
-        
-     
-     $data = $request->validated();
+    public function signup(SignupRequest $request)
+    {
 
-       
-      
-     $user = User::create([
 
-       'name' => $data['name'],
-       'email' => $data['email'],
-       'password' => Hash::make($data['password']),
-     ]);
-
-      return redirect()
-         ->route('login')
-         ->with('success','Account created successfully.please login.');
-        
-     }
+        $data = $request->validated();
 
 
 
+        $user = User::create([
 
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
 
-
-     public function login(LoginRequest $request)
-{
-    $credentials = $request->validated();
-
-
-
-    $user = User::where('email', $credentials['email'])->first();
-
-    if (!$user) {
-        return back()
-            ->withErrors([
-                'email' => 'Email is not registered.',
-            ])
-            ->withInput();
+        return redirect()
+            ->route('login')
+            ->with('success', 'Account created successfully.please login.');
     }
 
 
 
-    if (!Hash::check($credentials['password'], $user->password)) {
-        return back()
-            ->withErrors([
-                'password' => 'Password is incorrect.',
-            ])
-            ->withInput();
+
+
+
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->validated();
+
+
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (!$user) {
+            return back()
+                ->withErrors([
+                    'email' => 'Email is not registered.',
+                ])
+                ->withInput();
+        }
+
+
+
+        if (!Hash::check($credentials['password'], $user->password)) {
+            return back()
+                ->withErrors([
+                    'password' => 'Password is incorrect.',
+                ])
+                ->withInput();
+        }
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+
+        return redirect()
+            ->route('home');
     }
-
-    Auth::login($user);
-
-    $request->session()->regenerate();
-
-    return redirect()
-        ->route('home');
-}
-
 }
