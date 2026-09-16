@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\CategorySeeder;
 use Database\seeders\ProductSeeder;
+use Database\Seeders\RolePermissionSeeder;
+
 
 class DatabaseSeeder extends seeder
 {
@@ -23,11 +25,9 @@ class DatabaseSeeder extends seeder
         UserSeeder::class,
         CategorySeeder::class,
         ProductSeeder::class,
+        RolePermissionSeeder::class,
     ]);
 
-    User::factory()->create([
-        'name' => 'Test User',
-        'email' => 'test@example.com',
-    ]);
+    
 }
 }

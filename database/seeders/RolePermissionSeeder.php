@@ -9,39 +9,56 @@ use Spatie\Permission\Models\Role;
 
 class RolePermissionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Permission::create(['name' => 'view dashboard']);
+        $permissionNames = [
+            'view dashboard',
 
-        Permission::create(['name' => 'view products']);
-        Permission::create(['name' => 'create products']);
-        Permission::create(['name' => 'edit products']);
-        Permission::create(['name' => 'delete products']);
+            'view products',
+            'create products',
+            'edit products',
+            'delete products',
 
-        Permission::create(['name' => 'view orders']);
-        Permission::create(['name' => 'manage orders']);
+            'view orders',
+            'manage orders',
 
-        Permission::create(['name' => 'view users']);
-        Permission::create(['name' => 'manage users']);
+            'view users',
+            'manage users',
 
-        Permission::create(['name' => 'view roles']);
-        Permission::create(['name' => 'manage roles']);
+            'view roles',
+            'manage roles',
+        ];
+
+        foreach ($permissionNames as $name) {
+            Permission::firstOrCreate([
+                'name' => $name,
+            ]);
+        }
+
+        $admin = Role::firstOrCreate([
+            'name' => 'Admin',
+        ]);
+
+        $manager = Role::firstOrCreate([
+            'name' => 'Manager',
+        ]);
+
+        $customer = Role::firstOrCreate([
+            'name' => 'Customer',
+        ]);
+
+        $allPermissions = Permission::whereIn('name', $permissionNames)->get();
 
         
-        Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'Manager']);
-        Role::create(['name' => 'Customer']);
+        $admin->syncPermissions($allPermissions);
 
-        $admin = Role::findByName('Admin');
-        $manager = Role::findByName('Manager');
-
-        $admin->givePermissionTo(Permission::all());
-
-        $manager->givePermissionTo(
-            Permission::where('name', '!=', 'manage users')->get()
+        
+        $manager->syncPermissions(
+            $allPermissions->where('name', '!=', 'manage users')
         );
+
+       
+        $customer->syncPermissions([]);
     }
 }
+

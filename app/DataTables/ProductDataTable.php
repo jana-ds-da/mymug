@@ -47,13 +47,13 @@ class ProductDataTable extends DataTable
         </div>
     ';
 })
-           ->editColumn('image_path', function ($model) {
-               return $model->image_path
-                  ? '<img src="' . asset('storage/' . $model->image_path) . '"
-                       alt="' . e($model->mug_name) . '"
-                       style="width:50px;height:50px;border-radius:8px;object-fit:cover;">'
-                  : '<span class="text-muted">No Image</span>';
-            })
+          ->editColumn('image_path', function ($model) {
+              return $model->image_path
+                ? '<img src="' . $model->image_url . '"
+                    alt="' . e($model->mug_name) . '"
+                    style="width:50px;height:50px;border-radius:8px;object-fit:cover;">'
+                : '<span class="text-muted">No Image</span>';
+           })
             ->editColumn('mug_name', function ($model) {
                 return ucfirst($model->mug_name);
             })

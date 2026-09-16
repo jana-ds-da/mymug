@@ -38,13 +38,17 @@
                 </p>
 
             </div>
+      
+            <div class="card-header">
+                 @can('view users')
+                     <a href="{{ route('users.index') }}" class="users">
+                   
+                         Show Users
+                      </a>
+                 @endcan
+            </div>     
 
-            @can('view users')
-               <a href="{{ route('users.index') }}" class="users">
-                   <i class="users"></i>
-                   Users
-                </a>
-            @endcan
+             
 
         </section>
 

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -132,4 +134,26 @@ Route::put('/users/{user}', [UserController::class, 'update'])
     ->middleware(['auth', 'can:manage users'])
     ->name('users.update');   
     
-    
+Route::get('/roles', [RoleController::class, 'index'])
+    ->middleware(['auth', 'can:view roles'])
+    ->name('roles.index');
+
+Route::get('/roles/create', [RoleController::class, 'create'])
+    ->middleware(['auth', 'can:manage roles'])
+    ->name('roles.create');
+
+Route::post('/roles', [RoleController::class, 'store'])
+    ->middleware(['auth', 'can:manage roles'])
+    ->name('roles.store');
+
+Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])
+    ->middleware(['auth', 'can:manage roles'])
+    ->name('roles.edit');
+
+Route::put('/roles/{role}', [RoleController::class, 'update'])
+    ->middleware(['auth', 'can:manage roles'])
+    ->name('roles.update');
+
+Route::delete('/roles/{role}', [RoleController::class, 'destroy'])
+    ->middleware(['auth', 'can:manage roles'])
+    ->name('roles.destroy');
