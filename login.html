@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name='csrf-token' content='O8GEmUyE8vVxzbu1iJ23mN5cwYdjiD0Fct5kvk2T'>
+
+    <title>login</title>
+    
+
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/navbar.css">
+
+      <link rel='stylesheet' href='http://127.0.0.1:8000/css/login.css'>
+ 
+
+
+</head>
+
+<body>
+    <header>
+
+    <h1 class="nav-logo">My Mug</h1>
+
+   <ul class="nav-links">
+    <li><a href="http://127.0.0.1:8000">Home</a></li>
+        <li><a href="http://127.0.0.1:8000/collection">Collection</a></li>
+    <li><a href="http://127.0.0.1:8000/about">About</a></li>
+    <li><a href="http://127.0.0.1:8000/cart">Cart</a></li>
+        <li>
+        <a href="http://127.0.0.1:8000/login">Log In</a>
+    </li>
+    </ul>
+
+</header>    
+
+
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="brand">
+                <span class="brand-icon"></span>
+                <span class="brand-name">my mug</span>
+            </div>
+            
+
+            
+            
+            <h1>Log in to your account</h1>
+
+            <form class="login-form" method= 'POST' action='http://127.0.0.1:8000/login'>
+                <input type="hidden" name="_token" value="O8GEmUyE8vVxzbu1iJ23mN5cwYdjiD0Fct5kvk2T" autocomplete="off">                <div class="field">
+                    <label for="email">Email </label>
+                    <input type="email" id="email" name="email" required>
+                        
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                        
+                </div>
+
+                <a href="#" class="forgot-link">Forgot your password?</a>
+
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+
+            <p class="signup-text">
+                New to my mug? <a href="http://127.0.0.1:8000/signup" class="signup-link">
+                                       Create an account
+                                </a>
+            </p>
+        </div>
+    </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+
+
+ 
+    
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>    
+</body>
+
+</html>

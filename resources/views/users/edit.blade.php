@@ -1,0 +1,126 @@
+@extends('layouts.app')
+
+@section('title', 'Edit User')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endsection
+
+@section('content')
+
+<div class="bg-overlay"></div>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="brand">
+            <span class="brand-icon"></span>
+            <span class="brand-name">my mug</span>
+        </div>
+
+        <h1>Edit User</h1>
+
+        <form class="login-form"
+              id="editUserForm"
+              method="POST"
+              action="{{ route('users.update', $user->id) }}">
+
+            @csrf
+            @method('PUT')
+
+            
+            <div class="field">
+
+                <label for="name">Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ old('name', $user->name) }}"
+                    required
+                >
+
+                @error('name')
+                    <span class="error-text">{{ $message }}</span>
+                @enderror
+
+            </div>
+
+
+            
+            <div class="field">
+
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ old('email', $user->email) }}"
+                    required
+                >
+
+                @error('email')
+                    <span class="error-text">{{ $message }}</span>
+                @enderror
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="role">Role</label>
+
+                <select
+                    id="role"
+                    name="role"
+                    class="role-select"
+                    required
+                >
+
+                    <option value="">Select Role</option>
+
+                    @foreach($roles as $role)
+
+                        <option
+                            value="{{ $role->name }}"
+                            {{ old('role', $user->getRoleNames()->first()) == $role->name ? 'selected' : '' }}
+                        >
+                            {{ $role->name }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+
+                @error('role')
+                    <span class="error-text">{{ $message }}</span>
+                @enderror
+
+            </div>
+
+
+            <button type="submit" class="login-btn">
+                Save Changes
+            </button>
+
+        </form>
+
+
+        <p class="signup-text">
+
+            <a href="{{ route('users.index') }}" class="signup-link">
+                Back to Users
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+@vite('resources/js/users.js')
+
+@endsection

@@ -4,9 +4,9 @@
 
    <ul class="nav-links">
     <li><a href="{{ route('home') }}">Home</a></li>
-    @if(auth()->check() && auth()->user()->role === 'admin')
-    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-    @endif
+    @can('view dashboard')
+       <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+    @endcan
     <li><a href="{{ route('collection') }}">Collection</a></li>
     <li><a href="{{ route('about') }}">About</a></li>
     <li><a href="{{ route('cart') }}">Cart</a></li>

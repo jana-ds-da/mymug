@@ -1,5 +1,5 @@
-import DataTable from 'datatables.net-bs5';
 
+import DataTable from 'datatables.net-bs5';
 
 const productForm = document.getElementById("productForm");
 const imageInput = document.getElementById("image");
