@@ -45,12 +45,12 @@ header,
 }
 
 .nav-logout {
-    background-color: #B85C2F;
+    background-color: #8B4B25;
     border: none;
     border-radius: 25px;
     padding: 8px 18px;
     font: inherit;
-    color: #3B2A1E;
+    color: whitesmoke;
     cursor: pointer;
     transition: 0.3s ease;
 }

@@ -31,7 +31,7 @@
             @forelse($cartItems as $item)
                 <div class="cart-item" data-item-id="{{ $item->id }}">
                     <div class="item-image-wrapper">
-                        <img src="{{ asset('storage/' . $item->product->image_path) }}"
+                        <img src="{{ $item->product->image_url }}"
                              alt="{{ $item->product->mug_name }}"
                              class="item-image">
                     </div>

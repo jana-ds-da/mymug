@@ -22,50 +22,38 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('actions', function ($model) {
+               
 
-                $editUrl = route('dashboard', ['edit' => $model->id]);
-                $deleteUrl = route('products.destroy', ['product' => $model->id]);
+               $editUrl = route('dashboard', ['edit' => $model->id]);
+    $deleteUrl = route('products.destroy', ['product' => $model->id]);
 
-                return '
-                <div class="d-flex justify-content-center align-items-center gap-2">
+    return '
+        <div class="d-flex justify-content-center gap-2">
 
-                    <a href="' . $editUrl . '"
-                       class="btn btn-sm btn-warning">
-                        Edit
-                    </a>
+            <a href="' . $editUrl . '"
+               class="btn btn-sm btn-outline-warning"
+               title="Edit Product">
+                <i class="fa-solid fa-pen"></i>
+            </a>
 
-                    <button type="button"
-                            class="btn btn-sm btn-danger delete-this-product"
-                            data-id="' . $model->id . '"
-                            data-url="' . $deleteUrl . '">
-                        Delete
-                    </button>
+            <button type="button"
+                    class="btn btn-sm btn-outline-danger delete-this-product"
+                    data-id="' . $model->id . '"
+                    data-url="' . $deleteUrl . '"
+                    title="Delete Product">
+                <i class="fa-solid fa-trash"></i>
+            </button>
 
-                </div>
-            ';
-            })
-
-            ->editColumn('image_path', function ($model) {
-
-                if (!$model->image_path) {
-                    return '<span class="text-muted">No Image</span>';
-                }
-
-                if (str_starts_with($model->image_path, 'img/')) {
-                    $imageUrl = asset($model->image_path);
-                } else {
-                    $imageUrl = asset('storage/' . ltrim($model->image_path, '/'));
-                }
-
-                return '
-                    <img src="' . $imageUrl . '"
-                        alt="' . e($model->mug_name) . '"
-                        width="60"
-                        height="60"
-                        style="border-radius:8px; object-fit:cover;"
-                        onerror="this.style.display=\'none\';">
-                ';
-            })
+        </div>
+    ';
+})
+          ->editColumn('image_path', function ($model) {
+              return $model->image_path
+                ? '<img src="' . $model->image_url . '"
+                    alt="' . e($model->mug_name) . '"
+                    style="width:50px;height:50px;border-radius:8px;object-fit:cover;">'
+                : '<span class="text-muted">No Image</span>';
+           })
             ->editColumn('mug_name', function ($model) {
                 return ucfirst($model->mug_name);
             })
@@ -73,12 +61,12 @@ class ProductDataTable extends DataTable
                 return number_format($model->price, 2) . ' EGP';
             })
             ->addColumn('category', function ($model) {
-                return $model->category->name ?? '-';
+                 return $model->category->name ?? '-';
             })
 
             ->filterColumn('category', function ($query, $keyword) {
                 $query->whereHas('category', function ($q) use ($keyword) {
-                    $q->where('name', 'like', "%{$keyword}%");
+                   $q->where('name', 'like', "%{$keyword}%");
                 });
             })
 
@@ -142,11 +130,11 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->title('Id')->addClass('text-center'),
+            Column::make('id') ->title('Id') ->addClass('text-center'),
             Column::make('image_path')->title('Image')->addClass('text-center')->orderable(false)->searchable(false),
             Column::make('mug_name')->title('Name')->addClass('text-center'),
             Column::make('price')->title('Price')->addClass('text-center'),
-            Column::computed('category')->title('Category')->addClass('text-center')->orderable(false)->searchable(true),
+           Column::computed('category')->title('Category')->addClass('text-center')->orderable(false)->searchable(true),
             Column::computed('actions')->title('Actions')
                 ->exportable(false)
                 ->printable(false)

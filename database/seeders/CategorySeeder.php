@@ -13,8 +13,8 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['name' => 'Hot Chocolate', 'slug' => 'hot-chocolate']);
-        Category::create(['name' => 'Espresso', 'slug' => 'espresso']);
-        Category::create(['name' => 'Ice Coffee', 'slug' => 'ice-coffee']);
+        Category::firstOrCreate(['name' => 'Hot Chocolate', 'slug' => 'hot-chocolate']);
+        Category::firstOrCreate(['name' => 'Espresso', 'slug' => 'espresso']);
+        Category::firstOrCreate(['name' => 'Ice Coffee', 'slug' => 'ice-coffee']);
     }
 }
