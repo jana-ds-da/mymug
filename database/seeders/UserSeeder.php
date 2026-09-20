@@ -15,22 +15,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-         User::updateOrCreate(
-            ['email' => env('ADMIN_EMAIL', 'janamuhammad.ai@gmail.com')],
-            [
-                'name' => 'jana muhammad',
-                'password' => Hash::make(env('ADMIN_PASSWORD', 'password123')),
-                'role' => 'admin',
-            ]
+         User::updateOrCreate( ['email' => env('ADMIN_EMAIL', 'janamuhammad.ai@gmail.com')],
+          [ 'name' => 'jana muhammad',
+           'password' => Hash::make(env('ADMIN_PASSWORD', '12345678')),
+            'role' => 'admin', ]
         );
 
-        User::updateOrCreate(
-            ['email' => env('ADMIN_EMAIL_2', 'salmahamdy1220@gmail.com')],
-            [
-                'name' => 'salma hamdy',
-                'password' => Hash::make(env('ADMIN_PASSWORD_2', 'password123')),
-                'role' => 'admin',
-            ]
+       User::updateOrCreate( ['email' => 'admin@gmail.com'],
+        [ 'name' => 'Admin', 'password' => Hash::make('12345678'), 
+        'role' => 'admin', ]
         );
+
+        User::updateOrCreate( ['email' => 'manager@gmail.com'],
+         [ 'name' => 'Manager', 'password' => Hash::make('12345678'),
+          'role' => 'manager', ]);
+
+        User::updateOrCreate( ['email' => 'costomer@gmail.com'],
+         [ 'name' => 'Customer', 'password' => Hash::make('12345678'), 
+         'role' => 'customer', ] );  
     }
 }
