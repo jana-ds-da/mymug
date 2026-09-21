@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
          [ 'name' => 'Manager', 'password' => Hash::make('12345678'),
           'role' => 'manager', ]);
 
-        User::updateOrCreate( ['email' => 'costomer@gmail.com'],
+        User::updateOrCreate( ['email' => 'Customer@gmail.com'],
          [ 'name' => 'Customer', 'password' => Hash::make('12345678'), 
          'role' => 'customer', ] );  
     }

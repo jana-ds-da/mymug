@@ -28,23 +28,25 @@ class ProductDataTable extends DataTable
     $deleteUrl = route('products.destroy', ['product' => $model->id]);
 
     return '
-        <div class="d-flex justify-content-center gap-2">
+     <div class="d-flex justify-content-center align-items-center gap-3">
 
-            <a href="' . $editUrl . '"
-               class="btn btn-sm btn-outline-warning"
-               title="Edit Product">
-                <i class="fa-solid fa-pen"></i>
-            </a>
+    <a href="' . $editUrl . '"
+       class="btn p-0 border-0 bg-transparent"
+       style="color: #B85C2F;"
+       title="Edit Product">
+        <i class="fas fa-pen"></i>
+    </a>
 
-            <button type="button"
-                    class="btn btn-sm btn-outline-danger delete-this-product"
-                    data-id="' . $model->id . '"
-                    data-url="' . $deleteUrl . '"
-                    title="Delete Product">
-                <i class="fa-solid fa-trash"></i>
-            </button>
+    <button type="button"
+            class="btn p-0 border-0 bg-transparent delete-this-product"
+            style="color: #B85C2F;"
+            data-id="' . $model->id . '"
+            data-url="' . $deleteUrl . '"
+            title="Delete Product">
+        <i class="fas fa-trash"></i>
+    </button>
 
-        </div>
+</div>
     ';
 })
           ->editColumn('image_path', function ($model) {

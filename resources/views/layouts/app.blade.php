@@ -7,19 +7,21 @@
 
     <meta name='csrf-token' content='{{ csrf_token() }}'>
 
-    <title>@yield('title')</title>
+    <title>@yield('title', 'My Mug')</title>
     
 
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-
     @yield('css') 
 
-
+   <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
     @include('components.navbar')
-    @yield('content')
+    <main class="page-content">
+        @yield('content')
+    </main>
  
     
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>    

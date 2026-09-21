@@ -66,7 +66,7 @@ class RoleController extends Controller
             ->pluck('id')
             ->toArray();
 
-        return view('roles.edit', compact(
+        return view('roles.create', compact(
             'role',
             'permissions',
             'rolePermissions'
@@ -88,6 +88,7 @@ class RoleController extends Controller
                 'array',
             ],
             'permissions.*' => [
+                'integer',
                 'exists:permissions,id',
             ],
         ]);
@@ -96,7 +97,11 @@ class RoleController extends Controller
             'name' => $validated['name'],
         ]);
 
-        $role->syncPermissions($validated['permissions'] ?? []);
+         $permissionIds = $validated['permissions'] ?? [];
+
+         $permissions = Permission::whereIn('id', $permissionIds)->get();
+
+          $role->syncPermissions($permissions);
 
         return redirect()
             ->route('roles.index')

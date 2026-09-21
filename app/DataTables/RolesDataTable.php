@@ -18,19 +18,7 @@ class RolesDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('permissions', function ($role) {
-
-                if ($role->permissions->isEmpty()) {
-                    return '-';
-                }
-
-                return $role->permissions
-                    ->pluck('name')
-                    ->map(function ($permission) {
-                        return '<div>' . e($permission) . '</div>';
-                    })
-                    ->implode('');
-            })
+         
 
             ->addColumn('actions', function ($role) {
 
@@ -38,28 +26,30 @@ class RolesDataTable extends DataTable
                 $deleteUrl = route('roles.destroy', ['role' => $role->id]);
 
                 return '
-                    <div class="d-flex justify-content-center gap-2"
+                   <div class="d-flex justify-content-center align-items-center gap-3"
                          style="white-space: nowrap;">
 
-                        <a href="' . $editUrl . '"
-                           class="btn btn-sm btn-outline-warning"
+                         <a href="' . $editUrl . '"
+                           class="btn p-0 border-0 bg-transparent"
+                           style="color: #B85C2F;"
                            title="Edit Role">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
+                             <i class="fas fa-pen"></i>
+                         </a>
 
-                        <button type="button"
-                                class="btn btn-sm btn-outline-danger delete-this-role"
+                         <button type="button"
+                                class="btn p-0 border-0 bg-transparent delete-this-role"
+                                style="color: #B85C2F;"
                                 data-id="' . $role->id . '"
                                 data-url="' . $deleteUrl . '"
                                 title="Delete Role">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                                <i class="fas fa-trash"></i>
+                            </button>
 
-                    </div>
-                ';
-            })
+                      </div>
+                      ';
+                   })
 
-            ->rawColumns(['permissions', 'actions'])
+            ->rawColumns(['actions'])
             ->setRowId('id');
     }
 
@@ -129,12 +119,6 @@ class RolesDataTable extends DataTable
 
             Column::make('name')
                 ->title('Role')
-                ->addClass('text-center'),
-
-            Column::computed('permissions')
-                ->title('Permissions')
-                ->orderable(false)
-                ->searchable(false)
                 ->addClass('text-center'),
 
             Column::computed('actions')

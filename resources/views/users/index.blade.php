@@ -33,11 +33,7 @@
                 </a>
             @endcan
 
-            @can('view roles')
-                <a href="{{ route('roles.index') }}" class="users">
-                     Roles
-                </a>
-            @endcan
+           
         </div>
         </div>
 
