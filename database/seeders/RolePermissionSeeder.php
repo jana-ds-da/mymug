@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -59,6 +60,44 @@ class RolePermissionSeeder extends Seeder
 
        
         $customer->syncPermissions([]);
+
+        
+        $jana = User::where(
+           'email',
+           env('ADMIN_EMAIL', 'janamuhammad.ai@gmail.com')
+        )->first();
+
+        if ($jana) {
+             $jana->syncRoles(['Admin']);
+        }
+
+        $adminUser = User::where(
+         'email',
+         'admin@gmail.com'
+        )->first();
+
+         if ($adminUser) {
+               $adminUser->syncRoles(['Admin']);
+        }
+
+         $managerUser = User::where(
+            'email',
+            'manager@gmail.com'
+         )->first();
+
+         if ($managerUser) {
+            $managerUser->syncRoles(['Manager']);
+         }
+
+         $customerUser = User::where(
+            'email',
+            'costomer@gmail.com'
+         )->first();
+
+         if ($customerUser) {
+              $customerUser->syncRoles(['Customer']);
+         }
+
     }
 }
 
