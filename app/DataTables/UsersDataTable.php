@@ -20,30 +20,53 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
 
-            ->addColumn('actions', function ($model) {
+      ->addColumn('actions', function ($model) {
 
-                $editUrl = route('users.edit', ['user' => $model->id]);
-                $deleteUrl = route('users.destroy', ['user' => $model->id]);
+    $deleteUrl = route('users.destroy', ['user' => $model->id]);
 
-                return '
-              <div class="d-flex justify-content-center gap-2">
+    if ($model->hasRole('Customer')) {
 
-            <a href="' . $editUrl . '"
-               class="btn btn-sm btn-outline-warning"
-               title="Edit Product">
-                <i class="fa-solid fa-pen"></i>
-            </a>
+        return '
+            <div class="d-flex justify-content-center align-items-center gap-3">
 
-            <button type="button"
-                    class="btn btn-sm btn-outline-danger delete-this-product"
-                    data-id="' . $model->id . '"
-                    data-url="' . $deleteUrl . '"
-                    title="Delete Product">
-                <i class="fa-solid fa-trash"></i>
-            </button>
+                <button type="button"
+                        class="btn p-0 border-0 bg-transparent delete-this-user"
+                        style="color: #B85C2F;"
+                        data-id="' . $model->id . '"
+                        data-url="' . $deleteUrl . '"
+                        title="Delete User">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
 
-        </div>
-    ';
+            </div>
+        ';
+
+    } else {
+
+        $editUrl = route('users.edit', ['user' => $model->id]);
+
+        return '
+            <div class="d-flex justify-content-center align-items-center gap-3">
+
+                <a href="' . $editUrl . '"
+                   class="btn p-0 border-0 bg-transparent"
+                   style="color: #B85C2F;"
+                   title="Edit User">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+
+                <button type="button"
+                        class="btn p-0 border-0 bg-transparent delete-this-user"
+                        style="color: #B85C2F;"
+                        data-id="' . $model->id . '"
+                        data-url="' . $deleteUrl . '"
+                        title="Delete User">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+        ';
+    }
 })
 
             ->addColumn('role', function ($user) {

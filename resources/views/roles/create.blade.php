@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Role')
+@section('title', isset($role) ? 'Edit Role' : 'Create Role')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
@@ -19,14 +19,17 @@
             <span class="brand-name">my mug</span>
         </div>
 
-        <h1>Create Role</h1>
+        <h1>{{ isset($role) ? 'Edit Role' : 'Create Role' }}</h1>
 
         <form class="login-form"
-              method="POST"
-              action="{{ route('roles.store') }}">
+             method="POST"
+             action="{{ isset($role) ? route('roles.update', $role->id) : route('roles.store') }}">
 
             @csrf
-
+     
+            @if(isset($role))
+                 @method('PUT')
+            @endif
             
             <div class="field">
 
@@ -36,7 +39,7 @@
                     type="text"
                     id="name"
                     name="name"
-                    value="{{ old('name') }}"
+                    value="{{ old('name', $role->name ?? '') }}"
                     placeholder="Enter role name"
                     required
                 >
@@ -87,7 +90,10 @@
                                     flex-shrink: 0;
                                     cursor: pointer;
                                 "
-                                {{ in_array($permission->id, old('permissions', [])) ? 'checked' : '' }}
+                               {{ in_array(
+                                   $permission->id,
+                                   old('permissions', isset($role) ? $rolePermissions : [])
+                               ) ? 'checked' : '' }}
                             >
 
                             <span>
@@ -117,7 +123,7 @@
 
            
             <button type="submit" class="login-btn">
-                Create Role
+                {{ isset($role) ? 'Update Role' : 'Create Role' }}
             </button>
 
         </form>

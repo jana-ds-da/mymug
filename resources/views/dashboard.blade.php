@@ -39,14 +39,7 @@
 
             </div>
       
-            <div class="card-header">
-                 @can('view users')
-                     <a href="{{ route('users.index') }}" class="users">
-                   
-                         Show Users
-                      </a>
-                 @endcan
-            </div>     
+              
 
              
 
