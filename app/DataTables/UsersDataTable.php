@@ -77,6 +77,16 @@ class UsersDataTable extends DataTable
                 $query->whereHas('roles', function ($q) use ($keyword) {
                     $q->where('name', 'like', "%{$keyword}%");
                 });
+            }) 
+
+            ->addColumn('department', function ($user) {
+                   return $user->department?->name ?? '-';
+            })
+
+            ->filterColumn('department', function ($query, $keyword) {
+                  $query->whereHas('department', function ($q) use ($keyword) {
+                      $q->where('name', 'like', "%{$keyword}%");
+                   });
             })
 
             ->rawColumns(['actions'])
@@ -160,6 +170,13 @@ class UsersDataTable extends DataTable
                 ->title('Role')
                 ->addClass('text-center')
                 ->orderable(false)
+                ->searchable(true),
+
+
+             Column::computed('department')
+                 ->title('Department')
+                 ->addClass('text-center')
+                 ->orderable(false)
                 ->searchable(true),
 
             Column::computed('actions')

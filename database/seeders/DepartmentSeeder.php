@@ -23,11 +23,15 @@ class DepartmentSeeder extends Seeder
             'Designers',
         ];
 
-         foreach ($departments as $department) {
-            Department::updateOrCreate([
-                'name' => $department,
-                ['status' => false]
-            ]);
+       foreach ($departments as $department) {
+            Department::updateOrCreate(
+              [
+                 'name' => $department,
+              ],
+              [
+                 'status' => true,
+               ]
+            );
         }
     }
 }

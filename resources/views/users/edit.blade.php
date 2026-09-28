@@ -102,6 +102,22 @@
             </div>
 
 
+            <div class="field">
+                 <label for="department_id">Department</label>
+
+                  <select id="department_id" name="department_id" required>
+                     <option value="" disabled>Select Department</option>
+
+                      @foreach ($departments as $department)
+                           <option value="{{ $department->id }}"
+                               {{ $user->department_id == $department->id ? 'selected' : '' }}>
+                                {{ $department->name }}
+                            </option>
+                     @endforeach
+                   </select>
+            </div>
+
+
             <button type="submit" class="login-btn">
                 Save Changes
             </button>

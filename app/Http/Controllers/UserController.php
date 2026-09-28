@@ -7,6 +7,7 @@ use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Spatie\Permission\Models\Role;
 use App\DataTables\UsersDataTable;
+use App\Models\Department;
 
 
 class UserController extends Controller
@@ -78,8 +79,9 @@ class UserController extends Controller
         public function edit(User $user)
         {
              $roles = Role::orderBy('name')->get();
+             $departments = Department::where('status', 1)->get();
 
-             return view('users.edit', compact('user', 'roles'));
+             return view('users.edit', compact('user', 'roles', 'departments'));
         }
         
             //update  function
@@ -94,11 +96,14 @@ class UserController extends Controller
                  'unique:users,email,' . $user->id,
             ],
              'role' => ['required', 'exists:roles,name'],
+              'department_id' => ['required', 'exists:departments,id'],
+            
         ]);
 
          $user->update([
             'name' => $validated['name'],
              'email' => $validated['email'],
+             'department_id' => $validated['department_id'],
         ]);
 
          $user->syncRoles([$validated['role']]);
