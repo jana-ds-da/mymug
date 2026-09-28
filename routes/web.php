@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\DepartmentController;
 
 
 Route::get('/', function () {
@@ -157,3 +158,32 @@ Route::put('/roles/{role}', [RoleController::class, 'update'])
 Route::delete('/roles/{role}', [RoleController::class, 'destroy'])
     ->middleware(['auth', 'can:manage roles'])
     ->name('roles.destroy');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/departments', [DepartmentController::class, 'index'])
+        ->middleware('permission:view departments')
+        ->name('departments.index');
+
+    Route::get('/departments/create', [DepartmentController::class, 'create'])
+        ->middleware('permission:create departments')
+        ->name('departments.create');
+
+    Route::post('/departments', [DepartmentController::class, 'store'])
+        ->middleware('permission:create departments')
+        ->name('departments.store');
+
+    Route::get('/departments/{department}/edit', [DepartmentController::class, 'edit'])
+        ->middleware('permission:edit departments')
+        ->name('departments.edit');
+
+    Route::put('/departments/{department}', [DepartmentController::class, 'update'])
+        ->middleware('permission:edit departments')
+        ->name('departments.update');
+
+    Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])
+        ->middleware('permission:delete departments')
+        ->name('departments.destroy');
+
+});   

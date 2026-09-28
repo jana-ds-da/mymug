@@ -28,6 +28,11 @@ class RolePermissionSeeder extends Seeder
 
             'view roles',
             'manage roles',
+
+             'view departments',
+             'create departments',
+             'edit departments',
+             'delete departments',
         ];
 
         foreach ($permissionNames as $name) {
@@ -54,9 +59,17 @@ class RolePermissionSeeder extends Seeder
         $admin->syncPermissions($allPermissions);
 
         
-        $manager->syncPermissions(
-            $allPermissions->where('name', '!=', 'manage users')
-        );
+       $managerPermissions = $allPermissions->reject(function ($permission) {
+              return in_array($permission->name, [
+                 'manage users',
+                 'view departments',
+                 'create departments',
+                 'edit departments',
+                 'delete departments',
+           ]);
+        });
+
+$manager->syncPermissions($managerPermissions);
 
        
         $customer->syncPermissions([]);

@@ -47,7 +47,15 @@
                 <a href="{{ route('roles.index') }}">Role</a>
             </li>
         @endcan
+         
 
+       @can('view departments')
+           <li>
+               <a href="{{ route('departments.index') }}">
+                     Departments
+               </a>
+           </li>
+       @endcan
       
 
          </ul>
