@@ -125,6 +125,20 @@
 
             </div>
 
+            <div class="field">
+                 <label for="department_id">Department</label>
+
+                 <select id="department_id" name="department_id" required>
+                         <option value="" disabled selected>Select Department</option>
+
+                         @foreach ($departments as $department)
+                             <option value="{{ $department->id }}">
+                                 {{ $department->name }}
+                             </option>
+                         @endforeach
+                 </select>
+           </div>
+
 
             <button
                 type="submit"

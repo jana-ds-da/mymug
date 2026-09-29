@@ -33,8 +33,9 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::orderBy('name')->get();
+        $departments = Department::where('status', 1)->get();
 
-        return view('users.create', compact('roles'));
+        return view('users.create', compact('roles', 'departments'));
     }
     
         // store function
@@ -60,12 +61,15 @@ class UserController extends Controller
                 'required',
                 'exists:roles,name'
             ],
+
+            'department_id' => ['required', 'exists:departments,id'],
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => $validated['password'],
+            'department_id' => $validated['department_id'],
         ]);
 
         $user->assignRole($validated['role']);
