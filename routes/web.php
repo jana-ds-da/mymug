@@ -42,12 +42,11 @@ Route::get('/product', function () {
     return view('product');
 })->name('product');
 
-Route::get('/signup', function () {
-    return view('signup');
-})->name('signup');
+Route::get('/signup', [AuthController::class, 'showSignup'])
+    ->name('signup');
 
-Route::post('/signup',[AuthController::class, 'signup'])
-      ->name('signup.store');
+Route::post('/signup', [AuthController::class, 'signup'])
+    ->name('signup.store');  
     
 Route::post('/products',[ProductController::class, 'store'])
      ->name('products.store');      

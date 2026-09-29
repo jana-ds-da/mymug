@@ -8,9 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
 use Illuminate\Http\Request;
+use App\Models\Department;
 
 class AuthController extends Controller
 {
+      // department in signup
+    public function showSignup()
+    {
+       $departments = Department::where('status', 1)->get();
+
+       return view('signup', compact('departments'));
+    }
      public function signup(SignupRequest $request)
      {  
     
@@ -19,6 +27,7 @@ class AuthController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
+        'department_id' => $request->department_id,
      ]);
 
        $user->assignRole('Customer');

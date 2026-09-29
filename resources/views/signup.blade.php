@@ -38,9 +38,40 @@
                 </div>
 
                 <div class="field">
-                    <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" required>
+                     <label for="password_confirmation">Confirm Password</label>
+                    <input 
+                         type="password"
+                         id="password_confirmation"
+                         name="password_confirmation"
+                         required
+                    >
                 </div>
+
+                <div class="field">
+                    <label for="department_id">Department</label>
+
+                   <select id="department_id" name="department_id" required>
+                        <option value="" disabled selected>Select Department</option>
+
+                        @foreach ($departments as $department)
+                           <option value="{{ $department->id }}">
+                                {{ $department->name }}
+                          </option>
+                       @endforeach
+                    </select>
+         </div>
+
+               <div class="field">
+                     <label for="role">Role</label>
+                     <select id="role" name="role" required>
+                          <option value="" disabled selected>Select Role</option>
+                           <option value="Customer">Customer</option>
+                           <option value="Manager">Manager</option>
+                           <option value="Admin">Admin</option>
+                      </select>
+                </div>
+   
+
 
                 <button type="submit" class="login-btn">Sign Up</button>
             </form>

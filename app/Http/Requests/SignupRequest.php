@@ -26,6 +26,7 @@ class SignupRequest extends FormRequest
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
+            'department_id' => 'required|exists:departments,id',
         ];
     }
 }
