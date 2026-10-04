@@ -19,11 +19,12 @@
             <span class="brand-name">my mug</span>
         </div>
 
-        <h1>{{ isset($role) ? 'Edit Role' : 'Create Role' }}</h1>
+        <h1>{{ isset($role) ? __('messages.edit_role') : __('messages.create_role') }}</h1>
 
         <form class="login-form"
              method="POST"
-             action="{{ isset($role) ? route('roles.update', $role->id) : route('roles.store') }}">
+             action="{{ isset($role) ? route('roles.update', $role->id) : route('roles.store') }}"
+             >
 
             @csrf
      
@@ -33,14 +34,14 @@
             
             <div class="field">
 
-                <label for="name">Role Name</label>
+                <label for="name">{{ __('messages.role_name') }}</label>
 
                 <input
                     type="text"
                     id="name"
                     name="name"
                     value="{{ old('name', $role->name ?? '') }}"
-                    placeholder="Enter role name"
+                    placeholder="{{ __('messages.enter_role_name') }}"
                     required
                 >
 
@@ -57,7 +58,7 @@
             <div class="field">
 
                 <label for="permissions">
-                    Permissions
+                    {{ __('messages.permissions') }}
                 </label>
 
                 <div style="
@@ -123,7 +124,7 @@
 
            
             <button type="submit" class="login-btn">
-                {{ isset($role) ? 'Update Role' : 'Create Role' }}
+                {{ isset($role) ? __('messages.update_role') : __('messages.create_role') }}
             </button>
 
         </form>
@@ -134,7 +135,7 @@
 
             <a href="{{ route('roles.index') }}"
                class="signup-link">
-                Back to Roles
+                {{ __('messages.back_to_roles') }}
             </a>
 
         </p>

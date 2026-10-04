@@ -15,6 +15,7 @@ use App\DataTables\ProductDataTable;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\OrderController;
 
 
 Route::get('/', function () {
@@ -63,8 +64,7 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])
 Route::put('/products/{product}', [ProductController::class, 'update'])
     ->name('products.update');    
 
-Route::get('/collection', [CollectionController::class, 'filter'])
-     ->name('collection');   
+ 
 
 Route::post('/login',[AuthController::class, 'login'])
      ->name('login.store');
@@ -185,4 +185,44 @@ Route::middleware('auth')->group(function () {
         ->middleware('permission:delete departments')
         ->name('departments.destroy');
 
-});   
+    Route::get('/language/{locale}', function ($locale) {
+
+    if (!in_array($locale, ['en', 'ar'])) {
+        abort(400);
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+
+    })->name('language');  
+    
+  });  
+    
+    Route::middleware('auth')->group(function () {
+
+    Route::get('/my-orders', [OrderController::class, 'myorders'])
+        ->name('orders.my');
+
+    Route::middleware('permission:view orders')->group(function () {
+
+        Route::get('/all-orders', [OrderController::class, 'index'])
+            ->name('orders.index');
+
+    });
+
+    Route::middleware('permission:update orders')->group(function () {
+
+        Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
+            ->name('orders.updateStatus');
+
+    });
+
+    Route::middleware('permission:delete orders')->group(function () {
+
+        Route::delete('/orders/{order}', [OrderController::class, 'destroy'])
+            ->name('orders.destroy');
+
+    });
+
+});

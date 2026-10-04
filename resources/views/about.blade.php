@@ -42,16 +42,11 @@
 
             <p class="eyebrow">
                 <span class="eyebrow-line"></span>
-                OUR STORY
+                {{ __('messages.our_story') }}
             </p>
 
             <h2 class="story-heading">
-                We believe in the beauty
-                <br>
-                of
-                <span class="highlight">
-                    handcrafted moments
-                </span>
+                {{ __('messages.beauty_of_handcrafted_moments') }}
             </h2>
 
         </div>
@@ -62,22 +57,22 @@
 
                 <figure class="process-shot">
                     <img src="{{ asset('img/about1.jpeg') }}" class="process-img">
-                    <figcaption>Studio Views: Sourcing</figcaption>
+                    <figcaption>{{ __('messages.studio_views_sourcing') }}</figcaption>
                 </figure>
 
                 <figure class="process-shot">
                     <img src="{{ asset('img/about2.jpeg') }}" class="process-img">
-                    <figcaption>Forming</figcaption>
+                    <figcaption>{{ __('messages.forming') }}</figcaption>
                 </figure>
 
                 <figure class="process-shot">
                     <img src="{{ asset('img/about3.jpeg') }}" class="process-img">
-                    <figcaption>Glazing</figcaption>
+                    <figcaption>{{ __('messages.glazing') }}</figcaption>
                 </figure>
 
                 <figure class="process-shot">
                     <img src="{{ asset('img/about4.jpeg') }}" class="process-img">
-                    <figcaption>Firing</figcaption>
+                    <figcaption>{{ __('messages.firing') }}</figcaption>
                 </figure>
 
             </div>
@@ -86,30 +81,22 @@
 
                 <div class="craft-text">
 
-                    <h3>From Earth to Table</h3>
+                    <h3>{{ __('messages.from_earth_to_table') }}</h3>
 
                     <p>
-                        A "My Mug" piece starts as nothing more than raw clay and an idea.
-                        Every mug is shaped, refined and finished entirely by hand,
-                        preserving the warmth and character that only craftsmanship can create.
+                        {{ __('messages.about_paragraph_1') }}
                     </p>
 
                     <p>
-                        Since 2018, our small studio has focused on quality instead of quantity.
-                        Every collection is produced in limited batches using locally sourced clay
-                        and carefully selected glazes.
+                        {{ __('messages.about_paragraph_2') }}
                     </p>
 
                     <p>
-                        Each mug is wheel-thrown by skilled ceramic artists, then dried,
-                        glazed and kiln-fired slowly to create a durable finish while
-                        preserving its handmade personality.
+                        {{ __('messages.about_paragraph_3') }}
                     </p>
 
                     <p>
-                        Because every glaze reacts differently inside the kiln,
-                        no two mugs are ever exactly alike—and that's what makes every
-                        piece unique.
+                        {{ __('messages.about_paragraph_4') }}
                     </p>
 
                 </div>
@@ -117,7 +104,7 @@
                 <div class="gallery-actions">
 
                     <a href="{{ route('collection') }}" class="btn-solid">
-                        Browse Collection
+                        {{ __('messages.browse_collection') }}
                     </a>
 
                 </div>
@@ -133,7 +120,7 @@
         <div class="hero-photo-wrapper">
 
             <img src="{{ asset("img/about5.jpeg") }}"
-                 alt="Pottery Studio"
+                 alt="{{ __('messages.pottery_studio') }}"
                  class="hero-img">
 
             
@@ -144,25 +131,22 @@
 
             <img src="{{ asset('img/about6.jpeg') }}"
                  class="product-img"
-                 alt="Mug">
+                 alt="{{ __('messages.mug') }}">
 
             <img src="{{ asset('img/about7.jpeg') }}"
                  class="product-img"
-                 alt="Mug">
+                 alt="{{ __('messages.mug') }}">
 
             <img src="{{ asset('img/about8.jpeg') }}"
                  class="product-img"
-                 alt="Mug">
+                 alt="{{ __('messages.mug') }}">
 
         </div>
 
         <div class="community-footer">
 
             <p class="community-text">
-                Handmade in small batches with care,
-                patience and traditional craftsmanship.
-                Every piece is designed to make your
-                everyday coffee ritual a little more special.
+               {{ __('messages.community_text') }}
             </p>
 
             

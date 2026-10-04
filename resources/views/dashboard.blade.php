@@ -31,10 +31,10 @@
 
             <div>
 
-                <h1>Welcome Back, Owner </h1>
+                <h1>{{ __('messages.welcome_back_owner') }} </h1>
 
                 <p>
-                    Here's an overview of your mug store performance today.
+                    {{ __('messages.dashboard_overview') }}
                 </p>
 
             </div>
@@ -55,33 +55,33 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="stat-card">
-                    <h4> Total Orders </h4>
+                    <h4> {{ __('messages.total_orders') }} </h4>
                     <h2 id="ordersCount">{{ $totalOrders }}</h2>
-                    <span>Orders received</span>
+                    <span>{{ __('messages.orders_received') }}</span>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <div class="stat-card">
-                    <h4>Total Revenue</h4>
+                    <h4>{{ __('messages.total_revenue') }}</h4>
                     <h2 id="revenue">{{ number_format($totalRevenue, 2) }} EGP</h2>
-                    <span>Store earnings</span>
+                    <span>{{ __('messages.store_earnings') }}</span>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <div class="stat-card">
-                    <h4>Products Sold</h4>
+                    <h4>{{ __('messages.products_sold') }}</h4>
                     <h2 id="productsCount">{{ $productsSold }}</h2>
-                    <span>Total sold items</span>
+                    <span>{{ __('messages.total_sold_items') }}</span>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <div class="stat-card">
-                    <h4>Best Seller</h4>
+                    <h4>{{ __('messages.best_seller') }}</h4>
                     <h2 id="bestSeller">{{$bestSeller?->product?->mug_name ?? '-'}}</h2>
-                    <span>Most ordered mug</span>
+                    <span>{{ __('messages.most_ordered_mug') }}</span>
                 </div>
             </div>
 
@@ -95,8 +95,8 @@
 <section class="product-management">
 
     <div class="card-header">
-        <h2>Manage Products</h2>
-        <span>Add, Edit & Delete Mugs</span>
+        <h2>{{ __('messages.manage_products') }}</h2>
+        <span>{{ __('messages.add_edit_delete_mugs') }}</span>
     </div>
     <div id="messageBox" class="alert alert-success d-none"></div>
     <form
@@ -124,7 +124,7 @@
 
         
         <div class="col-md-6 mb-3">
-            <label>Mug Name</label>
+            <label>{{ __('messages.mug_name') }}</label>
 
             <input
                 type="text"
@@ -139,7 +139,7 @@
 
         
         <div class="col-md-6 mb-3">
-            <label>Price</label>
+            <label>{{ __('messages.price') }}</label>
 
             <input
                 type="number"
@@ -154,10 +154,10 @@
 
         
         <div class="col-md-6 mb-3">
-            <label>Category</label>
+            <label>{{ __('messages.category') }}</label>
 
             <select class="form-select" id="category" name="category_id" required>
-                <option value="">Select Category</option>
+                <option value="">{{ __('messages.select_category') }}</option>
                @foreach ($categories as $cat)
                   <option value="{{ $cat->id }}" {{ ($editProduct->category_id ?? '') == $cat->id ? 'selected' : '' }}>
                      {{ $cat->name }}
@@ -170,7 +170,7 @@
         
         <div class="col-md-6 mb-3">
 
-            <label>Image</label>
+            <label>{{ __('messages.image') }}</label>
 
             <input
                 type="file"
@@ -186,7 +186,7 @@
 
                 <div class="mt-2">
 
-                    <p>Current Image:</p>
+                    <p>{{ __('messages.current_image') }}:</p>
 
                     <img
                        src="{{ $editProduct->image_url ?? '' }}"
@@ -223,7 +223,7 @@
         
         <div class="col-md-6 mb-3">
 
-            <label>Description</label>
+            <label>{{ __('messages.description') }}</label>
 
             <input
                 type="text"
@@ -240,7 +240,7 @@
         
         <div class="col-md-6 mb-3">
 
-            <label>Capacity</label>
+            <label>{{ __('messages.capacity') }}</label>
 
             <input
                 type="text"
@@ -257,7 +257,7 @@
         
         <div class="col-md-6 mb-3">
 
-            <label>How it's made</label>
+            <label>{{ __('messages.how_its_made') }}</label>
 
             <input
                 type="text"
@@ -274,7 +274,7 @@
         
         <div class="col-md-6 mb-3">
 
-            <label>Microwave</label>
+            <label>{{ __('messages.microwave') }}</label>
 
             <select
                 class="form-select"
@@ -283,20 +283,20 @@
                 required
             >
 
-                <option value="">Choose</option>
+                <option value="">{{ __('messages.choose') }}</option>
 
                 <option
                     value="1"
                     {{ isset($editProduct) && $editProduct->microwave == 1 ? 'selected' : '' }}
                 >
-                    Yes
+                    {{ __('messages.yes') }}
                 </option>
 
                 <option
                     value="0"
                     {{ isset($editProduct) && $editProduct->microwave == 0 ? 'selected' : '' }}
                 >
-                    No
+                    {{ __('messages.no') }}
                 </option>
 
             </select>
@@ -313,7 +313,7 @@
         class="btn btn-dark"
         id="saveBtn"
     >
-        {{ $editProduct ? 'Update Product' : 'Save Product' }}
+        {{ $editProduct ? __('messages.update_product') : __('messages.save_product') }}
     </button>
 
 
@@ -323,7 +323,7 @@
             href="{{ route('dashboard') }}"
             class="btn btn-secondary"
         >
-            Cancel
+            {{ __('messages.cancel') }}
         </a>
 
     @endif
@@ -351,9 +351,9 @@
 
                 <div class="card-header">
 
-                    <h2>Sales Overview</h2>
+                    <h2>{{ __('messages.sales_overview') }}</h2>
 
-                    <span>This Week</span>
+                    <span>{{ __('messages.this_week') }}</span>
 
                 </div>
 
@@ -366,7 +366,7 @@
 
                 <div class="card-header">
 
-                    <h2>Recent Orders</h2>
+                    <h2>{{ __('messages.recent_orders') }}</h2>
 
                 </div>
 
@@ -374,10 +374,10 @@
 
                     <thead>
                         <tr>
-                            <th>Order #</th>
-                            <th>Product</th>
-                            <th>Qty</th>
-                            <th>Total</th>
+                            <th>{{ __('messages.order_number') }} #</th>
+                            <th>{{ __('messages.product') }}</th>
+                            <th>{{ __('messages.qty') }}</th>
+                            <th>{{ __('messages.total') }}</th>
                         </tr>
                     </thead>
 
@@ -407,7 +407,7 @@
 
                      <tr>
                          <td colspan="4" class="text-center">
-                              No Orders Found.
+                              {{ __('messages.no_orders_found') }}
                          </td>
                       </tr>
 
@@ -425,9 +425,9 @@
 
             <div class="card-header">
 
-                <h2>Top Selling Products</h2>
+                <h2>{{ __('messages.top_selling_products') }}</h2>
 
-                <span>Most popular mugs</span>
+                <span>{{ __('messages.most_popular_mugs') }}</span>
 
             </div>
 
@@ -443,13 +443,13 @@
 
             <h5>{{ $item->product->mug_name }}</h5>
 
-            <span>{{ $item->total_qty }} sold</span>
+            <span>{{ $item->total_qty }} {{ __('messages.sold') }}</span>
 
         </div>
 
     @empty
 
-        <p class="text-center">No sales yet.</p>
+        <p class="text-center">{{ __('messages.no_sales_yet') }}.</p>
 
     @endforelse
 
@@ -462,7 +462,7 @@
 
             <p>
 
-                My Mug Dashboard. 
+                {{ __('messages.dashboard_footer') }}
             </p>
 
         </footer>

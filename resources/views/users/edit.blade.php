@@ -19,7 +19,7 @@
             <span class="brand-name">my mug</span>
         </div>
 
-        <h1>Edit User</h1>
+        <h1>{{ __('messages.edit_user') }}</h1>
 
         <form class="login-form"
               id="editUserForm"
@@ -32,7 +32,7 @@
             
             <div class="field">
 
-                <label for="name">Name</label>
+                <label for="name">{{ __('messages.name') }}</label>
 
                 <input
                     type="text"
@@ -52,7 +52,7 @@
             
             <div class="field">
 
-                <label for="email">Email</label>
+                <label for="email">{{ __('messages.email') }}</label>
 
                 <input
                     type="email"
@@ -71,7 +71,7 @@
 
             <div class="field">
 
-                <label for="role">Role</label>
+                <label for="role">{{ __('messages.role') }}</label>
 
                 <select
                     id="role"
@@ -80,7 +80,7 @@
                     required
                 >
 
-                    <option value="">Select Role</option>
+                    <option value="">{{ __('messages.select_role') }}</option>
 
                     @foreach($roles as $role)
 
@@ -103,10 +103,10 @@
 
 
             <div class="field">
-                 <label for="department_id">Department</label>
+                 <label for="department_id">{{ __('messages.department') }}</label>
 
                   <select id="department_id" name="department_id" required>
-                     <option value="" disabled>Select Department</option>
+                     <option value="" disabled>{{ __('messages.select_department') }}</option>
 
                       @foreach ($departments as $department)
                            <option value="{{ $department->id }}"
@@ -119,7 +119,7 @@
 
 
             <button type="submit" class="login-btn">
-                Save Changes
+                {{ __('messages.save_changes') }}
             </button>
 
         </form>
@@ -128,7 +128,7 @@
         <p class="signup-text">
 
             <a href="{{ route('users.index') }}" class="signup-link">
-                Back to Users
+                {{ __('messages.back_to_users') }}
             </a>
 
         </p>

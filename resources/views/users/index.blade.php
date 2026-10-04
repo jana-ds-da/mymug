@@ -22,14 +22,14 @@
         <div class="card-header">
 
             <div>
-                <h2>Manage Users</h2>
-                <span>View & Manage Users</span>
+                <h2>{{ __('messages.manage_users') }}</h2>
+                <span>{{ __('messages.view_manage_users') }}</span>
             </div>
          
         <div class="d-flex gap-2">  
             @can('manage users')
                 <a href="{{ route('users.create') }}" class="users">
-                    Create User
+                    {{ __('messages.create_user') }}
                 </a>
             @endcan
 

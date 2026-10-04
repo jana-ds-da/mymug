@@ -21,6 +21,7 @@ class Order extends Model
         'country',
         'payment',
         'total',
+        'status',
 
     ];
 

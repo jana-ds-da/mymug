@@ -34,7 +34,7 @@ class AuthController extends Controller
        
       return redirect()
          ->route('login')
-         ->with('success','Account created successfully.please login.'); 
+         ->with('success', __('messages.account_created_successfully'));
      }
  
         // login function
@@ -47,7 +47,7 @@ class AuthController extends Controller
     if (!$user) {
         return back()
             ->withErrors([
-                'email' => 'Email is not registered.',
+                 'email' => __('messages.email_not_registered'),
             ])
             ->withInput();
     }
@@ -55,7 +55,7 @@ class AuthController extends Controller
     if (!Hash::check($credentials['password'], $user->password)) {
         return back()
             ->withErrors([
-                'password' => 'Password is incorrect.',
+                'password' => __('messages.password_incorrect'),
             ])
             ->withInput();
     }

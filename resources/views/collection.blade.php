@@ -8,21 +8,6 @@
 
 @section('content')
 
-<head>
-    <meta charset="utf-8">
-    <title>My Mug</title>
-
-    <meta name="description"
-        content="An online store selling high-quality mugs in a variety of designs — perfect for personal use or as a gift.">
-
-    <meta name="keywords" content="mugs, ice coffee cups">
-    <meta name="author" content="Jana Muhammad">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/collection.css">
-</head>
-
-
     <div class="products">
 
         <h1>My Mug</h1>
@@ -30,13 +15,12 @@
         <div class="title">
 
             <h2>
-                <span class="black">Our Mugs</span>
-                <span class="orange">crafted by hand</span>
+                <span class="black">{{ __('messages.our_mugs') }}</span>
+                <span class="orange">{{ __('messages.crafted_by_hand') }}</span>
             </h2>
 
             <p class="description">
-                A curated collection of small-batch stoneware.
-                Each piece is unique, bringing a touch of art to your daily ritual.
+                  {{ __('messages.collection_description') }}
             </p>
 
         </div>
@@ -46,7 +30,7 @@
     <div class="filter-section">
 
         <a href='{{ route('collection') }}' class='filter-btn {{ !request('category') ? 'active' : '' }}'>
-           All
+           {{ __('messages.all') }}
         </a>
 
        @foreach ($categories as $cat)
@@ -61,25 +45,33 @@
 
       <div class="mugs-grid" id="mugsGrid">
 
-        @foreach ($products as $product)
-            <div class='product-card' data-category='{{ $product->category }}'>
-              <a href='{{ route('product.show', $product->id) }}'>  
-                <img class='product-img'
-                     src='{{ $product->image_url }}'
-                     alt='{{ $product->mug_name }}'>
+    @foreach ($products as $product)
 
-                <div class='product-info'>     
-                   <h3>{{ $product->mug_name }}</h3>
+         <div class="product-card" data-category="{{ $product->category }}">
 
-               
-                <span class='price'>{{ $product->price }} EGP </span>
+            <a href="{{ route('product.show', $product->id) }}">
+
+                <img class="product-img"
+                     src="{{ $product->image_url }}"
+                     alt="{{ $product->mug_name }}">
+
+                <div class="product-info">
+
+                    <h3>{{ $product->mug_name }}</h3>
+
+                    <span class="price">
+                        {{ $product->price }} EGP
+                    </span>
 
                 </div>
 
-              </a>
-            </div>
-        @endforeach      
-      </div>
+            </a>
+
+        </div>
+
+    @endforeach
+
+</div>
 
 <script src="js/bootstrap.bundle.min.js"></script>
 @vite('resources/js/collection.js')

@@ -76,7 +76,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('success', 'User created successfully.');
+             ->with('success', __('messages.user_created_successfully'));
     }
            
           // edit function
@@ -114,7 +114,7 @@ class UserController extends Controller
 
            return response()->json([
              'success' => true,
-             'message' => 'User updated successfully.',
+             'message' => __('messages.user_updated_successfully'),
         ]);
       }
        
@@ -126,7 +126,7 @@ class UserController extends Controller
 
          return response()->json([
            'success' => true,
-           'message' => 'User deleted successfully.'
+           'message' => __('messages.user_deleted_successfully'),
        ]);
      }
 

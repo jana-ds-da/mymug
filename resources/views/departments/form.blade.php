@@ -20,14 +20,15 @@
         </div>
 
         <h1>
-            {{ isset($department) ? 'Edit Department' : 'Create Department' }}
+            {{ isset($department)  ? __('messages.edit_department'):  __('messages.create_department')}}
         </h1>
 
         <form class="login-form"
               method="POST"
               action="{{ isset($department)
-                    ? route('departments.update', $department->id)
-                    : route('departments.store') }}">
+                     ? route('departments.update', $department->id)
+                     : route('departments.store') }}"
+             >        
 
             @csrf
 
@@ -40,7 +41,7 @@
             <div class="field">
 
                 <label for="name">
-                    Department Name
+                    {{ __('messages.department_name') }}
                 </label>
 
                 <input
@@ -48,7 +49,7 @@
                     id="name"
                     name="name"
                     value="{{ old('name', $department->name ?? '') }}"
-                    placeholder="Enter department name"
+                    placeholder="{{ __('messages.enter_department_name') }}"
                     required
                 >
 
@@ -65,7 +66,7 @@
             <div class="field">
 
                 <label for="status">
-                    Status
+                    {{ __('messages.status') }}
                 </label>
 
                 <select
@@ -85,14 +86,14 @@
                         value="1"
                         {{ old('status', isset($department) ? $department->status : 1) == 1 ? 'selected' : '' }}
                     >
-                        Active
+                        {{ __('messages.active') }}
                     </option>
 
                     <option
                         value="0"
                         {{ old('status', isset($department) ? $department->status : 1) == 0 ? 'selected' : '' }}
                     >
-                        Inactive
+                        {{ __('messages.inactive') }}
                     </option>
 
                 </select>
@@ -110,8 +111,8 @@
             <button type="submit" class="login-btn">
 
                 {{ isset($department)
-                    ? 'Update Department'
-                    : 'Create Department' }}
+                    ? __('messages.update_department')
+                    : __('messages.create_department') }}
 
             </button>
 
@@ -124,7 +125,7 @@
             <a href="{{ route('departments.index') }}"
                class="signup-link">
 
-                Back to Departments
+                {{ __('messages.back_to_departments') }}
 
             </a>
 

@@ -275,3 +275,92 @@ body {
     color: #FFFFFF;
     transform: translateY(-2px);
 }
+
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.language-switcher a {
+    text-decoration: none;
+    color: #3B2A1E;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.language-switcher a:hover {
+    color: #B85C2F;
+}
+
+.language-switcher a.active {
+    font-weight: 700;
+    color: #B85C2F;
+}
+
+.language-switcher span {
+    color: #3B2A1E;
+}
+
+html[dir="rtl"] body {
+    direction: rtl;
+}
+
+html[dir="rtl"] .menu-toggle {
+    left: auto;
+    right: 25px;
+}
+
+html[dir="rtl"] .sidebar {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.08);
+}
+
+html[dir="rtl"] .sidebar.active {
+    transform: translateX(0);
+}
+
+html[dir="rtl"] .sidebar {
+    align-items: flex-start;
+}
+
+html[dir="rtl"] .nav-links {
+    text-align: right;
+}
+
+html[dir="rtl"] .nav-logo {
+    text-align: right;
+}
+
+html[dir="rtl"] .sidebar-close {
+    right: auto;
+    left: 20px;
+}
+
+html[dir="rtl"] .sidebar-close:hover {
+    transform: translateX(3px);
+}
+
+html[dir="rtl"] .auth-links {
+    right: auto;
+    left: 30px;
+}
+
+html[dir="rtl"] .auth-button,
+html[dir="rtl"] .nav-button {
+    direction: rtl;
+}
+
+html[dir="rtl"] .nav-links li a,
+html[dir="rtl"] .auth-button,
+html[dir="rtl"] .nav-button {
+    text-transform: none;
+}

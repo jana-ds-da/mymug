@@ -54,7 +54,7 @@ class RoleController extends Controller
 
         return redirect()
             ->route('roles.index')
-            ->with('success', 'Role created successfully.');
+            ->with('success', __('messages.role_created_successfully'));
     }
          
           // edit function
@@ -105,7 +105,7 @@ class RoleController extends Controller
 
         return redirect()
             ->route('roles.index')
-            ->with('success', 'Role updated successfully.');
+           ->with('success', __('messages.role_updated_successfully'));
     }
   
        // destroy function
@@ -115,7 +115,7 @@ class RoleController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Role deleted successfully.',
+            'message' => __('messages.role_deleted_successfully'),
         ]);
     }
 }

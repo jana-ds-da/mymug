@@ -28,15 +28,15 @@
         <div class="card-header">
 
             <div>
-                <h2>Manage Departments</h2>
-                <span>View & Manage Departments</span>
+                <h2>{{ __('messages.manage_departments') }}</h2>
+                <span>{{ __('messages.view_manage_departments') }}</span>
             </div>
 
             <div class="d-flex gap-2">
 
                 @can('create departments')
                     <a href="{{ route('departments.create') }}" class="users">
-                        Create Department
+                        {{ __('messages.create_department') }}
                     </a>
                 @endcan
 

@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Product added successfully.');
+            ->with('success', __('messages.product_added_successfully'));
     }
 
         // update function
@@ -86,7 +86,7 @@ class ProductController extends Controller
 
     return redirect()
         ->route('dashboard')
-        ->with('success', 'Product updated successfully.');
+         ->with('success', __('messages.product_updated_successfully'));
 }
 
        // destroy function
@@ -101,7 +101,7 @@ class ProductController extends Controller
     $product->delete();
 
     return response()->json([
-        'message' => 'Product deleted successfully.'
+        'message' => __('messages.product_deleted_successfully')
     ]);
 }
 
