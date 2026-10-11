@@ -22,13 +22,13 @@
         <div class="card-header">
 
             <div>
-                <h2>Manage Roles</h2>
-                <span>View & Manage Roles</span>
+                <h2>{{ __('messages.manage_roles') }}</h2>
+                <span>{{ __('messages.view_manage_roles') }}</span>
             </div>
 
             @can('manage roles')
                 <a href="{{ route('roles.create') }}" class="users">
-                    Create Role
+                   {{ __('messages.create_role') }}
                 </a>
             @endcan
 

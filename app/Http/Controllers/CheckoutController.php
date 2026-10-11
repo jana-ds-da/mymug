@@ -61,7 +61,7 @@ class CheckoutController extends Controller
                 'zip' =>  $request->zip ?? null,
                 'country' => $request->country,
                 'payment' => $request->payment,
-                 'total' => 0,
+                'total' => 0,
              ]);
 
     $total = 0;
@@ -89,10 +89,6 @@ class CheckoutController extends Controller
         'total' => $total + $shipping,
     ]);
 
-
-
-  
-          
 
     CartItem::where('user_id', Auth::id())->delete();
 

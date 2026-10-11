@@ -15,36 +15,36 @@
     <ul class="nav-links">
 
         <li>
-            <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('home') }}">{{ __('messages.home') }}</a>
         </li>
 
         <li>
-            <a href="{{ route('collection') }}">Collection</a>
+            <a href="{{ route('collection') }}">{{ __('messages.collection') }}</a>
         </li>
 
         <li>
-            <a href="{{ route('about') }}">About</a>
+            <a href="{{ route('about') }}">{{ __('messages.about') }}</a>
         </li>
 
         <li>
-            <a href="{{ route('cart') }}">Cart</a>
+            <a href="{{ route('cart') }}">{{ __('messages.cart') }}</a>
         </li>
 
          @can('view dashboard')
             <li>
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('dashboard') }}">{{ __('messages.dashboard') }}</a>
             </li>
         @endcan
 
         @can('view users')
             <li>
-                <a href="{{ route('users.index') }}">Users</a>
+                <a href="{{ route('users.index') }}">{{ __('messages.users') }}</a>
             </li>
         @endcan
 
         @can('view roles')
             <li>
-                <a href="{{ route('roles.index') }}">Role</a>
+                <a href="{{ route('roles.index') }}">{{ __('messages.roles') }}</a>
             </li>
         @endcan
          
@@ -52,10 +52,26 @@
        @can('view departments')
            <li>
                <a href="{{ route('departments.index') }}">
-                     Departments
+                     {{ __('messages.departments') }}
                </a>
            </li>
        @endcan
+
+        @can('view orders')
+            <li>
+                <a href="{{ route('orders.index') }}">
+                     {{ __('messages.all_orders') }}
+                </a>
+            </li>
+        @endcan
+      
+        @role('Customer')
+         <li>
+          <a href="{{ route('orders.my') }}">
+              {{ __('messages.my_orders') }}
+           </a>
+         </li>  
+        @endrole
       
 
          </ul>
@@ -65,19 +81,32 @@
 
 <div class="auth-links">
 
+     <div class="language-switcher">
+        <a href="{{ route('language', 'en') }}"
+           class="{{ app()->getLocale() === 'en' ? 'active' : '' }}">
+            EN
+        </a>
+            <span>|</span>
+
+        <a href="{{ route('language', 'ar') }}"
+           class="{{ app()->getLocale() === 'ar' ? 'active' : '' }}">
+            AR
+        </a>
+    </div>
+
     @if(auth()->check())
 
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="auth-button">
-                Log Out
+                {{ __('messages.logout') }}
             </button>
         </form>
 
     @else
 
         <a href="{{ route('login') }}" class="auth-button">
-            Log In
+            {{ __('messages.login') }}
         </a>
 
     @endif

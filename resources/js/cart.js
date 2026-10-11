@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 console.error(error);
 
-                alert('Something went wrong. Please try again.');
+                alert(translations.cartError);
 
             });
         }
@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function () {
             );
 
 
-            if (!confirm('Are you sure you want to remove this product?')) {
-                return;
-            }
+           if (!confirm(translations.removeProductConfirm)) {
+             return;
+           }
 
 
             fetch(`/cart/${cartItemId}`, {
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 console.error(error);
 
-                alert('Something went wrong. Please try again.');
+                alert(translations.cartError);
 
             });
 

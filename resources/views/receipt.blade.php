@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Order Receipt')
+@section('title',  __('messages.order_receipt'))
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/receipt.css') }}">
@@ -12,16 +12,16 @@
 
     <div class="receipt">
 
-        <h1>My Mug — Order Receipt</h1>
+        <h1>My Mug — {{ __('messages.order_receipt')  }}</h1>
 
         <div class="order-info">
 
             <p>
-                Order #MM-{{ $order->id }}
+                {{ __('messages.order_number') }} #MM-{{ $order->id }}
             </p>
 
             <p>
-                Date: {{ $order->created_at->format('d/m/Y') }}
+                {{ __('messages.date') }}: {{ $order->created_at->format('d/m/Y') }}
             </p>
 
         </div>
@@ -31,22 +31,22 @@
         <div class="customer-info">
 
             <p>
-                <strong>Name:</strong>
+                <strong>{{ __('messages.name') }}:</strong>
                 {{ $order->full_name }}
             </p>
 
             <p>
-                <strong>Email:</strong>
+                <strong>{{ __('messages.email') }}:</strong>
                 {{ $order->email }}
             </p>
 
             <p>
-                <strong>Phone:</strong>
+                <strong>{{ __('messages.phone') }}:</strong>
                 {{ $order->phone }}
             </p>
 
             <p>
-                <strong>City:</strong>
+                <strong>{{ __('messages.city') }}:</strong>
                 {{ $order->city }}
             </p>
 
@@ -71,7 +71,7 @@
         <hr>
 
         <div class="total">
-            Total: {{ number_format($order->total, 2) }} EGP
+            {{ __('messages.total') }}: {{ number_format($order->total, 2) }} EGP
         </div>
 
     </div>
@@ -79,14 +79,14 @@
     <div class="receipt-buttons">
 
         <button  type='button' id="print-btn">
-            Print / Save as PDF
+            {{ __('messages.print_save_pdf') }}
         </button>
 
 
         @vite('resources/js/receipt.js')
 
         <a href="{{ route('collection') }}">
-            Continue Shopping
+            {{ __('messages.continue_shopping') }}
         </a>
 
     </div>

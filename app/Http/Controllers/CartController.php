@@ -39,7 +39,7 @@ class CartController extends Controller
         return response()->json([
 
            'success' => true,
-           'message' => 'product added successfully.',
+           'message' => __('messages.product_added_to_cart'),
         ]); 
 
     }  
@@ -101,12 +101,6 @@ class CartController extends Controller
   } 
   
 
-
-
-
-
-
-
   public function decrease(CartItem $cartItem)
     {
         if ($cartItem->user_id !== Auth::id()) {
@@ -136,9 +130,6 @@ class CartController extends Controller
      
   } 
   
-  
-
-
 
    public function remove(CartItem $cartItem)
     {

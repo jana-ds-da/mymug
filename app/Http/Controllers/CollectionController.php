@@ -9,25 +9,23 @@ use App\Models\Category;
 
 class CollectionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
 {
-   $products = Product::all();
+   $categories = Category::all();
 
-   return view('collection', compact('products'));
+    $products = Product::when(
+            $request->category,
+            function ($query) use ($request) {
+
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('slug', $request->category);
+                });
+
+            }
+        )->latest()->get();
+
+   return view('collection', compact('products', 'categories'));
   
 }
-        // filter function
-   public function filter(Request $request)
-   {
-
-       $products = Product::when($request->category && $request->category !== 'all', function ($query) use ($request) {
-            $query->whereHas('category', function ($q) use ($request) {
-                $q->where('slug', request('category'));
-            });
-        })->latest()->get();
-
-        $categories = Category::all();
-
-        return view('collection', compact('products', 'categories'));
-    }
+    
 }

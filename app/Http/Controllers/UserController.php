@@ -33,8 +33,9 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::orderBy('name')->get();
+        $departments = Department::where('status', 1)->get();
 
-        return view('users.create', compact('roles'));
+        return view('users.create', compact('roles', 'departments'));
     }
     
         // store function
@@ -60,19 +61,22 @@ class UserController extends Controller
                 'required',
                 'exists:roles,name'
             ],
+
+            'department_id' => ['required', 'exists:departments,id'],
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => $validated['password'],
+            'department_id' => $validated['department_id'],
         ]);
 
         $user->assignRole($validated['role']);
 
         return redirect()
             ->route('users.index')
-            ->with('success', 'User created successfully.');
+             ->with('success', __('messages.user_created_successfully'));
     }
            
           // edit function
@@ -110,7 +114,7 @@ class UserController extends Controller
 
            return response()->json([
              'success' => true,
-             'message' => 'User updated successfully.',
+             'message' => __('messages.user_updated_successfully'),
         ]);
       }
        
@@ -122,7 +126,7 @@ class UserController extends Controller
 
          return response()->json([
            'success' => true,
-           'message' => 'User deleted successfully.'
+           'message' => __('messages.user_deleted_successfully'),
        ]);
      }
 

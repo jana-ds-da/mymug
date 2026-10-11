@@ -39,15 +39,15 @@
                     <div class="item-info">
                         <div class="item-top">
                             <div>
-                                <span class="item-tag">SMALL-BATCH</span>
+                                <span class="item-tag">{{ __('messages.small_batch') }}</span>
                                 <h2 class="item-name">{{ $item->product->mug_name }}</h2>
                             </div>
-                            <button type="button" class="delete-btn" data-id="{{ $item->id }}" title="Remove product">
+                            <button type="button" class="delete-btn" data-id="{{ $item->id }}" title="{{ __('messages.remove_product') }}">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
 
-                        <p class="qty-label">Quantity:</p>
+                        <p class="qty-label">{{ __('messages.quantity') }}:</p>
 
                         <div class="qty-selector" data-id="{{ $item->id }}">
                             <button type="button" class="qty-btn qty-decrease">−</button>
@@ -61,23 +61,31 @@
                     </div>
                 </div>
             @empty
-                <p style="padding: 20px;">EMPTY CART</p>
+                <p style="padding: 20px;">{{ __('messages.empty_cart') }}</p>
             @endforelse
         </div>
     </div>
 
     <div class="order-summary">
-        <h3>Order Summary</h3>
-        <p><strong>Cart Total</strong></p>
-        <p>Subtotal: <span id="subtotal-val">{{ number_format($subtotal, 2) }} EGP</span></p>
-        <p>Shipping: <span>Calculated at checkout</span></p>
+        <h3> {{ __('messages.order_summary') }}</h3>
+        <p><strong>{{ __('messages.cart_total') }}</strong></p>
+        <p>{{ __('messages.subtotal') }}: <span id="subtotal-val">{{ number_format($subtotal, 2) }} EGP</span></p>
+        <p>{{ __('messages.shipping') }}: <span>{{ __('messages.calculated_at_checkout') }}</span></p>
         <hr>
-        <p><strong>Total:</strong> <span id="total-val">{{ number_format($subtotal, 2) }} EGP</span></p>
-        <a href='{{ asset('checkout') }}' class='checkout-btn'>CHECKOUT NOW </a>
-        <a href="{{ asset('collection') }}" class="continue-link">Continue Shopping</a>
+        <p><strong>{{ __('messages.total') }}:</strong> <span id="total-val">{{ number_format($subtotal, 2) }} EGP</span></p>
+        <a href='{{ asset('checkout') }}' class='checkout-btn'>{{ __('messages.checkout_now') }}</a>
+        <a href="{{ asset('collection') }}" class="continue-link">{{ __('messages.continue_shopping') }}
+</a>
     </div>
 
 </div>
+
+   <script>
+      const translations = {
+        cartError: @json(__('messages.cart_error')),
+        removeProductConfirm: @json(__('messages.remove_product_confirm')),
+      };
+  </script>
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     @vite('resources/js/cart.js') 

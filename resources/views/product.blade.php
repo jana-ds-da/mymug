@@ -37,7 +37,7 @@
         <div class="product-details">
 
            <span class="product-category">
-               {{ $product->category->name ?? 'Uncategorized' }}
+               {{ $product->category->name ?? __('messages.uncategorized') }}
            </span>
 
             <h1 id="productName">
@@ -57,7 +57,7 @@
 
             <div class="info-box">
 
-                <h3>Capacity</h3>
+                <h3>{{ __('messages.capacity') }}</h3>
 
                 <p id="productCapacity">
                     {{ $product->capacity }}
@@ -68,10 +68,12 @@
 
             <div class="info-box">
 
-                <h3>Microwave Safe</h3>
+                <h3>{{ __('messages.microwave_safe') }}</h3>
 
                 <p id="productMicrowave">
-                    {{ $product->microwave ? 'Yes' : 'No' }}
+                    {{ $product->microwave
+                    ? __('messages.yes')
+                    : __('messages.no') }}
                 </p>
 
             </div>
@@ -79,7 +81,7 @@
 
             <div class="info-box">
 
-                <h3>How It's Made</h3>
+                <h3>{{ __('messages.how_its_made') }}</h3>
 
                 <p id="producthowItsMade">
                     {{ $product->how_its_made }}
@@ -89,7 +91,7 @@
 
             <div class="quantity-section">
 
-                <h3>Quantity</h3>
+                <h3>{{ __('messages.quantity') }}</h3>
 
                 <div class="quantity-box">
 
@@ -107,7 +109,7 @@
                 
                 <button  type='button' class='cart-btn' id='addCart' data-product-id='{{ $product->id }}'>
 
-                    Add To Cart
+                    {{ __('messages.add_to_cart') }}
 
                 </button>
 
@@ -117,8 +119,8 @@
                  <input type='hidden' name='product_id' value='{{ $product->id }}'>
                  <input type="hidden" name="quantity" value="1">
                  <input type="hidden" name="buy_now" value="1">
-                  <button type='submit'  class='buy-btn'>
-                      Buy Now
+                  <button type='submit'  class='buy-btn' id='buyNow'>
+                     {{ __('messages.buy_now') }}
                   </button>
                 
                </form>
@@ -128,30 +130,30 @@
 
                 <div class="extra-card">
 
-                    <h4>Materials</h4>
+                    <h4>{{ __('messages.materials') }}</h4>
 
                     <p>
-                        Premium handmade ceramic with food-safe glaze.
+                       {{ __('messages.materials_description') }}
                     </p>
 
                 </div>
 
                 <div class="extra-card">
 
-                    <h4>Care Instructions</h4>
+                    <h4>{{ __('messages.care_instructions') }}</h4>
 
                     <p>
-                        Hand wash recommended. Avoid abrasive cleaners.
+                        {{ __('messages.care_description') }}
                     </p>
 
                 </div>
 
                 <div class="extra-card">
 
-                    <h4>Shipping</h4>
+                    <h4>{{ __('messages.shipping') }}</h4>
 
                     <p>
-                        Ready to ship within 2–4 business days.
+                       {{ __('messages.shipping_description') }}
                     </p>
 
                 </div>
@@ -167,7 +169,7 @@
 
         <a href="{{ route('collection') }}" class="back-btn">
 
-            ← Back to Collection
+            ← {{ __('messages.back_to_collection') }}
 
         </a>
 
@@ -176,7 +178,14 @@
     <script>
         const product = @json($product);
         const isLoggedIn = @json(auth()->check());
-    </script>    
+    </script>
+    
+    <script>
+      const translations = {
+        loginToAddCart: @json(__('messages.login_to_add_cart')),
+        loginToBuy: @json(__('messages.login_to_buy')),
+      };
+   </script>
 
     <script src="js/bootstrap.bundle.min.js"></script>
     @vite('resources/js/product.js')

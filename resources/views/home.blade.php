@@ -8,29 +8,6 @@
 
 @section('content')
  
- 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>My Mug</title>
-
-    <meta name="description"
-        content="An online store selling high-quality mugs in a variety of designs — perfect for personal use or as a gift.">
-
-    <meta name="keywords" content="mugs, ice coffee cups">
-    <meta name="author" content="Jana Muhammad">
-    
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-  
-</head>
-
-<body>
-
- 
     <div class="hero">
 
     
@@ -38,13 +15,13 @@
         <div class="text">
 
             <p class="small-title">
-                SMALL-BATCH STONEWARE
+                {{ __('messages.home_small_title') }}
             </p>
 
             <h1>
-                Mugs made <br>
-                to hold your <br>
-                <span>morning ritual.</span>
+                {{ __('messages.home_heading_1') }} <br>
+                {{ __('messages.home_heading_2') }} <br>
+                <span>{{ __('messages.home_heading_3') }}</span>
             </h1>
 
         </div>
@@ -53,29 +30,24 @@
 
     
 <p class="description">
-    Handmade mugs crafted with love and care. 
+    {{ __('messages.home_description_1') }}
     <br>
-    Designed to bring warmth to your everyday 
+    {{ __('messages.home_description_2') }} 
     <br>
-    rituals and simple moments.
+    {{ __('messages.home_description_3') }}
 </p>
 
    
     <div class="hero-actions">
 
         <a href="{{ route('collection') }}" style="background-color:#B85C2F; color:white; text-decoration:none; padding:10px 20px; display:inline-block; border-radius:5px;">
-                 SHOP MUGS
+                 {{ __('messages.shop_mugs') }}
         </a>
         <a href="{{ route('about') }}" style="color:#B85C2F; text-decoration:none;">
-            See how they're made →
+            {{ __('messages.see_how_made') }}
         </a>
 
     </div>
-
+   
 <script src="js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
-
 @endsection

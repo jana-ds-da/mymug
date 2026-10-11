@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','login')
+@section('title', __('messages.login'))
 
 @section('css')
   <link rel='stylesheet' href='{{ asset('css/login.css') }}'>
@@ -28,12 +28,12 @@
             @endif
 
             
-            <h1>Log in to your account</h1>
+            <h1> {{ __('messages.login_title') }}</h1>
 
             <form class="login-form" method= 'POST' action='{{ route('login.store') }}'>
                 @csrf
                 <div class="field">
-                    <label for="email">Email </label>
+                    <label for="email">{{ __('messages.email') }} </label>
                     <input type="email" id="email" name="email" required>
                     @error('email')
                         <span class='error-text'>{{ $message }}</span>
@@ -41,21 +41,21 @@
                 </div>
 
                 <div class="field">
-                    <label for="password">Password</label>
+                    <label for="password"> {{ __('messages.password') }}</label>
                     <input type="password" id="password" name="password" required>
                     @error('password')
                         <span class='error-text'>{{ $message }}</span>
                     @enderror    
                 </div>
 
-                <a href="#" class="forgot-link">Forgot your password?</a>
+                <a href="#" class="forgot-link">{{ __('messages.forgot_password') }}</a>
 
-                <button type="submit" class="login-btn">Log In</button>
+                <button type="submit" class="login-btn">{{ __('messages.login_button') }}</button>
             </form>
 
             <p class="signup-text">
-                New to my mug? <a href="{{ route('signup') }}" class="signup-link">
-                                       Create an account
+                {{ __('messages.new_to_my_mug') }} <a href="{{ route('signup') }}" class="signup-link">
+                                        {{ __('messages.create_account') }}
                                 </a>
             </p>
         </div>

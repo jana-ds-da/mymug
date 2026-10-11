@@ -31,7 +31,7 @@ class DepartmentController extends Controller
 
         return redirect()
             ->route('departments.index')
-            ->with('success', 'Department created successfully.');
+            ->with('success', __('messages.department_created_successfully'));
     }
 
         // edit function
@@ -52,7 +52,7 @@ class DepartmentController extends Controller
 
         return redirect()
             ->route('departments.index')
-            ->with('success', 'Department updated successfully.');
+            ->with('success', __('messages.department_updated_successfully'));
     }
 
             // destroy function
@@ -61,13 +61,13 @@ class DepartmentController extends Controller
         if ($department->users()->exists()) {
             return redirect()
                 ->route('departments.index')
-                ->with('error', 'Cannot delete this department because it has users assigned to it.');
+                 ->with('error', __('messages.department_has_users'));
         }
 
         $department->delete();
 
         return redirect()
             ->route('departments.index')
-            ->with('success', 'Department deleted successfully.');
+           ->with('success', __('messages.department_deleted_successfully'));
     }
 }
