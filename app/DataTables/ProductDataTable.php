@@ -52,16 +52,19 @@ class ProductDataTable extends DataTable
           ->editColumn('image_path', function ($model) {
               return $model->image_path
                 ? '<img src="' . $model->image_url . '"
-                    alt="' . e($model->mug_name) . '"
-                    style="width:50px;height:50px;border-radius:8px;object-fit:cover;">'
-                : '<span class="text-muted">No Image</span>';
-           })
+                   alt="' . e($model->mug_name) . '"
+                   style="width:50px;height:50px;border-radius:8px;object-fit:cover;">'
+                : '<span class="text-muted">'
+                   . e(__('messages.no_image'))
+                    . '</span>';
+})
             ->editColumn('mug_name', function ($model) {
                 return ucfirst($model->mug_name);
             })
             ->editColumn('price', function ($model) {
-                return number_format($model->price, 2) . ' EGP';
-            })
+                return number_format($model->price, 2)
+                . ' ' . __('messages.currency_egp');
+})
             ->addColumn('category', function ($model) {
                  return $model->category->name ?? '-';
             })
@@ -129,21 +132,43 @@ class ProductDataTable extends DataTable
     /**
      * Get the dataTable columns definition.
      */
-    public function getColumns(): array
-    {
-        return [
-            Column::make('id') ->title('Id') ->addClass('text-center'),
-            Column::make('image_path')->title('Image')->addClass('text-center')->orderable(false)->searchable(false),
-            Column::make('mug_name')->title('Name')->addClass('text-center'),
-            Column::make('price')->title('Price')->addClass('text-center'),
-           Column::computed('category')->title('Category')->addClass('text-center')->orderable(false)->searchable(true),
-            Column::computed('actions')->title('Actions')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
-        ];
-    }
+   
+public function getColumns(): array
+{
+    return [
+        Column::make('id')
+            ->title(__('messages.id'))
+            ->addClass('text-center'),
+
+        Column::make('image_path')
+            ->title(__('messages.image'))
+            ->addClass('text-center')
+            ->orderable(false)
+            ->searchable(false),
+
+        Column::make('mug_name')
+            ->title(__('messages.product_name'))
+            ->addClass('text-center'),
+
+        Column::make('price')
+            ->title(__('messages.price'))
+            ->addClass('text-center'),
+
+        Column::computed('category')
+            ->title(__('messages.category'))
+            ->addClass('text-center')
+            ->orderable(false)
+            ->searchable(true),
+
+        Column::computed('actions')
+            ->title(__('messages.actions'))
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
+    ];
+}
+
 
     /**
      * Get the filename for export.

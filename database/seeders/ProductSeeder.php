@@ -3,12 +3,13 @@
 namespace Database\seeders;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\seeder;
+use Illuminate\Database\Seeder;
 
-class ProductSeeder extends seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,7 +21,8 @@ class ProductSeeder extends seeder
         $espresso = Category::where('slug', 'espresso')->first();
         $iceCoffee = Category::where('slug', 'ice-coffee')->first();
 
-        Product::create([
+        $products = [
+           [ 
             'mug_name' => 'Pink Ribbon Handmade Mug',
             'price' => 950,
             'category_id' => $hotChocolate->id,
@@ -29,9 +31,9 @@ class ProductSeeder extends seeder
             'capacity' => '350 ml',
             'how_its_made' => 'Handmade from high-quality ceramic, hand-painted, glazed, and kiln-fired with gold accents.',
             'microwave' => false,
-        ]);
+          ],
 
-        Product::create([
+          [
             'mug_name' => 'Bow Espresso Mug',
             'price' => 950,
             'category_id' => $espresso->id,
@@ -40,10 +42,10 @@ class ProductSeeder extends seeder
             'capacity' => '180 ml',
             'how_its_made' => 'Hand-shaped, detailed with sculpted bows, glazed, and kiln-fired',
             'microwave' => false,
-        ]);
+        ],
 
 
-        Product::create([
+       [
             'mug_name' => 'Classic Bow Cup & Saucer Set',
             'price' => 850,
             'category_id' => $hotChocolate->id,
@@ -52,10 +54,10 @@ class ProductSeeder extends seeder
             'capacity' => '250 ml',
             'how_its_made' => 'Handmade, hand-painted, glazed, and fired at high temperature.',
             'microwave' => false,
-        ]);
+        ],
 
 
-        Product::create([
+       [
             'mug_name' => 'Vintage Floral Mug',
             'price' => 750,
             'category_id' => $espresso->id,
@@ -64,10 +66,10 @@ class ProductSeeder extends seeder
             'capacity' => '280 ml',
             'how_its_made' => 'Wheel-thrown, hand-painted with floral designs, glazed, and kiln-fired.',
             'microwave' => true,
-        ]);
+        ],
 
 
-         Product::create([
+         [
             'mug_name' => 'Lavender Rustic Mug',
             'price' => 720,
             'category_id' => $iceCoffee->id,
@@ -76,10 +78,10 @@ class ProductSeeder extends seeder
             'capacity' => '300 ml',
             'how_its_made' => 'Handcrafted from stoneware, hand-painted, glazed, and fired in a kiln.',
             'microwave' => true,
-        ]);
+        ],
 
 
-        Product::create([
+       [
             'mug_name' => 'Coffee Bean Mug',
             'price' => 650,
             'category_id' => $espresso->id,
@@ -88,9 +90,9 @@ class ProductSeeder extends seeder
             'capacity' => '320 ml',
             'how_its_made' => 'Handmade ceramic with individually sculpted coffee bean details and glossy glaze.',
             'microwave' => true,
-        ]);
+        ],
 
-        Product::create([
+        [
             'mug_name' => 'Dream It Mug & Saucer Set',
             'price' => 850,
             'category_id' => $hotChocolate->id,
@@ -99,10 +101,10 @@ class ProductSeeder extends seeder
             'capacity' => '300 ml',
             'how_its_made' => 'Handmade, embossed before firing, glazed with a smooth matte finish.',
             'microwave' => true,
-        ]);
+        ],
 
 
-        Product::create([
+        [
             'mug_name' => 'Heart Stoneware Mug',
             'price' => 970,
             'category_id' => $iceCoffee->id,
@@ -111,10 +113,10 @@ class ProductSeeder extends seeder
             'capacity' => '400 ml',
             'how_its_made' => 'Wheel-thrown, hand-finished, glazed, and fired at high temperature.',
             'microwave' => true,
-        ]);
+        ],
 
 
-        Product::create([
+       [
             'mug_name' => 'Blush Gradient Mug',
             'price' => 700,
             'category_id' => $iceCoffee->id,
@@ -123,10 +125,10 @@ class ProductSeeder extends seeder
             'capacity' => '350 ml',
             'how_its_made' => 'Handmade with layered glaze techniques to create the gradient effect.',
             'microwave' => true,
-        ]);
+        ],
 
 
-        Product::create([
+       [
             'mug_name' => 'Stoneware Espresso Set',
             'price' => 600,
             'category_id' => $espresso->id,
@@ -135,8 +137,23 @@ class ProductSeeder extends seeder
             'capacity' => '120 ml',
             'how_its_made' => 'Hand-shaped, glazed with a natural stoneware finish, and kiln-fired.',
             'microwave' => true,
-        ]);
+        ],
+    ];
+            foreach ($products as $data) {
+           
+            $id = DB::table('products')->insertGetId($data + [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
 
-        
+           
+            $product = Product::find($id);
+            $product->translateOrNew('en')->mug_name = $data['mug_name'];
+            $product->translateOrNew('en')->description = $data['description'];
+            $product->translateOrNew('en')->how_its_made = $data['how_its_made'];
+            $product->save();
+        }
     }
 }
+      
+

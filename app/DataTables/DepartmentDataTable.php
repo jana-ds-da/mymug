@@ -63,22 +63,17 @@ class DepartmentDataTable extends DataTable
                 return $model->users_count;
             })
 
-            ->editColumn('status', function ($model) {
+           ->editColumn('status', function ($model) {
+                 if ($model->status) {
+                     return '<span class="badge bg-success">'
+                       . e(__('messages.active'))
+                       . '</span>';
+                 }
 
-                if ($model->status) {
-                    return '
-                        <span class="badge bg-success">
-                            Active
-                        </span>
-                    ';
-                }
-
-                return '
-                    <span class="badge bg-secondary">
-                        Inactive
-                    </span>
-                ';
-            })
+                  return '<span class="badge bg-secondary">'
+                      . e(__('messages.inactive'))
+                      . '</span>';
+              })
 
             ->editColumn('created_at', function ($model) {
                 return $model->created_at
@@ -165,44 +160,45 @@ class DepartmentDataTable extends DataTable
     /**
      * Get the dataTable columns definition.
      */
-    public function getColumns(): array
-    {
-        return [
+    
+public function getColumns(): array
+{
+    return [
+        Column::make('id')
+            ->title(__('messages.id'))
+            ->addClass('text-center'),
 
-            Column::make('id')
-                ->title('Id')
-                ->addClass('text-center'),
+        Column::make('name')
+            ->title(__('messages.department_name'))
+            ->addClass('text-center'),
 
-            Column::make('name')
-                ->title('Department Name')
-                ->addClass('text-center'),
+        Column::computed('users_count')
+            ->title(__('messages.users_count'))
+            ->addClass('text-center')
+            ->orderable(false)
+            ->searchable(false),
 
-            Column::computed('users_count')
-                ->title('Users Count')
-                ->addClass('text-center')
-                ->orderable(true)
-                ->searchable(false),
+        Column::make('status')
+            ->title(__('messages.status'))
+            ->addClass('text-center'),
 
-            Column::make('status')
-                ->title('Status')
-                ->addClass('text-center'),
+        Column::make('created_at')
+            ->title(__('messages.created_at'))
+            ->addClass('text-center'),
 
-            Column::make('created_at')
-                ->title('Created At')
-                ->addClass('text-center'),
+        Column::make('updated_at')
+            ->title(__('messages.updated_at'))
+            ->addClass('text-center'),
 
-            Column::make('updated_at')
-                ->title('Updated At')
-                ->addClass('text-center'),
+        Column::computed('actions')
+            ->title(__('messages.actions'))
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
+    ];
+}
 
-            Column::computed('actions')
-                ->title('Actions')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
-        ];
-    }
 
     /**
      * Get the filename for export.

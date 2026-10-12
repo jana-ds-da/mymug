@@ -76,18 +76,13 @@ class ProductTranslationSeeder extends Seeder
             ],
 
         ];
-         foreach ($translations as $productId => $translation) {
+    foreach ($translations as $productId => $translation) {
+    $product = Product::find($productId);
 
-            $product = Product::find($productId);
-
-            if ($product) {
-                $product->translateOrNew('ar')->mug_name = $translation['mug_name'];
-                $product->translateOrNew('ar')->description = $translation['description'];
-                $product->translateOrNew('ar')->how_its_made = $translation['how_its_made'];
-
-                $product->save();
-        }
+    if ($product) {
+        $product->translateOrNew('ar')->fill($translation)->save();
     }
+}
 }
 
 }

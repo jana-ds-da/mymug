@@ -34,12 +34,10 @@ class CategoryTranslationSeeder extends Seeder
 
             $category = Category::where('slug', $slug)->first();
 
-            if ($category) {
-                foreach ($translations as $locale => $name) {
-                    $category->translateOrNew($locale)->name = $name;
-                }
-
-                $category->save();
+            foreach ($translations as $locale => $name) {
+               $t = $category->translateOrNew($locale);
+               $t->name = $name;
+               $t->save();
             }
         }
     }

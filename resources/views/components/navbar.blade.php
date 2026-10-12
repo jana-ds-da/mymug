@@ -57,6 +57,16 @@
            </li>
        @endcan
 
+      
+       @can('view categories')
+           <li>
+               <a href="{{ route('category.index') }}">
+                      {{ __('messages.category') }}
+               </a>
+           </li>
+       @endcan
+
+
         @can('view orders')
             <li>
                 <a href="{{ route('orders.index') }}">
