@@ -151,42 +151,35 @@ class UsersDataTable extends DataTable
      * Get the dataTable columns definition.
      */
     public function getColumns(): array
-    {
-        return [
+{
+    return [
+        Column::make('id')
+            ->title(__('messages.id'))
+            ->addClass('text-center'),
 
-            Column::make('id')
-                ->title('Id')
-                ->addClass('text-center'),
+        Column::make('name')
+            ->title(__('messages.name'))
+            ->addClass('text-center'),
 
-            Column::make('name')
-                ->title('Name')
-                ->addClass('text-center'),
+        Column::make('email')
+            ->title(__('messages.email'))
+            ->addClass('text-center'),
 
-            Column::make('email')
-                ->title('Email')
-                ->addClass('text-center'),
+        Column::make('role')
+            ->title(__('messages.role'))
+            ->addClass('text-center'),
 
-            Column::computed('role')
-                ->title('Role')
-                ->addClass('text-center')
-                ->orderable(false)
-                ->searchable(true),
+        Column::make('department')
+            ->title(__('messages.department'))
+            ->addClass('text-center'),
 
-
-             Column::computed('department')
-                 ->title('Department')
-                 ->addClass('text-center')
-                 ->orderable(false)
-                ->searchable(true),
-
-            Column::computed('actions')
-                ->title('Actions')
-                ->exportable(false)
-                ->printable(false)
-                ->width(120)
-                ->addClass('text-center'),
-        ];
-    }
+        Column::computed('actions')
+            ->title(__('messages.actions'))
+            ->exportable(false)
+            ->printable(false)
+            ->addClass('text-center'),
+    ];
+}
 
     /**
      * Get the filename for export.

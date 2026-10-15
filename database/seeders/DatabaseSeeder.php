@@ -11,7 +11,7 @@ use Database\seeders\ProductSeeder;
 use Database\Seeders\RolePermissionSeeder;
 
 
-class DatabaseSeeder extends seeder
+class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
@@ -19,17 +19,19 @@ class DatabaseSeeder extends seeder
      * Seed the application's database.
      */
     public function run(): void
-{   
+{
 
     $this->call([
         DepartmentSeeder::class,
         UserSeeder::class,
         RolePermissionSeeder::class,
         CategorySeeder::class,
+        CategoryTranslationSeeder::class,
         ProductSeeder::class,
-   
+        ProductTranslationSeeder::class,
+
     ]);
 
-    
+
 }
 }

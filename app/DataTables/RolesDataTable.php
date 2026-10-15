@@ -110,25 +110,27 @@ class RolesDataTable extends DataTable
     /**
      * Get the dataTable columns definition.
      */
-    public function getColumns(): array
-    {
-        return [
-            Column::make('id')
-                ->title('Id')
-                ->addClass('text-center'),
+    
+public function getColumns(): array
+{
+    return [
+        Column::make('id')
+            ->title(__('messages.id'))
+            ->addClass('text-center'),
 
-            Column::make('name')
-                ->title('Role')
-                ->addClass('text-center'),
+        Column::make('name')
+            ->title(__('messages.role'))
+            ->addClass('text-center'),
 
-            Column::computed('actions')
-                ->title('Actions')
-                ->exportable(false)
-                ->printable(false)
-                ->width(120)
-                ->addClass('text-center'),
-        ];
-    }
+        Column::computed('actions')
+            ->title(__('messages.actions'))
+            ->exportable(false)
+            ->printable(false)
+            ->width(120)
+            ->addClass('text-center'),
+    ];
+}
+
 
     /**
      * Get the filename for export.
