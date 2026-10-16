@@ -314,6 +314,7 @@ return [
     'role' => 'Role',
     'department' => 'Department',
     'actions' => 'Actions',
+    'cash_on_delivery' => 'Cash on Delivery',
 
 
 

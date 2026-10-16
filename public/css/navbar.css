@@ -364,3 +364,36 @@ html[dir="rtl"] .auth-button,
 html[dir="rtl"] .nav-button {
     text-transform: none;
 }
+
+
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #B85C2F;
+    font-size: 22px;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-icon:hover {
+    color: #3B2A1E;
+    transform: scale(1.1);
+}
+
+.cart-icon i {
+    display: block;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+

@@ -203,6 +203,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('auth')->group(function () {
 
     Route::get('/my-orders', [OrderController::class, 'myorders'])
+        ->middleware('role:Customer')
         ->name('orders.my');
 
     Route::middleware('permission:view orders')->group(function () {

@@ -42,6 +42,7 @@ class RolePermissionSeeder extends Seeder
             'create categories',
             'edit categories',
             'delete categories',
+            'view my-orders',
         ];
 
         foreach ($permissionNames as $name) {
@@ -65,7 +66,9 @@ class RolePermissionSeeder extends Seeder
         $allPermissions = Permission::whereIn('name', $permissionNames)->get();
 
         
-        $admin->syncPermissions($allPermissions);
+        $admin->syncPermissions(
+           $allPermissions->where('name', '!=', 'view my-orders')
+        );
 
         
        $managerPermissions = $allPermissions->reject(function ($permission) {
@@ -75,13 +78,16 @@ class RolePermissionSeeder extends Seeder
                  'create departments',
                  'edit departments',
                  'delete departments',
+                 'view my-orders',
            ]);
         });
 
 $manager->syncPermissions($managerPermissions);
 
        
-        $customer->syncPermissions([]);
+        $customer->syncPermissions(
+            $allPermissions->where('name', 'view my-orders')
+        );
 
         
         $jana = User::where(
@@ -113,7 +119,7 @@ $manager->syncPermissions($managerPermissions);
 
          $customerUser = User::where(
             'email',
-            'costomer@gmail.com'
+            'Customer@gmail.com'
          )->first();
 
          if ($customerUser) {

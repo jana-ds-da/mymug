@@ -752,3 +752,24 @@ body{
     color: #aaa;
     opacity: 0.7;
 }
+
+
+
+#checkout-form input.input-error {
+    border: 2px solid #dc3545 !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+#checkout-form input:focus {
+    outline: none;
+}
+
+#checkout-form input.input-error:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.18);
+}
+
+#card-payment-fields[hidden] {
+    display: none !important;
+}

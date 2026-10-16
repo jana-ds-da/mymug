@@ -8,41 +8,55 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function add(Request $request)
-    {
+   
+public function add(Request $request)
+{
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'quantity' => 'required|integer|min:1',
+        'buy_now' => 'sometimes|boolean',
+    ]);
 
-       $request->validate([
-           'product_id' => 'required|exists:products,id',
-           'quantity' => 'required|integer|min:1',
-       ]);
+    $cartItem = CartItem::where('user_id', Auth::id())
+        ->where('product_id', $request->product_id)
+        ->first();
 
-        $cartItem = CartItem::where('user_id', Auth::id())
-               ->where('product_id', $request->product_id)
-               ->first();
+    if ($request->boolean('buy_now')) {
 
-        if ($cartItem)
-          { $cartItem->increment('quantity', $request->quantity);
-
-
-          }   else {
-            $cartItem = CartItem::create([
-                'user_id' =>  Auth::id(),
+        if ($cartItem) {
+            $cartItem->update([
+                'quantity' => $request->quantity,
+            ]);
+        } else {
+            CartItem::create([
+                'user_id' => Auth::id(),
                 'product_id' => $request->product_id,
                 'quantity' => $request->quantity,
             ]);
-          }  
-          
-        if ($request->buy_now) {
-            return redirect()->route('cart');
-        }  
+        }
 
         return response()->json([
+            'success' => true,
+            'redirect' => route('cart'),
+        ]);
+    }
 
-           'success' => true,
-           'message' => __('messages.product_added_to_cart'),
-        ]); 
+    if ($cartItem) {
+        $cartItem->increment('quantity', $request->quantity);
+    } else {
+        CartItem::create([
+            'user_id' => Auth::id(),
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
+        ]);
+    }
 
-    }  
+    return response()->json([
+        'success' => true,
+        'message' => __('messages.product_added_to_cart'),
+    ]);
+}
+
 
 
 

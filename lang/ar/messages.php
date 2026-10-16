@@ -306,6 +306,7 @@ return [
     'role' => 'الدور',
     'department' => 'القسم',
     'actions' => 'الإجراءات',
+    'cash_on_delivery' => 'الدفع عند الاستلام',
 
 
 
