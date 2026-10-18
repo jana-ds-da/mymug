@@ -41,19 +41,19 @@
                     @csrf
 
 
-                    <input type="text" id="full-name" name='full_name' placeholder="{{ __('messages.full_name') }}" >
+                    <input type="text" id="full-name" name='full_name' placeholder="{{ __('messages.full_name') }}"  required >
 
-                   <input type="email" id="email" name='email' placeholder="{{ __('messages.email_address') }}" >
+                   <input type="email" id="email" name='email' placeholder="{{ __('messages.email_address') }}"   >
 
-                  <input type="tel" id="phone"  name='phone' placeholder="{{ __('messages.phone') }}" >
+                  <input type="tel" id="phone"  name='phone' placeholder="{{ __('messages.phone') }}" required >
 
-                 <input type="text" id="address"  name='address' placeholder="{{ __('messages.street_address') }}" >
+                 <input type="text" id="address"  name='address' placeholder="{{ __('messages.street_address') }}"  required >
 
                  <div class="row-2">
 
-                    <input type="text" id="city" name='city' placeholder="{{ __('messages.city') }}" >
+                    <input type="text" id="city" name='city' placeholder="{{ __('messages.city') }}" required >
 
-                      <input type="text" id="state" name='state' placeholder="{{ __('messages.state_governorate') }}">
+                      <input type="text" id="state" name='state' placeholder="{{ __('messages.state_governorate') }}" required>
 
                  </div>
 
@@ -61,26 +61,59 @@
 
                     <input type="text" id="zip" name='zip'  placeholder="{{ __('messages.zip') }}">
 
-                    <input type="text" id="country" name='country' placeholder="{{ __('messages.country') }}" value="{{ app()->getLocale() === 'ar' ? 'مصر' : 'Egypt' }}">
+                    <input type="text" id="country" name='country' placeholder="{{ __('messages.country') }}" value="{{ app()->getLocale() === 'ar' ? 'مصر' : 'Egypt' }}"  required>
 
                  </div>
 
-                    
-                    <div class="section-heading" style="margin-top:30px;">
-                         {{ __('messages.payment_method') }}
-                    </div>
-                    
-                    <div class="payment-options">
-                        <label><input type="radio" name="payment" value="Credit Card" checked> {{ __('messages.credit_card') }}</label>
-                        <label><input type="radio" name="payment" value="PayPal"> {{ __('messages.paypal') }}</label>
-                        <label><input type="radio" name="payment" value="Apple Pay"> {{ __('messages.apple_pay') }}</label>
-                    </div>
+                   
+               
+                <div class="section-heading" style="margin-top:30px;">
+                    {{ __('messages.payment_method') }}
+               </div>
 
-                    <input type="text" id="card-number" name='card_number' placeholder="{{ __('messages.card_number') }}">
-                    <div class="row-2">
-                        <input type="text" id="expiry" name='expiry' placeholder=" {{ __('messages.expiry') }}">
-                        <input type="text" id="cvv" name='cvv' placeholder="{{ __('messages.cvv') }}">
-                    </div>
+               <div class="payment-options">
+                <label>
+                   <input type="radio" name="payment" value="Credit Card" checked>
+                      {{ __('messages.credit_card') }}
+               </label>
+
+               <label>
+                   <input type="radio" name="payment" value="Cash on Delivery">
+                       {{ __('messages.cash_on_delivery') }}
+                </label>
+            </div>
+
+           <div id="card-payment-fields">
+               <input
+                  type="text"
+                  id="card-number"
+                  name="card_number"
+                  placeholder="{{ __('messages.card_number') }}"
+                  inputmode="numeric"
+                  autocomplete="cc-number"
+               >
+
+           <div class="row-2">
+               <input
+                   type="text"
+                   id="expiry"
+                   name="expiry"
+                   placeholder="{{ __('messages.expiry') }}"
+                   autocomplete="cc-exp"
+                >
+
+               <input
+                  type="password"
+                  id="cvv"
+                  name="cvv"
+                  placeholder="{{ __('messages.cvv') }}"
+                  inputmode="numeric"
+                  autocomplete="cc-csc"
+               >
+             </div>
+          </div>
+
+
 
                     <button type="submit" class="place-order-btn">{{ __('messages.place_order') }}</button>
                 </form>

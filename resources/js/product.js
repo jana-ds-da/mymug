@@ -116,10 +116,8 @@ document.getElementById("buyNow").addEventListener("click", () => {
 
     .then(data => {
 
-        if (data.success) {
-
-            window.location.href = "/cart";
-
+       if (data.success) {
+              window.location.href = data.redirect;
         }
 
     })

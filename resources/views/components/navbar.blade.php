@@ -91,6 +91,11 @@
 
 <div class="auth-links">
 
+
+      <a href="{{ route('cart') }}" class="cart-icon" aria-label="Cart">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
      <div class="language-switcher">
         <a href="{{ route('language', 'en') }}"
            class="{{ app()->getLocale() === 'en' ? 'active' : '' }}">
