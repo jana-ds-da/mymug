@@ -59,4 +59,11 @@ class OrderController extends Controller
             'message' => __('message.order_deleted_successfully'),
         ]);
     }
+
+    public function show(\App\Models\Order $order)
+{
+    $order->load('items.product');
+
+    return view('orders.show', compact('order'));
+}
 }

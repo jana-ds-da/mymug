@@ -373,27 +373,32 @@ html[dir="rtl"] .nav-button {
 }
 
 .cart-icon {
-    display: inline-flex;
+    position: relative !important;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    color: #B85C2F;
-    font-size: 22px;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.cart-icon:hover {
-    color: #3B2A1E;
-    transform: scale(1.1);
-}
-
-.cart-icon i {
-    display: block;
-}
-
-.language-switcher {
+.cart-badge {
+    position: absolute !important;
+    top: -10px !important;
+    right: -10px !important;
+    min-width: 21px;
+    height: 21px;
+    padding: 0 5px;
+    border-radius: 50%;
+    background-color: #B85C2F;
+    color: #FFFFFF;
+    border: 2px solid #FFF2E2;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    box-sizing: border-box;
+    z-index: 10;
 }
-
+.cart-icon i {
+    color: #3B2A1E !important;
+}

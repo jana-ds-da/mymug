@@ -18,33 +18,36 @@
         </div>
     </div>
 
-    <div class="stats-section">
+<div class="stats-section">
 
-        <div class="stat-card">
-            <h4>{{ __('messages.all_orders') }}</h4>
-            <h2>{{ $orders->count() }}</h2>
-            
-        </div>
-
-        <div class="stat-card">
-            <h4>{{ __('messages.pending') }}</h4>
-            <h2>{{ $orders->where('status', 'pending')->count() }}</h2>
-            
-        </div>
-
-        <div class="stat-card">
-            <h4>{{ __('messages.preparing') }}</h4>
-            <h2>{{ $orders->where('status', 'preparing')->count() }}</h2>
-            
-        </div>
-
-        <div class="stat-card">
-            <h4>{{ __('messages.delivered') }}</h4>
-            <h2>{{ $orders->where('status', 'delivered')->count() }}</h2>
-            
-        </div>
-
+    <div class="stat-card">
+        <h4>{{ __('messages.all_orders') }}</h4>
+        <h2 id="all-orders-count">{{ $orders->count() }}</h2>
     </div>
+
+    <div class="stat-card">
+        <h4>{{ __('messages.pending') }}</h4>
+        <h2 id="pending-orders-count">
+            {{ $orders->where('status', 'pending')->count() }}
+        </h2>
+    </div>
+
+    <div class="stat-card">
+        <h4>{{ __('messages.preparing') }}</h4>
+        <h2 id="preparing-orders-count">
+            {{ $orders->where('status', 'preparing')->count() }}
+        </h2>
+    </div>
+
+    <div class="stat-card">
+        <h4>{{ __('messages.delivered') }}</h4>
+        <h2 id="delivered-orders-count">
+            {{ $orders->where('status', 'delivered')->count() }}
+        </h2>
+    </div>
+
+</div>
+
 
     <div class="orders-card">
 
@@ -53,111 +56,87 @@
             <span>{{ $orders->count() }} {{ __('messages.orders') }}</span>
         </div>
 
-        <div class="orders-table-wrapper">
 
-            <table>
+<div class="orders-table-wrapper">
 
-                <thead>
-                    <tr>
-                        <th>{{ __('messages.order_number') }} #</th>
-                        <th>{{ __('messages.customer') }}</th>
-                        <th>{{ __('messages.product') }}</th>
-                        <th>{{ __('messages.qty') }}</th>
-                        <th>{{ __('messages.total') }}</th>
-                        <th>{{ __('messages.payment') }}</th>
-                        <th>{{ __('messages.date') }}</th>
-                        <th>{{ __('messages.status') }}</th>
-                        <th>{{ __('messages.actions') }}</th>
-                    </tr>
-                </thead>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ __('messages.order_number') }} #</th>
+                <th>{{ __('messages.customer') }}</th>
+                <th>Email</th>
+                <th>{{ __('messages.date') }}</th>
+                <th>{{ __('messages.status') }}</th>
+                <th>{{ __('messages.actions') }}</th>
+            </tr>
+        </thead>
 
-                <tbody>
+        <tbody>
+            @forelse($orders as $order)
+                <tr id="order-row-{{ $order->id }}">
 
-                    @forelse($orders as $order)
+                    <td>#{{ $order->id }}</td>
 
-                        @foreach($order->items as $item)
+                    <td>{{ $order->full_name }}</td>
 
-                            <tr id="order-row-{{ $order->id }}">
+                    <td>{{ $order->email ?? '-' }}</td>
 
-                                <td>
-                                    #{{ $order->id }}
-                                </td>
+                    <td>
+                        {{ $order->created_at->format('d/m/Y') }}
+                    </td>
 
-                                <td>
-                                    {{ $order->full_name }}
-                                </td>
+                    <td>
+                        <select
+                            class="order-status"
+                            data-order-id="{{ $order->id }}"
+                        >
+                            <option value="pending"
+                                {{ $order->status === 'pending' ? 'selected' : '' }}>
+                                {{ __('messages.pending') }}
+                            </option>
 
-                                <td>
-                                    {{ $item->product->mug_name ?? '-' }}
-                                </td>
+                            <option value="preparing"
+                                {{ $order->status === 'preparing' ? 'selected' : '' }}>
+                                {{ __('messages.preparing') }}
+                            </option>
 
-                                <td>
-                                    {{ $item->quantity }}
-                                </td>
+                            <option value="delivered"
+                                {{ $order->status === 'delivered' ? 'selected' : '' }}>
+                                {{ __('messages.delivered') }}
+                            </option>
+                        </select>
+                    </td>
 
-                                <td>
-                                    {{ number_format($order->total, 2) }}
-                                </td>
+                    <td>
+                        <a
+                            href="{{ route('admin.orders.show', $order->id) }}"
+                            class="show-btn"
+                        >
+                            Show
+                        </a>
 
-                                <td>
-                                    {{ $order->payment }}
-                                </td>
+                        <button
+                            type="button"
+                            class="delete-btn delete-order"
+                            data-order-id="{{ $order->id }}"
+                        >
+                            {{ __('messages.delete') }}
+                        </button>
+                    </td>
 
-                                <td>
-                                    {{ $order->created_at->format('d/m') }}
-                                </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center">
+                        {{ __('messages.no_orders_found') }}
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 
-                                <td>
-                                    <select
-                                        class="order-status"
-                                        data-order-id="{{ $order->id }}"
-                                    >
-                                        <option value="pending"
-                                            {{ $order->status === 'pending' ? 'selected' : '' }}>
-                                            {{ __('messages.pending') }}
-                                        </option>
+</div>
 
-                                        <option value="preparing"
-                                            {{ $order->status === 'preparing' ? 'selected' : '' }}>
-                                            {{ __('messages.preparing') }}
-                                        </option>
-
-                                        <option value="delivered"
-                                            {{ $order->status === 'delivered' ? 'selected' : '' }}>
-                                            {{ __('messages.delivered') }}
-                                        </option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <button
-                                        type="button"
-                                        class="delete-btn delete-order"
-                                        data-order-id="{{ $order->id }}"
-                                    >
-                                        {{ __('messages.delete') }}
-                                    </button>
-                                </td>
-
-                            </tr>
-
-                        @endforeach
-
-                    @empty
-
-                        <tr>
-                            <td colspan="9" class="text-center">
-                                {{ __('messages.no_orders_found') }}
-                            </td>
-                        </tr>
-
-                    @endforelse
-
-                </tbody>
-
-            </table>
-
-        </div>
 
     </div>
 

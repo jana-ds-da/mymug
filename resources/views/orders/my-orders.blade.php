@@ -26,79 +26,92 @@
             <span>{{ $orders->count() }} {{ __('messages.orders') }}</span>
         </div>
 
-        <div class="orders-table-wrapper">
+    
+<div class="orders-table-wrapper">
 
-            <table>
+    <table>
 
-                <thead>
-                    <tr>
-                        <th>{{ __('messages.order_number') }} #</th>
-                        <th>{{ __('messages.product') }}</th>
-                        <th>{{ __('messages.qty') }}</th>
-                        <th>{{ __('messages.total') }}</th>
-                        <th>{{ __('messages.payment') }}</th>
-                        <th>{{ __('messages.date') }}</th>
-                        <th>{{ __('messages.status') }}</th>
-                    </tr>
-                </thead>
+        <thead>
+            <tr>
+                <th>{{ __('messages.order_number') }} #</th>
+                <th>{{ __('messages.product') }}</th>
+                <th>{{ __('messages.qty') }}</th>
+                <th>{{ __('messages.total') }}</th>
+                <th>{{ __('messages.payment') }}</th>
+                <th>{{ __('messages.date') }}</th>
+                <th>{{ __('messages.status') }}</th>
+            </tr>
+        </thead>
 
-                <tbody>
+        <tbody>
 
-                    @forelse($orders as $order)
+            @forelse($orders as $order)
 
+                <tr>
+
+                  
+                    <td>
+                        #{{ $order->id }}
+                    </td>
+
+                   
+                    <td>
                         @foreach($order->items as $item)
-
-                            <tr>
-
-                                <td>
-                                    #{{ $order->id }}
-                                </td>
-
-                                <td>
-                                    {{ $item->product->mug_name ?? '-' }}
-                                </td>
-
-                                <td>
-                                    {{ $item->quantity }}
-                                </td>
-
-                                <td>
-                                    {{ number_format($order->total, 2) }}
-                                </td>
-
-                                <td>
-                                    {{ $order->payment }}
-                                </td>
-
-                                <td>
-                                    {{ $order->created_at->format('d/m') }}
-                                </td>
-
-                                <td>
-                                    <span class="order-status status-{{ $order->status }}">
-                                        {{ __('messages.' . $order->status) }}
-                                    </span>
-                                </td>
-
-                            </tr>
-
+                            <div style="margin-bottom: 6px;">
+                                {{ $item->product->mug_name ?? '-' }}
+                            </div>
                         @endforeach
+                    </td>
 
-                    @empty
+                   
+                    <td>
+                        @foreach($order->items as $item)
+                            <div style="margin-bottom: 6px;">
+                                {{ $item->quantity }}
+                            </div>
+                        @endforeach
+                    </td>
 
-                        <tr>
-                            <td colspan="7" class="text-center">
-                                {{ __('messages.no_orders_found') }}
-                            </td>
-                        </tr>
+                    
+                    <td>
+                        {{ number_format($order->total, 2) }} EGP
+                    </td>
 
-                    @endforelse
+                   
+                    <td>
+                        {{ $order->payment }}
+                    </td>
 
-                </tbody>
+                   
+                    <td>
+                        {{ $order->created_at->format('d/m/Y') }}
+                    </td>
 
-            </table>
+                    
+                    <td>
+                        <span class="order-status status-{{ $order->status }}">
+                            {{ __('messages.' . $order->status) }}
+                        </span>
+                    </td>
 
-        </div>
+                </tr>
+
+            @empty
+
+                <tr>
+                    <td colspan="7" class="text-center">
+                        {{ __('messages.no_orders_found') }}
+                    </td>
+                </tr>
+
+            @endforelse
+
+        </tbody>
+
+    </table>
+
+</div>
+
 
     </div>
 
