@@ -180,6 +180,17 @@ if ($request->boolean('buy_now')) {
     }
 
 
+    
+      public function emptyCart()
+      {
+          CartItem::where('user_id', Auth::id())->delete();
+
+             return redirect()->route('cart')
+             ->with('success', 'Your cart has been emptied.');
+       }
+
+
+
 
 
 

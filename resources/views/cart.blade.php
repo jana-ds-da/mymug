@@ -26,8 +26,28 @@
     
     <div class="cart-page">
 
-    <div class="cart-box">
-        <div class="cart-items" id="cart-items-container">
+    
+<div class="cart-box">
+
+    <div class="cart-header">
+        <h2>{{ __('messages.cart') }}</h2>
+
+       
+<form action="{{ route('cart.empty') }}" method="POST"
+      onsubmit="return confirm('Are you sure you want to empty your cart?');">
+    @csrf
+
+    <button type="submit" class="empty-cart-btn">
+        <i class="bi bi-trash3"></i>
+        Empty Cart
+    </button>
+</form>
+
+       
+    </div>
+
+    <div class="cart-items" id="cart-items-container">
+
             @forelse($cartItems as $item)
                 <div class="cart-item" data-item-id="{{ $item->id }}">
                     <div class="item-image-wrapper">
