@@ -113,17 +113,11 @@
 
                 </button>
 
-              <form action='{{ route('cart.add') }}' method='post'>
-                @csrf
+     
+            <button type="button" class="buy-btn" id="buyNow">
+              {{ __('messages.buy_now') }}
+           </button>
 
-                 <input type='hidden' name='product_id' value='{{ $product->id }}'>
-                 <input type="hidden" name="quantity" value="1">
-                 <input type="hidden" name="buy_now" value="1">
-                  <button type='submit'  class='buy-btn' id='buyNow'>
-                     {{ __('messages.buy_now') }}
-                  </button>
-                
-               </form>
             </div>
 
             <div class="extra-info">

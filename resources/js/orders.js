@@ -47,6 +47,8 @@ document.querySelectorAll('.order-status').forEach(select => {
             alert(orderMessages.error);
         });
 
+        updateOrderStats();
+
     });
 
 });
@@ -103,3 +105,22 @@ document.querySelectorAll('.delete-order').forEach(button => {
     });
 
 });
+
+
+function updateOrderStats() {
+    const statuses = Array.from(
+        document.querySelectorAll('.order-status')
+    ).map(select => select.value);
+
+    document.getElementById('all-orders-count').textContent =
+        statuses.length;
+
+    document.getElementById('pending-orders-count').textContent =
+        statuses.filter(status => status === 'pending').length;
+
+    document.getElementById('preparing-orders-count').textContent =
+        statuses.filter(status => status === 'preparing').length;
+
+    document.getElementById('delivered-orders-count').textContent =
+        statuses.filter(status => status === 'delivered').length;
+}

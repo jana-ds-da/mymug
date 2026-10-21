@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
    
+
 public function add(Request $request)
 {
     $request->validate([
@@ -21,25 +22,32 @@ public function add(Request $request)
         ->where('product_id', $request->product_id)
         ->first();
 
-    if ($request->boolean('buy_now')) {
+    
+if ($request->boolean('buy_now')) {
 
-        if ($cartItem) {
-            $cartItem->update([
-                'quantity' => $request->quantity,
-            ]);
-        } else {
-            CartItem::create([
-                'user_id' => Auth::id(),
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
-            ]);
-        }
+    $quantity = (int) $request->input('quantity', 1);
 
-        return response()->json([
-            'success' => true,
-            'redirect' => route('cart'),
-        ]);
+    if ($cartItem) {
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
+    } else {
+        $cartItem = new CartItem();
+        $cartItem->user_id = Auth::id();
+        $cartItem->product_id = $request->product_id;
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
     }
+
+    $cartCount = CartItem::where('user_id', Auth::id())
+        ->sum('quantity');
+
+    return response()->json([
+        'success' => true,
+        'redirect' => route('cart'),
+        'cart_count' => $cartCount,
+    ]);
+}
+
 
     if ($cartItem) {
         $cartItem->increment('quantity', $request->quantity);
@@ -51,11 +59,16 @@ public function add(Request $request)
         ]);
     }
 
+    $cartCount = CartItem::where('user_id', Auth::id())
+        ->sum('quantity');
+
     return response()->json([
         'success' => true,
         'message' => __('messages.product_added_to_cart'),
+        'cart_count' => $cartCount,
     ]);
 }
+
 
 
 

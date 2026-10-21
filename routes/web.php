@@ -17,6 +17,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\SetLocale;
 
 
 Route::get('/', function () {
@@ -186,17 +188,12 @@ Route::middleware('auth')->group(function () {
         ->middleware('permission:delete departments')
         ->name('departments.destroy');
 
-    Route::get('/language/{locale}', function ($locale) {
+    Route::get('/admin/orders/{order}', [OrderController::class, 'show'])
+    ->name('admin.orders.show');    
 
-    if (!in_array($locale, ['en', 'ar'])) {
-        abort(400);
-    }
+    
 
-    session(['locale' => $locale]);
 
-    return redirect()->back();
-
-    })->name('language');  
     
   });  
     
@@ -226,7 +223,22 @@ Route::middleware('auth')->group(function () {
             ->name('orders.destroy');
 
     });
-
-    Route::resource('category', CategoryController::class);
+ 
 
 });
+
+
+   Route::resource('category', CategoryController::class);
+
+    Route::get('/language/{locale}', function ($locale) {
+      if (!in_array($locale, ['en', 'ar'])) {
+        abort(400);
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+
+    })->name('language'); 
+
+    

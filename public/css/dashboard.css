@@ -560,7 +560,22 @@ body{
     padding-right: 10px;
 }
 
+.show-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #B85C2F;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
 
+.show-btn:hover {
+    background-color: #934521;
+    color: #fff;
+}
 
 
 

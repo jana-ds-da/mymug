@@ -92,9 +92,25 @@
 <div class="auth-links">
 
 
-      <a href="{{ route('cart') }}" class="cart-icon" aria-label="Cart">
-        <i class="fas fa-shopping-cart"></i>
-      </a>
+  
+   @php
+    $cartCount = auth()->check()
+        ? \App\Models\CartItem::where('user_id', auth()->id())
+            ->sum('quantity')
+        : 0;
+   @endphp
+
+  <a href="{{ route('cart') }}" class="cart-icon" aria-label="Cart">
+    <i class="fas fa-shopping-cart"></i>
+
+    <span
+        class="cart-badge"
+        id="cart-badge"
+        style="{{ $cartCount > 0 ? '' : 'display: none;' }}"
+    >{{ $cartCount }}</span>
+  </a>
+
+
 
      <div class="language-switcher">
         <a href="{{ route('language', 'en') }}"

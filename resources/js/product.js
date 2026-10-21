@@ -21,111 +21,94 @@ document.getElementById("minus").addEventListener("click", () => {
 });
 
 
-document.getElementById("addCart").addEventListener("click", () => {
 
-    if(!isLoggedIn) {
 
+document.getElementById("addCart").addEventListener("click", async () => {
+    if (!isLoggedIn) {
         alert(translations.loginToAddCart);
-
-        window.location.href = '/login';
-
+        window.location.href = "/login";
         return;
-
     }
 
-    fetch("/cart/add", {
+    try {
+        const response = await fetch("/cart/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                product_id: product.id,
+                quantity: quantity
+            })
+        });
 
-        method: "POST",
+        const data = await response.json();
 
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content"),
-
-            "Accept": "application/json"
-        },
-
-        body: JSON.stringify({
-
-            product_id: product.id,
-            quantity: quantity
-
-        })
-
-    })
-
-    .then(response => response.json())
-
-    .then(data => {
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to add product to cart");
+        }
 
         if (data.success) {
+            const cartBadge = document.getElementById("cart-badge");
+
+            if (cartBadge && data.cart_count !== undefined) {
+                cartBadge.textContent = data.cart_count;
+                cartBadge.style.display =
+                    Number(data.cart_count) > 0 ? "flex" : "none";
+            }
 
             alert(data.message);
-
         }
-
-    })
-
-    .catch(error => {
-
+    } catch (error) {
         console.error(error);
-
-    });
-
-
-
-    });
+        alert("Could not add the product to your cart.");
+    }
+});
 
 
-document.getElementById("buyNow").addEventListener("click", () => {
 
+
+document.getElementById("buyNow").addEventListener("click", async () => {
     if (!isLoggedIn) {
-
         alert(translations.loginToBuy);
         window.location.href = "/login";
-
         return;
     }
 
-    fetch("/cart/add", {
+    try {
+        const response = await fetch("/cart/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                product_id: product.id,
+                quantity: Number(
+                    document.getElementById("quantity").textContent
+                ),
+                buy_now: true
+            })
+        });
 
-        method: "POST",
+        const data = await response.json();
 
-        headers: {
-            "Content-Type": "application/json",
-
-            "X-CSRF-TOKEN": document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content"),
-
-            "Accept": "application/json"
-        },
-
-        body: JSON.stringify({
-
-            product_id: product.id,
-            quantity: quantity,
-            buy_now: true
-
-        })
-
-    })
-
-    .then(response => response.json())
-
-    .then(data => {
-
-       if (data.success) {
-              window.location.href = data.redirect;
+        if (!response.ok) {
+            throw new Error(data.message || "Buy Now failed");
         }
 
-    })
-
-    .catch(error => {
-
+        if (data.success) {
+            window.location.href = data.redirect;
+        }
+    } catch (error) {
         console.error(error);
-
-    });
-
+        alert("Could not process Buy Now. Please try again.");
+    }
 });
