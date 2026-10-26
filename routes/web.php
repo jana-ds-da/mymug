@@ -241,4 +241,15 @@ Route::middleware('auth')->group(function () {
 
     })->name('language'); 
 
+
+    
+Route::delete('/cart/empty', [CartController::class, 'emptyCart'])
+    ->name('cart.empty');
+
+
+Route::post('/cart/empty', [CartController::class, 'emptyCart'])
+    ->name('cart.empty');
+
+
+
     
