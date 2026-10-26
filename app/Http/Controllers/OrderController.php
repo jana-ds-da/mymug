@@ -28,6 +28,7 @@ class OrderController extends Controller
 
     }
 
+       // update
     public function updateStatus(Request $request, Order $order)
     {
         $validated = $request->validate([
@@ -49,7 +50,8 @@ class OrderController extends Controller
             'status' => $order->status,
         ]);
     }
-
+ 
+       // destroy
     public function destroy(Order $order)
     {
         $order->delete();
@@ -60,6 +62,7 @@ class OrderController extends Controller
         ]);
     }
 
+       // show
     public function show(\App\Models\Order $order)
 {
     $order->load('items.product');

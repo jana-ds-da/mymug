@@ -13,8 +13,6 @@ use App\Mail\NewOrderMail;
 use Illuminate\Support\Facades\Mail;
 
 
-
-
 class CheckoutController extends Controller
 {
 

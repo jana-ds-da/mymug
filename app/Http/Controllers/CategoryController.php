@@ -9,25 +9,17 @@ use App\DataTables\CategoryDataTable;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // index function
     public function index(CategoryDataTable $dataTable)
     {
         return $dataTable->render('category.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+     // create 
     public function create()
     {
         return view('category.form');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+     // store 
     public function store(Request $request)
     {
          $validated = $request->validate([
@@ -52,26 +44,19 @@ class CategoryController extends Controller
           ->with('success', __('messages.category_created_successfully'));
 
     }
-
-    /**
-     * Display the specified resource.
-     */
+         // show
     public function show(Category $category)
     {
         return view('category.index', compact('category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //edit
     public function edit(Category $category)
     {
          return view('category.form', compact('category'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
+     
+     // update
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
@@ -98,10 +83,8 @@ class CategoryController extends Controller
             ->route('category.index')
              ->with('success', __('messages.category_updated_successfully'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+  
+        // destroy
     public function destroy(Category $category)
     {
         if ($category->products()->exists()) {
