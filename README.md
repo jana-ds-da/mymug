@@ -1,59 +1,400 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# My Mug — Full-Stack E-commerce & Store Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=flat&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![MySQL](https://img.shields.io/badge/Database-Laravel_Configured-4479A1?style=flat&logo=database&logoColor=white)
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**My Mug** is a full-stack e-commerce and store management web application built with Laravel. It provides a complete shopping experience for customers and a management system for administrators.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The platform includes product browsing, product details, shopping cart management, checkout, order tracking, receipt generation, and an administrative dashboard for managing products, users, roles, permissions, categories, departments, and orders.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The application also supports English and Arabic interfaces, including right-to-left (RTL) layouts.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Main Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Customer Storefront
 
-## Laravel Sponsors
+- Home page with store presentation.
+- About page.
+- Product collections and browsing.
+- Product details pages.
+- Product catalog and category-based organization.
+- Shopping cart.
+- Add products to cart.
+- Increase and decrease product quantities.
+- Remove individual cart items.
+- Empty cart functionality.
+- Checkout process.
+- Order receipt page.
+- Customer order history.
+- User registration and login.
+- Logout functionality.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. Admin Dashboard
 
-### Premium Partners
+The administrative dashboard provides management tools for the store.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Dashboard**
+- Centralized dashboard.
+- Sales and order overview.
+- Store management interface.
 
-## Contributing
+**Product Management**
+- View and manage products.
+- Add products.
+- Update product information.
+- Delete products.
+- Organize products by categories.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Order Management**
+- View all customer orders.
+- View individual order details.
+- Update order status.
+- Delete orders.
+- View personal customer orders.
 
-## Code of Conduct
+**User Management**
+- View users.
+- Create new users.
+- Edit user information.
+- Delete users.
+- Assign roles and departments.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Role & Permission Management**
+- View available roles.
+- Create roles.
+- Edit roles.
+- Delete roles.
+- Manage role-based access and permissions.
 
-## Security Vulnerabilities
+**Category Management**
+- View categories.
+- Create categories.
+- Edit categories.
+- Delete categories.
+- Support for translated category data.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Department Management**
+- View departments.
+- Create departments.
+- Edit departments.
+- Delete departments.
+
+### 3. Authentication & Authorization
+
+- User registration.
+- User login and logout.
+- Protected routes.
+- Role-based access control.
+- Permission-based access control.
+- Separate access levels for customers and administrators.
+
+### 4. Multilingual Support
+
+- English language.
+- Arabic language.
+- Language switching.
+- RTL layout support.
+- Translatable products and categories.
+
+### 5. Order & Checkout System
+
+- Shopping cart integration.
+- Checkout form.
+- Order creation.
+- Order items management.
+- Order status tracking.
+- Receipt generation.
+- Printable receipt page.
+- New order email template.
+
+---
+
+## Application Pages
+
+The following pages are based on the Blade views and application routes in the main project.
+
+### Customer Pages
+
+| Page | Description |
+|---|---|
+| Home | Main storefront landing page |
+| About | Store information |
+| Collection | Product collection and browsing |
+| Product Details | Individual product information |
+| Cart | Shopping cart management |
+| Checkout | Customer checkout |
+| Receipt | Order receipt |
+| Login | Customer authentication |
+| Signup | New customer registration |
+| My Orders | Customer order history |
+
+### Admin & Management Pages
+
+| Page | Description |
+|---|---|
+| Dashboard | Administrative overview |
+| Products Management | Product administration |
+| All Orders | View all customer orders |
+| Order Details | Individual order information |
+| Users Management | View and manage users |
+| Create User | Add a new user |
+| Edit User | Update user information |
+| Roles Management | View and manage roles |
+| Create Role | Create a new role |
+| Categories Management | View and manage categories |
+| Category Form | Create or edit a category |
+| Departments Management | View and manage departments |
+| Department Form | Create or edit a department |
+
+### Shared Views & Templates
+
+- Main application layout.
+- Navigation bar component.
+- Welcome page.
+- New order email template.
+
+---
+
+## Technology Stack
+
+### Backend
+- PHP 8.2+
+- Laravel 12
+- Laravel Eloquent ORM
+- Laravel Authentication
+- Laravel Sanctum package
+- Spatie Laravel Permission
+- Astrotomic Laravel Translatable
+- Yajra Laravel DataTables
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+- Blade Templates
+- Tailwind CSS 4
+- Vite
+- jQuery
+- DataTables
+- Font Awesome
+
+### Database
+- Laravel database configuration.
+- Eloquent ORM.
+- Database migrations.
+- Relational data models.
+
+---
+
+## Database Models
+
+The main application includes the following Eloquent models:
+
+| Model | Responsibility |
+|---|---|
+| User | User accounts and authentication |
+| Product | Store products |
+| ProductTranslation | Translated product information |
+| Category | Product categories |
+| CategoryTranslation | Translated category information |
+| Department | User departments |
+| CartItem | Shopping cart items |
+| Order | Customer orders |
+| OrderItem | Products associated with orders |
+
+The application also uses database tables for Laravel permissions, roles, caching, and background jobs.
+
+
+
+## Project Structure
+
+
+newproject/
+│
+├── app/
+│   ├── DataTables/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AuthController.php
+│   │   │   ├── CartController.php
+│   │   │   ├── CategoryController.php
+│   │   │   ├── CheckoutController.php
+│   │   │   ├── CollectionController.php
+│   │   │   ├── DashboardController.php
+│   │   │   ├── DepartmentController.php
+│   │   │   ├── OrderController.php
+│   │   │   ├── ProductController.php
+│   │   │   ├── ReceiptController.php
+│   │   │   ├── RoleController.php
+│   │   │   └── UserController.php
+│   │   └── Middleware/
+│   └── Models/
+│
+├── database/
+│   ├── migrations/
+│   └── seeders/
+│
+├── resources/
+│   ├── views/
+│   │   ├── admin/
+│   │   ├── category/
+│   │   ├── departments/
+│   │   ├── emails/
+│   │   ├── layouts/
+│   │   ├── orders/
+│   │   ├── roles/
+│   │   ├── users/
+│   │   ├── components/
+│   │   ├── home.blade.php
+│   │   ├── about.blade.php
+│   │   ├── collection.blade.php
+│   │   ├── product.blade.php
+│   │   ├── cart.blade.php
+│   │   ├── checkout.blade.php
+│   │   ├── receipt.blade.php
+│   │   ├── login.blade.php
+│   │   └── signup.blade.php
+│   │
+│   ├── css/
+│   └── js/
+│
+├── routes/
+│   ├── web.php
+│   └── api.php
+│
+├── public/
+├── storage/
+├── tests/
+├── composer.json
+├── package.json
+├── vite.config.js
+└── README.md
+
+
+
+
+## Installation & Setup
+
+### Requirements
+
+- PHP 8.2 or higher.
+- Composer.
+- Node.js and npm.
+- A supported database.
+- XAMPP or another local development environment.
+
+### 1. Clone the Repository
+
+
+git clone https://github.com/jana-ds-da/My_Mug_updated.git
+cd My_Mug_updated
+
+
+### 2. Install PHP Dependencies
+
+composer install
+
+
+### 3. Install Frontend Dependencies
+
+
+npm install
+
+
+### 4. Configure Environment
+
+
+cp .env.example .env
+
+
+Configure your database connection and other environment variables inside `.env`.
+
+### 5. Generate Application Key
+
+
+php artisan key:generate
+
+
+### 6. Run Database Migrations
+
+php artisan migrate
+
+
+### 7. Build Frontend Assets
+
+npm run build
+
+
+For development:
+
+npm run dev
+
+
+### 8. Start the Laravel Server
+
+php artisan serve
+
+
+Open the application at:
+
+http://127.0.0.1:8000
+
+
+
+## Security & Access Control
+
+The application uses authentication and authorization mechanisms to protect administrative functionality.
+
+- Authenticated access to protected customer features.
+- Permission-protected dashboard routes.
+- Role-protected customer order history.
+- Permission-based user management.
+- Permission-based role management.
+- Permission-based department management.
+- Order access and management restrictions.
+
+
+
+## Important Notes
+
+- Configure your database before running migrations.
+- Configure mail settings in the `.env` file to enable order email notifications.
+- Configure the appropriate payment provider before using real online payment processing.
+- Never upload `.env`, credentials, API keys, or other sensitive configuration files to a public repository.
+- Run `php artisan storage:link` if the application uses Laravel's public storage disk.
+- The repository contains a nested `mymug/` directory with a separate Laravel project/repository. The main project documentation above describes the root `newproject/` application. Check the nested repository separately if you intend to publish both applications together.
+
+---
+
+## Future Improvements
+
+- Integrate a production-ready online payment gateway.
+- Add advanced sales and analytics reports.
+- Improve product search and filtering.
+- Add product reviews and ratings.
+- Add automated testing for core shopping workflows.
+- Improve performance and caching.
+- Add inventory and stock management.
+
+---
+
+## Author
+
+**Jana Muhammad**
+
+GitHub: [@jana-ds-da](https://github.com/jana-ds-da)
+
+Project Repository: [My Mug — My_Mug_updated](https://github.com/jana-ds-da/My_Mug_updated)
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is developed for educational and portfolio purposes. Add a formal license if you intend to distribute or reuse it publicly.
