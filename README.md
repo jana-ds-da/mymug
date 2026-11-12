@@ -211,11 +211,11 @@ The main application includes the following Eloquent models:
 
 The application also uses database tables for Laravel permissions, roles, caching, and background jobs.
 
-
+---
 
 ## Project Structure
 
-
+```text
 newproject/
 │
 ├── app/
@@ -276,9 +276,9 @@ newproject/
 ├── package.json
 ├── vite.config.js
 └── README.md
+```
 
-
-
+---
 
 ## Installation & Setup
 
@@ -292,61 +292,68 @@ newproject/
 
 ### 1. Clone the Repository
 
-
+```bash
 git clone https://github.com/jana-ds-da/My_Mug_updated.git
 cd My_Mug_updated
-
+```
 
 ### 2. Install PHP Dependencies
 
+```bash
 composer install
-
+```
 
 ### 3. Install Frontend Dependencies
 
-
+```bash
 npm install
-
+```
 
 ### 4. Configure Environment
 
-
+```bash
 cp .env.example .env
-
+```
 
 Configure your database connection and other environment variables inside `.env`.
 
 ### 5. Generate Application Key
 
-
+```bash
 php artisan key:generate
-
+```
 
 ### 6. Run Database Migrations
 
+```bash
 php artisan migrate
-
+```
 
 ### 7. Build Frontend Assets
 
+```bash
 npm run build
-
+```
 
 For development:
 
+```bash
 npm run dev
-
+```
 
 ### 8. Start the Laravel Server
 
+```bash
 php artisan serve
-
+```
 
 Open the application at:
 
+```text
 http://127.0.0.1:8000
+```
 
-
+---
 
 ## Security & Access Control
 
@@ -360,7 +367,7 @@ The application uses authentication and authorization mechanisms to protect admi
 - Permission-based department management.
 - Order access and management restrictions.
 
-
+---
 
 ## Important Notes
 
